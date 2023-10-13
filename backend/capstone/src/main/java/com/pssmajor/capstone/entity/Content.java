@@ -1,14 +1,9 @@
 package com.pssmajor.capstone.entity;
 
 
-
-
-
-
 import java.time.Instant;
-import java.util.Date;
 
-import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
@@ -21,30 +16,26 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class Course {
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Content {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long courseId;
-	private String courseTitle;
-	private String courseDesc;
+	private Long contentId;
+	@JoinColumn(foreignKey = @ForeignKey(name="FK_USER_CONTENT"))
+	private Course course;
+	private String contentUrl;
+	private String contentDesc;
+	@UpdateTimestamp
+	private Instant modifiedAt;
+	private String contentType;
 	
-	@JoinColumn(foreignKey = @ForeignKey(name= "FK_COURSE_TEACHER"))
-	private User teacher;
 	
-	private Date startDate;
-	private Date endDate;
-	private String imgUrl;
-	
-	@CreationTimestamp
-	private Instant createdAt;
-	
-	private Boolean isActive=true;
-
 }
