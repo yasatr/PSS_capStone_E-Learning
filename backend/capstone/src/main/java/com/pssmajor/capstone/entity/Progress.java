@@ -2,12 +2,12 @@ package com.pssmajor.capstone.entity;
 
 import java.time.Instant;
 
-import org.hibernate.annotations.UpdateTimestamp;
-
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -19,21 +19,17 @@ import lombok.ToString;
 @Data
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
-public class User {
+public class Progress {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long userId;
-	private String firstName;
-	private String lastName;
-	private String email;
-	private String password;
-	private String phoneNo;
-	private String role;
-	private String profilePicUrl;
-	@UpdateTimestamp
-	private Instant modifiedAt;
-	private Boolean isActive = false;
+	private Long progressId;
+	@JoinColumn(name = "courseId", nullable = false, foreignKey = @ForeignKey(name="FK_COURSE_PROGRESS"))
+	private Course course;
+	@JoinColumn(name = "userId", nullable = false, foreignKey = @ForeignKey(name="FK_USER_PROGRESS"))
+	private User student;
+	private int score;
+	private Boolean status = false;
 }
