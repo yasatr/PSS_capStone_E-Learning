@@ -16,9 +16,9 @@ public class ProgressServiceImpl implements ProgressService{
 	private CourseRepository courseRepository;
 
 	@Override
-	public Progress getProgressById(Long courseId) {
-		Course course = courseRepository.findById(courseId).get();
-		return progressRepository.findById(course.getCourseId()).get();
+	public Progress getProgressByCourseIdAndUserId(Long courseId, Long userId) {
+		// TODO Auto-generated method stub
+		return progressRepository.getProgressByCourseIdAndUserId(courseId, userId);
 	}
 	
 	

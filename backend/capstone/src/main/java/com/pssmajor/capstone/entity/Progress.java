@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -26,10 +28,12 @@ public class Progress {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long progressId;
+	@OneToOne 
 	@JoinColumn(name = "courseId", nullable = false, foreignKey = @ForeignKey(name="FK_COURSE_PROGRESS"))
 	private Course course;
+	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false, foreignKey = @ForeignKey(name="FK_USER_PROGRESS"))
-	private User student;
+	private User userId;
 	private int score;
 	private Boolean status = false;
 }

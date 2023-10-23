@@ -1,30 +1,43 @@
 package com.pssmajor.capstone.service;
 
+import java.io.Console;
 import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.pssmajor.capstone.entity.Course;
+import com.pssmajor.capstone.entity.User;
 import com.pssmajor.capstone.model.CourseModel;
 import com.pssmajor.capstone.repository.CourseRepository;
+import com.pssmajor.capstone.repository.UserRepository;
 
+@Service
 public class CourseServiceImpl implements CourseService{
 	
 	@Autowired
 	private CourseRepository courseRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	@Override
-	public Course addCourse(CourseModel courseModel) {
+	public Course addCourse(Long userId, CourseModel courseModel) {
 		// TODO Auto-generated method stub
-		Course course=new Course();
-		course.setCourseTitle(courseModel.getCourseTitle());
-		course.setCourseDesc(course.getCourseDesc());
-		course.setStartDate(courseModel.getStartDate());
-		course.setEndDate(courseModel.getEndDate());
+		User user = userRepository.findById(userId).get();
+		System.out.println(user);
+		if(user.getRole().equals("teacher")) {
+			Course course=new Course();
+			course.setCourseTitle(courseModel.getCourseTitle());
+			course.setCourseDesc(courseModel.getCourseDesc());
+			course.setStartDate(courseModel.getStartDate());
+			course.setEndDate(courseModel.getEndDate());
+			courseRepository.save(course);
+			return course;
+		}
 		
-		courseRepository.save(course);
-		return course;
+		return null;
 	}
 	
 	@Override
@@ -50,9 +63,9 @@ public class CourseServiceImpl implements CourseService{
 			courseDb.setImgUrl(courseModel.getImgUrl());
 		}
 		
-		if(Objects.nonNull(courseModel.getIsActive())) {
-			courseDb.setIsActive(courseModel.getIsActive());
-		}
+//		if(Objects.nonNull(courseModel.getIsActive())) {
+//			courseDb.setIsActive(courseModel.getIsActive());
+//		}
 		
 		return courseRepository.save(courseDb);
 	}

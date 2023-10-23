@@ -5,6 +5,8 @@ import com.pssmajor.capstone.entity.Progress;
 
 public interface ProgressService {
 
-	Progress getProgressById(Long courseId);
+	Progress getProgressByCourseIdAndUserId(Long courseId, Long userId);
+
+	
 
 }

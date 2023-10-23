@@ -1,5 +1,6 @@
 package com.pssmajor.capstone.controller;
 
+import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.pssmajor.capstone.entity.Course;
 import com.pssmajor.capstone.model.CourseModel;
 import com.pssmajor.capstone.service.CourseService;
 
+@RestController
 public class CourseController {
 	
 	@Autowired
@@ -24,8 +28,10 @@ public class CourseController {
 	}
 	
 	@PostMapping("/addCourse")
-	public Course addCourse(@RequestBody CourseModel courseModel) {
-		Course course= courseService.addCourse(courseModel);
+	public Course addCourse(@RequestParam("userId") Long userId, @RequestBody CourseModel courseModel) {
+		System.out.println("main andar hun");
+		Course course = courseService.addCourse(userId, courseModel);
+		System.out.println(course);
 		return course;
 	}
 	

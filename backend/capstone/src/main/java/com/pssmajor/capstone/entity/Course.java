@@ -1,10 +1,4 @@
 package com.pssmajor.capstone.entity;
-
-
-
-
-
-
 import java.time.Instant;
 import java.util.Date;
 
