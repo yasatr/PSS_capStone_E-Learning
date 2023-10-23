@@ -30,11 +30,12 @@ public class Feedback {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long feedbackId;
 	@JoinColumn(name = "courseId", nullable = false, foreignKey = @ForeignKey(name="FK_COURSE_FEEDBACK"))
-	private Course course;
+	private Course courseId;
 	@JoinColumn(name = "userId", nullable = false, foreignKey = @ForeignKey(name="FK_USER_FEEDBACK"))
-	private User student;
+	private User userId;
 	@Column(length = 100)
 	private String feedbackDesc;
 	@CreationTimestamp
 	private Instant createdAt;
+	private Boolean isActive=true;
 }
