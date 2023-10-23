@@ -11,11 +11,11 @@ import java.util.Date;
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -35,11 +35,12 @@ public class Course {
 	private String courseTitle;
 	private String courseDesc;
 	
-	@JoinColumn(foreignKey = @ForeignKey(name= "FK_COURSE_TEACHER"))
-	private User teacher;
+//	@JoinColumn(foreignKey = @ForeignKey(name= "FK_COURSE_TEACHER"))
+//	private User teacher;
 	
 	private Date startDate;
 	private Date endDate;
+	
 	private String imgUrl;
 	
 	@CreationTimestamp
