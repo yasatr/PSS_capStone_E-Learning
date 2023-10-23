@@ -1,4 +1,4 @@
-package com.pssmajor.capstone.model;
+ package com.pssmajor.capstone.model;
 
 import java.time.Instant;
 
