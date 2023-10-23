@@ -11,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -29,8 +31,10 @@ public class Feedback {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long feedbackId;
+	@ManyToOne
 	@JoinColumn(name = "courseId", nullable = false, foreignKey = @ForeignKey(name="FK_COURSE_FEEDBACK"))
 	private Course courseId;
+	@OneToOne
 	@JoinColumn(name = "userId", nullable = false, foreignKey = @ForeignKey(name="FK_USER_FEEDBACK"))
 	private User userId;
 	@Column(length = 100)

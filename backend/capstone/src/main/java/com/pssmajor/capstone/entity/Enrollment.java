@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -28,8 +30,10 @@ public class Enrollment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long enrollmentId;
+	@ManyToOne
 	@JoinColumn(name="userId", nullable = false, foreignKey = @ForeignKey(name="FK_USER_ENROLLMENT"))
-	private User student;
+	private User user;
+	@ManyToOne
 	@JoinColumn(name="courseId", nullable = false, foreignKey = @ForeignKey(name="FK_COURSE_ENROLLMENT"))
 	private Course course;
 	@UpdateTimestamp

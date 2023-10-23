@@ -7,7 +7,7 @@ import com.pssmajor.capstone.model.CourseModel;
 
 public interface CourseService {
 
-	Course addCourse(CourseModel courseModel);
+	Course addCourse(Long userId, CourseModel courseModel);
 
 	List<Course> getAllCourse();
 
