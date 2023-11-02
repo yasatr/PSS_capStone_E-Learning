@@ -1,0 +1,34 @@
+package com.pssmajor.capstone.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.pssmajor.capstone.entity.Content;
+import com.pssmajor.capstone.model.ContentModel;
+import com.pssmajor.capstone.repository.ContentRepository;
+
+@Service
+public class ContentServiceImpl implements ContentService {
+	
+	@Autowired
+	private ContentRepository contentRepository;
+
+	@Override
+	public Content addContent(ContentModel contentModel) {
+		Content content = new Content();
+		content.setContentUrl(contentModel.getContentUrl());
+		content.setContentDesc(contentModel.getContentDesc());
+		content.setContentType(contentModel.getContentType());
+		
+		contentRepository.save(content);
+		return content;
+	}
+
+	@Override
+	public Content updateContent(Long contentId, ContentModel contentModel) {
+		Content content = contentRepository.findById(contentId).get();		
+		
+		contentRepository.save(content);
+		return content;
+	}
+}

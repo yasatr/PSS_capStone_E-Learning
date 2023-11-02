@@ -1,0 +1,13 @@
+package com.pssmajor.capstone.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pssmajor.capstone.service.ContentService;
+
+@RestController
+public class ContentContoller {
+	
+	@Autowired
+	private ContentService contentService;
+}
