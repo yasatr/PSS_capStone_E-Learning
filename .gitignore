@@ -34,3 +34,5 @@ build/
 
 ###Eclipse###
 .metadata/
+
+node_modules/
