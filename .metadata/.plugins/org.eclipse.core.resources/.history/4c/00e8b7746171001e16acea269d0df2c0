@@ -1,5 +1,0 @@
-package com.pssmajor.capstone.service;
-
-public interface ContentService {
-
-}
