@@ -28,7 +28,6 @@ function App() {
   const theme = extendTheme({ colors, config });
   
   return (
-
     <ChakraProvider theme={theme}>
       <Navbar/>
       <Heading>Hello</Heading>
