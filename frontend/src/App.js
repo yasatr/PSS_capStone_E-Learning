@@ -4,6 +4,11 @@ import Navbar from "./Components/NavBar/Navbar";
 import CardSlider from "./Components/Slider/CardSlider";
 import StudentDashboard from "./Pages/Student/StudentDashboard";
 
+import { ChakraProvider, Heading, extendTheme} from '@chakra-ui/react';
+import './App.css';
+import Navbar from './Components/NavBar/Navbar';
+import MyCourse from './Pages/Teacher/MyCourse';
+
 function App() {
   const colors = {
     brand: {
@@ -29,6 +34,9 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Navbar />
+      <Heading>Hello</Heading>
+      <Navbar/>
+      <MyCourse/>
     </ChakraProvider>
   );
 }
