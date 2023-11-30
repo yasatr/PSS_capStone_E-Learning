@@ -2,8 +2,8 @@
 import { ChakraProvider, Heading, extendTheme} from '@chakra-ui/react';
 import './App.css';
 import Navbar from './Components/NavBar/Navbar';
-import AllCourses from './Components/Student/AllCourses';
-import CourseCard from './Components/Teacher/CourseCard';
+import AllCourses from './Pages/Student/AllCourses';
+import CourseCard from './Pages/Teacher/CourseCard';
 
 function App() {
   const colors = {
