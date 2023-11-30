@@ -31,8 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+.vs/
 
 ###Eclipse###
 .metadata/
 
 node_modules/
+/.vs
