@@ -7,6 +7,10 @@ import './App.css';
 import { ChakraProvider, extendTheme} from '@chakra-ui/react';
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import Navbar from './Components/NavBar/Navbar';
+<<<<<<< HEAD
+
+=======
+>>>>>>> main
 
 function App() {
   const colors = {
@@ -34,6 +38,8 @@ function App() {
     <ChakraProvider theme={theme}>
       <Router>
       <Navbar/>
+<<<<<<< HEAD
+=======
         <Routes>
         <Route exact path='/student' Component={StudentDashboard}/>
         <Route exact path='/student/myCourses' Component={MyCourses}/>
@@ -41,6 +47,7 @@ function App() {
         <Route exact path='/student/completedCourses' Component={CompletedCourses}/>
         </Routes>
     </Router>
+>>>>>>> main
     </ChakraProvider>
   );
 }
