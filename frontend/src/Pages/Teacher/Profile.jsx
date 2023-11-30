@@ -1,7 +1,6 @@
 import React from "react";
 import { Stack, Heading, Text, Button, Box, chakra, GridItem, SimpleGrid, Input, FormLabel, FormControl, Select} from "@chakra-ui/react";
 
-
 function Profile(props) {
   const {FirstName, LastName, Phone, Email}= props
   return (
