@@ -36,3 +36,4 @@ build/
 .metadata/
 
 node_modules/
+/.vs
