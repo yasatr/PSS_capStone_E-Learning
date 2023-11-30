@@ -2,7 +2,7 @@
 import { ChakraProvider, Heading, extendTheme} from '@chakra-ui/react';
 import './App.css';
 import Navbar from './Components/NavBar/Navbar';
-import MyCourse from './Pages/Teacher/MyCourse';
+
 
 function App() {
   const colors = {
@@ -30,7 +30,6 @@ function App() {
     <ChakraProvider theme={theme}>
       <Heading>Hello</Heading>
       <Navbar/>
-      <MyCourse/>
     </ChakraProvider>
   );
 }
