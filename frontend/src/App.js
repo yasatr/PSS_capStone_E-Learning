@@ -1,3 +1,8 @@
+import { ChakraProvider, Heading, extendTheme } from "@chakra-ui/react";
+import "./App.css";
+import Navbar from "./Components/NavBar/Navbar";
+import CardSlider from "./Components/Slider/CardSlider";
+import StudentDashboard from "./Pages/Student/StudentDashboard";
 
 import { ChakraProvider, Heading, extendTheme} from '@chakra-ui/react';
 import './App.css';
@@ -16,18 +21,19 @@ function App() {
       600: "#3c4178",
       700: "#2a2f57",
       800: "#181c37",
-      900: "#080819"
-    }
+      900: "#080819",
+    },
   };
   const config = {
     initialColorMode: "dark",
-    useSystemColorMode: false
+    useSystemColorMode: false,
   };
-  
+
   const theme = extendTheme({ colors, config });
-  
+
   return (
     <ChakraProvider theme={theme}>
+      <Navbar />
       <Heading>Hello</Heading>
       <Navbar/>
       <MyCourse/>
@@ -36,5 +42,3 @@ function App() {
 }
 
 export default App;
-
-
