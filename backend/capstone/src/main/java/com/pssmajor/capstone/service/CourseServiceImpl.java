@@ -70,10 +70,10 @@ public class CourseServiceImpl implements CourseService{
 		return courseRepository.save(courseDb);
 	}
 
-	/*
-	 * @Override public Course getMyCourse() { // TODO Auto-generated method stub
-	 * return null; }
-	 */
+//	/*
+//	 * @Override public Course getMyCourse() { // TODO Auto-generated method stub
+//	 * return null; }
+//	 */
 	
 
 }

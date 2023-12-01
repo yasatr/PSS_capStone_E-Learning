@@ -3,7 +3,7 @@ import { Box, Flex, HStack, chakra } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
 function SmallCourseCard(props) {
-    const {title} = props
+  console.log(props);
   return (
     <div>
       <Flex
@@ -51,7 +51,7 @@ function SmallCourseCard(props) {
                 color: "white",
               }}
             >
-              {title}
+              {props.courseTitle}
             </chakra.h1>
 
             <chakra.p
@@ -62,7 +62,7 @@ function SmallCourseCard(props) {
                 color: "gray.400",
               }}
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit In odit
+              {props.courseDesc}
             </chakra.p>
 
             <HStack spacing={1} display="flex" alignItems="center" mt={2}>
@@ -85,7 +85,7 @@ function SmallCourseCard(props) {
                 }}
               />
               <StarIcon color="gray.500" />
-              <StarIcon color="gray.500" />
+              <StarIcon color="gray.500" />w
             </HStack>
 
             <Flex mt={3} alignItems="center" justifyContent="space-between">
@@ -114,7 +114,6 @@ function SmallCourseCard(props) {
           </Box>
         </Flex>
       </Flex>
-      
     </div>
   );
 }

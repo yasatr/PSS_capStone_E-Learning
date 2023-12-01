@@ -29,6 +29,8 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
+      <Navbar />
+      <StudentDashboard />
       <Profile/>
       <Router>
       <Navbar/>
