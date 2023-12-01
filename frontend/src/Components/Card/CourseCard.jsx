@@ -1,8 +1,19 @@
 import React, { useState } from "react";
-import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button } from "@chakra-ui/react";
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  Image,
+  Stack,
+  Heading,
+  Text,
+  Divider,
+  ButtonGroup,
+  Button,
+} from "@chakra-ui/react";
 
 function CourseCard(props) {
-    const {title, imageUrl, description, price} = props;
+  const { title, imageUrl, description, price } = props;
   return (
     <div>
       <Card maxW="sm">
@@ -14,9 +25,7 @@ function CourseCard(props) {
           />
           <Stack mt="6" spacing="3">
             <Heading size="md">{title}</Heading>
-            <Text>
-                {description}
-            </Text>
+            <Text>{description}</Text>
             <Text color="blue.600" fontSize="2xl">
               {price}
             </Text>
