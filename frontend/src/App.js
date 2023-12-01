@@ -35,12 +35,16 @@ function App() {
       {/* <Navbar/> */}
       {/* <Profile/> */}
         <Routes>
-        <Route exact path='/student' Component={StudentDashboard}/>
-        <Route exact path='/student/myCourses' Component={MyCourses}/>
-        <Route exact path='/student/allCourses' Component={AllCourses}/>
-        <Route exact path='/student/completedCourses' Component={CompletedCourses}/>
+          <Route exact path="/student" Component={StudentDashboard} />
+          {/* <Route exact path="/student/myCourses" Component={MyCourses} />
+          <Route exact path="/student/allCourses" Component={AllCourses} /> */}
+          {/* <Route
+            exact
+            path="/student/completedCourses"
+            Component={CompletedCourses}
+          /> */}
         </Routes>
-    </Router>
+      </Router>
     </ChakraProvider>
   );
 }
