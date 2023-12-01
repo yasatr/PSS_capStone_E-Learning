@@ -65,7 +65,7 @@ function SmallCourseCard(props) {
               Lorem ipsum dolor sit amet consectetur adipisicing elit In odit
             </chakra.p>
 
-            <HStack spacing={1} display="flex" alignItems="center" mt={2}>
+            {/* <HStack spacing={1} display="flex" alignItems="center" mt={2}>
               <StarIcon
                 color="gray.700"
                 _dark={{
@@ -86,10 +86,10 @@ function SmallCourseCard(props) {
               />
               <StarIcon color="gray.500" />
               <StarIcon color="gray.500" />
-            </HStack>
+            </HStack> */}
 
             <Flex mt={3} alignItems="center" justifyContent="space-between">
-              <chakra.h1 color="white" fontWeight="bold" fontSize="lg">
+              <chakra.h1 color="black" fontWeight="bold" fontSize="lg">
                 $220
               </chakra.h1>
               <chakra.button

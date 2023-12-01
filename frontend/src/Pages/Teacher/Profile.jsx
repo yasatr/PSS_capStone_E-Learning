@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Stack, Heading, Text, Button, Box, chakra, GridItem, SimpleGrid, Input, FormLabel, FormControl, Select} from "@chakra-ui/react";
+import Footer from '../../Components/Footer/Footer'
+import Cookies from "js-cookie";
 
 function Profile(props) {
   const {FirstName, LastName, Phone, Email}= props
+
+  useEffect(() => {
+    const userData = Cookies.get("user");
+    console.log(user);
+  },[]);
   return (
     <div>
       <Box
@@ -342,7 +349,7 @@ function Profile(props) {
           </SimpleGrid>
         </Box>
       </Box>
-      
+      <Footer/>
     </div>
   );
 }

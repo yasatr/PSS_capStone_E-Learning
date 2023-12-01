@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from '@chakra-ui/react'
+import { Grid, useStatStyles } from '@chakra-ui/react'
 import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button } from "@chakra-ui/react";
 
 const MyCourses = () => {
