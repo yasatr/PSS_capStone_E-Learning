@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class WebSecurityConfig {
 	  private static final String[] WHITE_LIST_URLS = {
 
-	            "/hello", "/signup", "/login" , "/addCourse" , "/addCourse**","/content","/content/*"
+	            "/hello", "/signup", "/login" , "/addCourse" , "/addCourse**","/content","/content/*","/allCourse"
 
 	    };
 
