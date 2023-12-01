@@ -2,7 +2,10 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@chakra-ui/react'
 import { Box, Heading, VStack, StackDivider } from "@chakra-ui/react";
+<<<<<<< HEAD
+=======
 import React, { useState, useEffect } from "react";
+>>>>>>> main
 import CardSlider from "../../Components/Slider/CardSlider";
 import axios from "axios";
 
@@ -26,7 +29,11 @@ const StudentDashboard = () => {
 
   const navigate = useNavigate();
   return (
+<<<<<<< HEAD
+    <Box p={4}>
+=======
     <Box>
+>>>>>>> main
       <VStack
         divider={<StackDivider borderColor="gray.200" />}
         spacing={10}
