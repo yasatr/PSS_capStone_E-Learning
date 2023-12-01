@@ -4,6 +4,7 @@ import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +18,10 @@ import com.pssmajor.capstone.entity.Course;
 import com.pssmajor.capstone.model.CourseModel;
 import com.pssmajor.capstone.service.CourseService;
 
+import jakarta.transaction.Status;
+
 @RestController
-<<<<<<< HEAD
 @CrossOrigin(origins = "http://localhost:3000/")
-=======
-@CrossOrigin(origins = "http://localhost:3000")
->>>>>>> main
 public class CourseController {
 	
 	@Autowired
@@ -47,10 +46,15 @@ public class CourseController {
 		return "Updated";
 	}
 	
-	/*
-	 * @GetMapping("/myCourse") public Course getMyCourse(@RequestParam("userId")
-	 * Long userId,@RequestParam("role") String role) { return
-	 * courseService.getMyCourse(); }
-	 */
+	 @GetMapping("/myCourse") 
+	 public List<Course> getMyCourse(@RequestParam("userId") Long userId) throws Exception {
+		 try {
+				 return courseService.getMyCourse(userId); 			 
+		 }
+		 catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
 	
 }

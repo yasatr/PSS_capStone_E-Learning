@@ -33,6 +33,7 @@ public class CourseServiceImpl implements CourseService{
 			course.setCourseDesc(courseModel.getCourseDesc());
 			course.setStartDate(courseModel.getStartDate());
 			course.setEndDate(courseModel.getEndDate());
+			course.setTeacher(user);
 			courseRepository.save(course);
 			return course;
 		}
@@ -70,10 +71,11 @@ public class CourseServiceImpl implements CourseService{
 		return courseRepository.save(courseDb);
 	}
 
-//	/*
-//	 * @Override public Course getMyCourse() { // TODO Auto-generated method stub
-//	 * return null; }
-//	 */
+	@Override
+	public List<Course> getMyCourse(Long userId) {
+		return courseRepository.findCourseByTeacher(userId);
+	}
+
 	
 
 }
