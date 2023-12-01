@@ -1,8 +1,9 @@
-import React from "react";
-import { Box, Flex, HStack, chakra } from "@chakra-ui/react";
+import React, { useContext } from "react";
+import { Box, Flex, HStack, chakra, useAccordion } from "@chakra-ui/react";
+import { StarIcon } from "@chakra-ui/icons";
 
-function SmallCourseCard(props) {
-    const {courseTitle, courseDesc,imgUrl } = props
+function SmallCourseCard({ singleObject }) {
+  console.log(singleObject);
   return (
     <div>
       <Flex
@@ -33,7 +34,7 @@ function SmallCourseCard(props) {
             bgSize="cover"
             style={{
               backgroundImage:
-              `url(./img/${imgUrl})`,
+              `url(./img/${singleObject.imgUrl})`,
             }}
           ></Box>
 
@@ -52,7 +53,7 @@ function SmallCourseCard(props) {
                 color: "white",
               }}
             >
-              {courseTitle}
+              {singleObject.courseTitle}
             </chakra.h1>
 
             <chakra.p
@@ -63,7 +64,7 @@ function SmallCourseCard(props) {
                 color: "gray.400",
               }}
             >
-              {courseDesc}
+              {singleObject.courseDesc}
             </chakra.p>
 
             {/* <HStack spacing={1} display="flex" alignItems="center" mt={2}>
@@ -115,7 +116,6 @@ function SmallCourseCard(props) {
           </Box>
         </Flex>
       </Flex>
-      
     </div>
   );
 }
