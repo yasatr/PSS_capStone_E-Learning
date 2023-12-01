@@ -3,8 +3,8 @@ import Navbar from "./Components/NavBar/Navbar";
 import StudentDashboard from "./Pages/Student/StudentDashboard";
 import './App.css';
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
-import Profile from "./Pages/Teacher/Profile";
-import MyCourse from "./Pages/Teacher/MyCourse";
+import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
+
 
 
 
@@ -40,7 +40,7 @@ function App() {
         <Route exact path='/student/allCourses' Component={AllCourses}/>
         <Route exact path='/student/completedCourses' Component={CompletedCourses}/> */}
         </Routes>
-        <Profile/>
+        <TeacherDashboard/>
     </Router>
     
     </ChakraProvider>
