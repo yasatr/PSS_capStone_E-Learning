@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, CardHeader, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button } from "@chakra-ui/react";
+import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button } from "@chakra-ui/react";
 
 function CourseCard(props) {
     const {title, imageUrl, description, price} = props;

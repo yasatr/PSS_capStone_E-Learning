@@ -2,10 +2,10 @@ import React from 'react'
 import { Grid } from '@chakra-ui/react'
 import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button } from "@chakra-ui/react";
 
-const AllCourses = () => {
+const MyCourses = () => {
   return (
     <div>
-         <Heading textAlign={'center'} >All Courses</Heading>
+         <Heading textAlign={'center'} >My Courses</Heading>
         <Grid templateColumns='repeat(4, 1fr)' gap={6}>
         <Card maxW="sm" mt="5">
         <CardBody>
@@ -167,4 +167,4 @@ const AllCourses = () => {
   )
 }
 
-export default AllCourses
+export default MyCourses
