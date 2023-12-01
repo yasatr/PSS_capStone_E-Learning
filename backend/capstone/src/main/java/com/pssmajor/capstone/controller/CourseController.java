@@ -18,7 +18,11 @@ import com.pssmajor.capstone.model.CourseModel;
 import com.pssmajor.capstone.service.CourseService;
 
 @RestController
+<<<<<<< HEAD
 @CrossOrigin(origins = "http://localhost:3000/")
+=======
+@CrossOrigin(origins = "http://localhost:3000")
+>>>>>>> main
 public class CourseController {
 	
 	@Autowired

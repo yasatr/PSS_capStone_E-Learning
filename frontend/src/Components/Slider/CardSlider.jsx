@@ -3,8 +3,10 @@ import CourseCard from "../Card/CourseCard";
 // import "~slick-carousel/slick/slick.css";
 // import "~slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import SmallCourseCard from "../Card/SmallCourseCard";
 
-const CardSlider = () => {
+const CardSlider = (props) => {
+  const { data } = props;
   var settings = {
     dots: true,
     infinite: false,
@@ -44,31 +46,38 @@ const CardSlider = () => {
   };
   return (
     <div style={{ margin: "20px" }}>
+      <div></div>
       <Slider {...settings}>
-        <div>
-          <CourseCard />
+        {data.map((item, index) => {
+          <div key={index}>
+            <SmallCourseCard data={data} />
+          </div>;
+        })}
+
+        {/* <div>
+          <SmallCourseCard />
         </div>
         <div>
-          <CourseCard />
+          <SmallCourseCard />
         </div>
         <div>
-          <CourseCard />
+          <SmallCourseCard />
         </div>
         <div>
-          <CourseCard />
+          <SmallCourseCard />
         </div>
         <div>
-          <CourseCard />
+          <SmallCourseCard />
         </div>
         <div>
-          <CourseCard />
+          <SmallCourseCard />
         </div>
         <div>
-          <CourseCard />
+          <SmallCourseCard />
         </div>
         <div>
-          <CourseCard />
-        </div>
+          <SmallCourseCard />
+        </div> */}
       </Slider>
     </div>
   );
