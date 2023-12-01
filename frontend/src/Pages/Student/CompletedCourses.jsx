@@ -1,13 +1,14 @@
 import React from 'react'
 import { Grid } from '@chakra-ui/react'
 import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button } from "@chakra-ui/react";
+import CourseCard from '../../Components/Card/CourseCard';
 
-const AllCourses = () => {
+const CompletedCourses = () => {
   return (
     <div>
-         <Heading textAlign={'center'} >All Courses</Heading>
+         <Heading textAlign={'center'} >Completed Courses</Heading>
         <Grid templateColumns='repeat(4, 1fr)' gap={6}>
-        <Card maxW="sm" mt="5">
+        {/* <Card maxW="sm" mt="5">
         <CardBody>
           <Image
             src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
@@ -161,10 +162,11 @@ const AllCourses = () => {
             </Button>
           </ButtonGroup>
         </CardFooter>
-      </Card>
+      </Card> */}
+      <CourseCard/>
       </Grid>
     </div>
   )
 }
 
-export default AllCourses
+export default CompletedCourses
