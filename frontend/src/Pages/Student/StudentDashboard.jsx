@@ -27,7 +27,7 @@ const StudentDashboard = () => {
 
   // const navigate = useNavigate();
   return (
-    <Box>
+    <Box p={4}>
       <VStack
         divider={<StackDivider borderColor="gray.200" />}
         spacing={10}

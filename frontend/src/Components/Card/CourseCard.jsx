@@ -1,4 +1,20 @@
 import React, { useState } from "react";
+import { Card } from "@chakra-ui/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Image,
+  Stack,
+  Heading,
+  Text,
+  Divider,
+  ButtonGroup,
+  Button,
+  Grid,
+} from "@chakra-ui/react";
+
 import {
   Card,
   CardBody,
@@ -13,21 +29,21 @@ import {
 } from "@chakra-ui/react";
 
 function CourseCard(props) {
-  const { title, imageUrl, description, price } = props;
+  const { item } = props;
   return (
     <div>
-      <Card maxW="sm">
+      <Card maxW="sm" mt="5">
         <CardBody>
           <Image
-            src={imageUrl}
+            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
             alt="Green double couch with wooden legs"
             borderRadius="lg"
           />
           <Stack mt="6" spacing="3">
-            <Heading size="md">{title}</Heading>
-            <Text>{description}</Text>
+            <Heading size="md">{item.courseTitle}</Heading>
+            <Text>{item.courseDesc}</Text>
             <Text color="blue.600" fontSize="2xl">
-              {price}
+              &#x20b9;450
             </Text>
           </Stack>
         </CardBody>
@@ -35,7 +51,7 @@ function CourseCard(props) {
         <CardFooter>
           <ButtonGroup spacing="2">
             <Button variant="solid" colorScheme="blue">
-              Buy now
+              Enroll now
             </Button>
             <Button variant="ghost" colorScheme="blue">
               Add to cart

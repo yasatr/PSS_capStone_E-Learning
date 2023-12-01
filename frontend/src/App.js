@@ -1,9 +1,11 @@
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import "./App.css";
-import Profile from "./Pages/Teacher/Profile";
-import Navbar from "./Components/NavBar/Navbar";
 import StudentDashboard from "./Pages/Student/StudentDashboard";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ChakraProvider, extendTheme} from '@chakra-ui/react';
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
+import Navbar from './Components/NavBar/Navbar';
+import MyCourses from "./Pages/Student/MyCourses";
+import AllCourses from "./Pages/Student/AllCourses";
+import CompletedCourses from "./Pages/Student/CompletedCourses";
 
 function App() {
   const colors = {
@@ -30,8 +32,8 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Router>
-        <Navbar />
-        <StudentDashboard />
+      {/* <Navbar/> */}
+      {/* <Profile/> */}
         <Routes>
           <Route exact path="/student" Component={StudentDashboard} />
           {/* <Route exact path="/student/myCourses" Component={MyCourses} />

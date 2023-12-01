@@ -32,7 +32,7 @@ public class Content {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long contentId;
 	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name="FK_USER_CONTENT"))
+	@JoinColumn(name = "courseId", foreignKey = @ForeignKey(name="FK_USER_CONTENT"))
 	private Course course;
 	private String contentUrl;
 	private String contentDesc;
