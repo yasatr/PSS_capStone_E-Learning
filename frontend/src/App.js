@@ -6,6 +6,7 @@ import Navbar from './Components/NavBar/Navbar';
 import MyCourses from "./Pages/Student/MyCourses";
 import AllCourses from "./Pages/Student/AllCourses";
 import CompletedCourses from "./Pages/Student/CompletedCourses";
+import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
 
 function App() {
   const colors = {
