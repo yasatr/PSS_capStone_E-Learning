@@ -8,9 +8,9 @@ function TeacherDashboard() {
   return (
     <div>
         <Navbar/>
-        <CardSlider/>
+        {/* <CardSlider/> */}
         <AddCourse/>
-        <Footer/>
+        <Footer mx="auto"/>
     </div>
   )
 }

@@ -1,20 +1,4 @@
 import React, { useState } from "react";
-import { Card } from "@chakra-ui/react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Image,
-  Stack,
-  Heading,
-  Text,
-  Divider,
-  ButtonGroup,
-  Button,
-  Grid,
-} from "@chakra-ui/react";
-
 import {
   Card,
   CardBody,
