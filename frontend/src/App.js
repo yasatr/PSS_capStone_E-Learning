@@ -1,6 +1,6 @@
 import "./App.css";
 import StudentDashboard from "./Pages/Student/StudentDashboard";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme, Box, useDisclosure} from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/NavBar/Navbar";
 import MyCourses from "./Pages/Student/MyCourses";
@@ -10,6 +10,8 @@ import Profile from "./Pages/Teacher/Profile";
 import SignUp from "./Components/Login/SignUp";
 import SignIn from "./Components/Login/SignIn";
 import MyCourse from "./Pages/Teacher/MyCourse";
+import Welcome from "./Pages/LandingPage/Welcome";
+
 
 function App() {
   // const [isLoggedIn,setLoggedIn] = useState(false);
@@ -48,6 +50,7 @@ function App() {
               <>
                 <Navbar />
                 <Routes>
+                  <Route exact path="/" Component={Welcome}/>
                   <Route exact path="/student" Component={StudentDashboard} />
                   <Route
                     exact
@@ -71,6 +74,7 @@ function App() {
           />
         </Routes>
         {/* <Profile/> */}
+        {/* <Welcome/> */}
       </Router>
     </ChakraProvider>
   );
