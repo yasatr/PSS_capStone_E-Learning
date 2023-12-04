@@ -10,6 +10,7 @@ import Profile from "./Pages/Teacher/Profile";
 import SignUp from "./Components/Login/SignUp";
 import SignIn from "./Components/Login/SignIn";
 import MyCourse from "./Pages/Teacher/MyCourse";
+import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
 
 function App() {
   // const [isLoggedIn,setLoggedIn] = useState(false);
