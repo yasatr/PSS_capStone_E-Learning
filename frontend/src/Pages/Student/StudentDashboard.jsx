@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
-import { Button } from '@chakra-ui/react';
+import { useNavigate } from "react-router-dom";
+import { Button } from "@chakra-ui/react";
 import { Box, Heading, VStack, StackDivider } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
 import CardSlider from "../../Components/Slider/CardSlider";
 import axios from "axios";
 
@@ -23,7 +23,9 @@ const StudentDashboard = () => {
 
   useEffect(() => {}, [data]);
 
-  const navigate = useNavigate();
+  console.log("data in dash", data);
+
+  // const navigate = useNavigate();
   return (
     <Box p={4}>
       <VStack

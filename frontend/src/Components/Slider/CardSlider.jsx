@@ -1,12 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import CourseCard from "../Card/CourseCard";
 // import "~slick-carousel/slick/slick.css";
 // import "~slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import SmallCourseCard from "../Card/SmallCourseCard";
 
-const CardSlider = (props) => {
-  const { data } = props;
+const CardSlider = ({ data }) => {
   var settings = {
     dots: true,
     infinite: false,
@@ -46,13 +45,10 @@ const CardSlider = (props) => {
   };
   return (
     <div style={{ margin: "20px" }}>
-      <div></div>
       <Slider {...settings}>
-        {data.map((item, index) => {
-          <div key={index}>
-            <SmallCourseCard data={data} />
-          </div>;
-        })}
+        {data.map((item) => (
+          <SmallCourseCard key={item.courseId} singleObject={item} />
+        ))}
       </Slider>
     </div>
   );

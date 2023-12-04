@@ -13,7 +13,6 @@ public interface CourseService {
 
 	Course updateCourse(Long courseId, CourseModel courseModel);
 
-//	Course getMyCourse();
-
+	List<Course> getMyCourse(Long userId);
 
 }

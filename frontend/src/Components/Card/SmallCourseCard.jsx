@@ -1,20 +1,22 @@
-import React from "react";
-import { Box, Flex, HStack, chakra } from "@chakra-ui/react";
+import React, { useContext } from "react";
+import { Box, Flex, HStack, chakra, useAccordion } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
-function SmallCourseCard(props) {
-  console.log(props);
+function SmallCourseCard({ singleObject }) {
+  console.log(singleObject);
   return (
     <div>
       <Flex
         bg="#edf3f8"
         _dark={{
-          bg: "#3e3e3e",
+          bg: "#bac1c7",
         }}
         p={50}
         w="full"
         alignItems="center"
         justifyContent="center"
+        borderRadius="10"
+        
       >
         <Flex
           maxW="md"
@@ -32,7 +34,7 @@ function SmallCourseCard(props) {
             bgSize="cover"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80')",
+              `url(./img/${singleObject.imgUrl})`,
             }}
           ></Box>
 
@@ -51,7 +53,7 @@ function SmallCourseCard(props) {
                 color: "white",
               }}
             >
-              {props.courseTitle}
+              {singleObject.courseTitle}
             </chakra.h1>
 
             <chakra.p
@@ -62,10 +64,10 @@ function SmallCourseCard(props) {
                 color: "gray.400",
               }}
             >
-              {props.courseDesc}
+              {singleObject.courseDesc}
             </chakra.p>
 
-            <HStack spacing={1} display="flex" alignItems="center" mt={2}>
+            {/* <HStack spacing={1} display="flex" alignItems="center" mt={2}>
               <StarIcon
                 color="gray.700"
                 _dark={{
@@ -85,11 +87,11 @@ function SmallCourseCard(props) {
                 }}
               />
               <StarIcon color="gray.500" />
-              <StarIcon color="gray.500" />w
-            </HStack>
+              <StarIcon color="gray.500" />
+            </HStack> */}
 
             <Flex mt={3} alignItems="center" justifyContent="space-between">
-              <chakra.h1 color="white" fontWeight="bold" fontSize="lg">
+              <chakra.h1 color="#edf3f8" fontWeight="bold" fontSize="lg">
                 $220
               </chakra.h1>
               <chakra.button

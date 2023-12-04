@@ -9,12 +9,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.JoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import jakarta.persistence.*;
 
 @Entity
 @Data
@@ -29,8 +30,9 @@ public class Course {
 	private String courseTitle;
 	private String courseDesc;
 	
-//	@JoinColumn(foreignKey = @ForeignKey(name= "FK_COURSE_TEACHER"))
-//	private User teacher;
+	@ManyToOne
+	@JoinColumn(name="userId", nullable = false, foreignKey = @ForeignKey(name= "FK_COURSE_TEACHER"))
+	private User teacher;
 	
 	private Date startDate;
 	private Date endDate;

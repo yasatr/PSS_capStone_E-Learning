@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   Image,
@@ -11,9 +10,7 @@ import {
   Divider,
   ButtonGroup,
   Button,
-  Grid
 } from "@chakra-ui/react";
-
 
 function CourseCard(props) {
   const { item } = props;
