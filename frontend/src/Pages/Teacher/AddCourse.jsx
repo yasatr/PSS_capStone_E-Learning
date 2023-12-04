@@ -1,4 +1,4 @@
-import { useDisclosure } from "@chakra-ui/react";
+import { border, useDisclosure } from "@chakra-ui/react";
 import styles from './AddCourse.module.css';
 import {
   Modal,

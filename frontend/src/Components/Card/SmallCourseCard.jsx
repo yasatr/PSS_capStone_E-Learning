@@ -9,12 +9,14 @@ function SmallCourseCard({ singleObject }) {
       <Flex
         bg="#edf3f8"
         _dark={{
-          bg: "#3e3e3e",
+          bg: "#bac1c7",
         }}
         p={50}
         w="full"
         alignItems="center"
         justifyContent="center"
+        borderRadius="10"
+        
       >
         <Flex
           maxW="md"
@@ -32,7 +34,7 @@ function SmallCourseCard({ singleObject }) {
             bgSize="cover"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80')",
+              `url(./img/${singleObject.imgUrl})`,
             }}
           ></Box>
 
@@ -65,7 +67,7 @@ function SmallCourseCard({ singleObject }) {
               {singleObject.courseDesc}
             </chakra.p>
 
-            <HStack spacing={1} display="flex" alignItems="center" mt={2}>
+            {/* <HStack spacing={1} display="flex" alignItems="center" mt={2}>
               <StarIcon
                 color="gray.700"
                 _dark={{
@@ -85,11 +87,11 @@ function SmallCourseCard({ singleObject }) {
                 }}
               />
               <StarIcon color="gray.500" />
-              <StarIcon color="gray.500" />w
-            </HStack>
+              <StarIcon color="gray.500" />
+            </HStack> */}
 
             <Flex mt={3} alignItems="center" justifyContent="space-between">
-              <chakra.h1 color="white" fontWeight="bold" fontSize="lg">
+              <chakra.h1 color="#edf3f8" fontWeight="bold" fontSize="lg">
                 $220
               </chakra.h1>
               <chakra.button
