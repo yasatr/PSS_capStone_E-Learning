@@ -18,6 +18,7 @@ import {
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 
 const SignIn = () => {
@@ -26,6 +27,7 @@ const SignIn = () => {
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
     const[error, setError] = useState(null);
+    const cookies = new Cookies();
 
     const handleSignIn = async() => {
         try{
@@ -42,7 +44,7 @@ const SignIn = () => {
               return acc;
             },{});
             console.log(response.data);
-            document.cookie = `user=${JSON.stringify(userData)};path=/`;
+            cookies.set('user', userData, {path:'/'})
             console.log('Login Successful', userData);
             navigate("/dashboard");
             setError(null);
