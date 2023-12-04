@@ -4,6 +4,7 @@ import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +29,9 @@ public class CourseController {
 	private CourseService courseService;
 	
 	@GetMapping("/allCourse")
-	public List<Course> getAllCourse(){
-		return courseService.getAllCourse();
+	public Page<Course> getAllCourse(@RequestParam(defaultValue = "0") int page, 
+            @RequestParam(defaultValue = "4") int size){
+		return courseService.getAllCourse(page, size);
 	}
 	
 	@PostMapping("/addCourse")
