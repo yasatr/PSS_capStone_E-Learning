@@ -33,7 +33,7 @@ public class Progress {
 	private Course course;
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false, foreignKey = @ForeignKey(name="FK_USER_PROGRESS"))
-	private User userId;
-	private int score;
+	private User user;
+	private int score = 0;
 	private Boolean status = false;
 }

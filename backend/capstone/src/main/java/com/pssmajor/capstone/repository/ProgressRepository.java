@@ -12,4 +12,7 @@ public interface ProgressRepository extends JpaRepository<Progress, Long>{
 
 	@Query(value="select * from progress where course_id = :courseId and user_id = :userId", nativeQuery = true)
 	Progress getProgressByCourseIdAndUserId(@Param("courseId") Long courseId, @Param("userId") Long userId);
+
+	@Query(value = "select status from progress where course_id = :courseId", nativeQuery = true)
+	Boolean getStatusbyCourseId(@Param("courseId") Long courseId);
 }
