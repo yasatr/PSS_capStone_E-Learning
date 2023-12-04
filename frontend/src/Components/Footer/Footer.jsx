@@ -162,7 +162,6 @@ function Footer() {
           </Text>
         </VStack>
       </Box>
-      ;
     </div>
   );
 }

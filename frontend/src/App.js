@@ -7,6 +7,10 @@ import MyCourses from "./Pages/Student/MyCourses";
 import AllCourses from "./Pages/Student/AllCourses";
 import CompletedCourses from "./Pages/Student/CompletedCourses";
 import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
+import Profile from "./Pages/Teacher/Profile";
+import SignUp from "./Components/Login/SignUp";
+import SignIn from "./Components/Login/SignIn";
+import MyCourse from "./Pages/Teacher/MyCourse";
 
 function App() {
   const colors = {
@@ -34,17 +38,17 @@ function App() {
     <ChakraProvider theme={theme}>
       <Router>
       {/* <Navbar/> */}
-      {/* <Profile/> */}
         <Routes>
           <Route exact path="/student" Component={StudentDashboard} />
-          {/* <Route exact path="/student/myCourses" Component={MyCourses} />
-          <Route exact path="/student/allCourses" Component={AllCourses} /> */}
-          {/* <Route
-            exact
-            path="/student/completedCourses"
-            Component={CompletedCourses}
-          /> */}
+          <Route exact path="/student/myCourses" Component={MyCourses} />
+          <Route exact path="/student/allCourses" Component={AllCourses} />
+          <Route exact path="/student/completedCourses" Component={CompletedCourses}/>
+          <Route exact path="/" Component={SignUp} />
+          <Route path="/login" Component={SignIn} />
+          <Route exact path="/dashboard" Component={TeacherDashboard} />
+          <Route path="/profile" Component={Profile} />
         </Routes>
+        {/* <Profile/> */}
       </Router>
     </ChakraProvider>
   );

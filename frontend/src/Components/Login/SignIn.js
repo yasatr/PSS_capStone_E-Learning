@@ -13,12 +13,15 @@ import {
     useColorModeValue,
     InputGroup,
     InputRightElement,
+    Link
   } from '@chakra-ui/react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 
 const SignIn = () => {
+    const navigate = useNavigate();
     const[showPassword, setShowPassword] = useState(false);
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
@@ -36,6 +39,7 @@ const SignIn = () => {
             },{});
             document.cookie = `user=${JSON.stringify(userData)};path=/`;
             console.log('Login Successful', userData);
+            navigate("/dashboard");
         }catch(error){
             console.error('Login Failed', error.message)
         }
@@ -86,6 +90,11 @@ const SignIn = () => {
                 onClick={handleSignIn}>
                 Sign in
               </Button>
+            </Stack>
+            <Stack pt={6}>
+              <Text align={'center'}>
+                Dont't have account? <Link color={'blue.400'} href='/' >SignUp</Link>
+              </Text>
             </Stack>
           </Stack>
         </Box>

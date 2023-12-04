@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useState} from "react";
 import {
   Stack,
   Heading,
@@ -11,16 +11,20 @@ import {
   Input,
   FormLabel,
   FormControl,
-  Select,
   Image,
+  IconButton
 } from "@chakra-ui/react";
 import Footer from "../../Components/Footer/Footer";
 import Cookies from "js-cookie";
+import { BsPencil } from "react-icons/bs";
 
 function Profile() {
 
   const userCookie = Cookies.get("user") || {};
-  const { firstName, lastName, email, phoneNo } = userCookie;
+  const user = JSON.parse(userCookie);
+  console.log(user);
+  const { firstName, lastName, email, phoneNo, profilePicUrl } = user;
+  const [editMode, setEditMode] = useState(false);
 
   return (
     <div>
@@ -71,6 +75,7 @@ function Profile() {
                 md: 2,
               }}
             >
+              <IconButton colorScheme="teal" size="sm" icon={<BsPencil/>} onClick={() => {setEditMode(true)}} float="right" />
               <chakra.form
                 method="POST"
                 shadow="base"
@@ -93,7 +98,7 @@ function Profile() {
                     <Image
                       borderRadius="full"
                       boxSize="150px"
-                      src="https://bit.ly/dan-abramov"
+                      src={profilePicUrl}
                       alt="Dan Abramov"
                     />
                     <FormControl as={GridItem} colSpan={[6, 4]}>
@@ -108,7 +113,7 @@ function Profile() {
                       >
                         Image URL
                       </FormLabel>
-                      <Input
+                      {editMode ? (<Input
                         type="text"
                         name="image"
                         id="image"
@@ -119,8 +124,20 @@ function Profile() {
                         size="sm"
                         w="full"
                         rounded="md"
-                        placeholder={firstName}
-                      />
+                        placeholder={profilePicUrl}
+                      />) : (<Input
+                        type="text"
+                        name="image"
+                        id="image"
+                        autoComplete="given-name"
+                        mt={1}
+                        focusBorderColor="brand.400"
+                        shadow="sm"
+                        size="sm"
+                        w="full"
+                        rounded="md"
+                        placeholder={profilePicUrl} disabled
+                      />)}
                     </FormControl>
                     <FormControl as={GridItem} colSpan={[6, 3]}>
                       <FormLabel
@@ -134,7 +151,7 @@ function Profile() {
                       >
                         First name
                       </FormLabel>
-                      <Input
+                      {editMode ? (<Input
                         type="text"
                         name="first_name"
                         id="first_name"
@@ -146,7 +163,19 @@ function Profile() {
                         w="full"
                         rounded="md"
                         placeholder={firstName}
-                      />
+                      />) : (<Input
+                        type="text"
+                        name="first_name"
+                        id="first_name"
+                        autoComplete="given-name"
+                        mt={1}
+                        focusBorderColor="brand.400"
+                        shadow="sm"
+                        size="sm"
+                        w="full"
+                        rounded="md"
+                        placeholder={firstName} disabled
+                      />)}
                     </FormControl>
 
                     <FormControl as={GridItem} colSpan={[6, 3]}>
@@ -161,7 +190,7 @@ function Profile() {
                       >
                         Last name
                       </FormLabel>
-                      <Input
+                      {editMode ? (<Input
                         type="text"
                         name="last_name"
                         id="last_name"
@@ -173,7 +202,19 @@ function Profile() {
                         w="full"
                         rounded="md"
                         placeholder={lastName}
-                      />
+                      />) : (<Input
+                        type="text"
+                        name="last_name"
+                        id="last_name"
+                        autoComplete="family-name"
+                        mt={1}
+                        focusBorderColor="brand.400"
+                        shadow="sm"
+                        size="sm"
+                        w="full"
+                        rounded="md"
+                        placeholder={lastName} disabled
+                      />)}
                     </FormControl>
 
                     <FormControl as={GridItem} colSpan={[6, 4]}>
@@ -188,7 +229,7 @@ function Profile() {
                       >
                         Email address
                       </FormLabel>
-                      <Input
+                      {editMode ? (<Input
                         type="text"
                         name="email_address"
                         id="email_address"
@@ -200,7 +241,19 @@ function Profile() {
                         w="full"
                         rounded="md"
                         placeholder={email}
-                      />
+                      />) : (<Input
+                        type="text"
+                        name="email_address"
+                        id="email_address"
+                        autoComplete="email"
+                        mt={1}
+                        focusBorderColor="brand.400"
+                        shadow="sm"
+                        size="sm"
+                        w="full"
+                        rounded="md"
+                        placeholder={email} disabled
+                      />)}
                     </FormControl>
 
                     <FormControl as={GridItem} colSpan={[6, 3]}>
@@ -215,7 +268,7 @@ function Profile() {
                       >
                         Phone
                       </FormLabel>
-                      <Input
+                      {editMode ? (<Input
                         type="text"
                         name="phone"
                         id="phone"
@@ -227,7 +280,19 @@ function Profile() {
                         w="full"
                         rounded="md"
                         placeholder={phoneNo}
-                      />
+                      />) : (<Input
+                        type="text"
+                        name="phone"
+                        id="phone"
+                        autoComplete="email"
+                        mt={1}
+                        focusBorderColor="brand.400"
+                        shadow="sm"
+                        size="sm"
+                        w="full"
+                        rounded="md"
+                        placeholder={phoneNo} disabled
+                      />)}
                     </FormControl>
                     <br></br>
                   </SimpleGrid>

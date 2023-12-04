@@ -32,11 +32,17 @@ import {
 } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
   const bg = useColorModeValue("white", "gray.800");
   const mobileNav = useDisclosure();
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    Cookies.remove("user");
+    navigate("/login");
+  }
 
   return (
     <React.Fragment>
@@ -162,7 +168,7 @@ const Navbar = () => {
               <VisuallyHidden>Notifications</VisuallyHidden>
             </chakra.a>
 
-            <Button w="full" variant="ghost">
+            <Button w="full" variant="ghost" onClick={handleLogout}>
               Log Out
             </Button>
 
@@ -179,7 +185,7 @@ const Navbar = () => {
               </MenuButton>
               <MenuList>
                 <MenuGroup title="Profile">
-                  <MenuItem>My Account</MenuItem>
+                  <MenuItem onClick={() => {navigate("/profile")}}>My Account</MenuItem>
                   <MenuItem>Payments </MenuItem>
                 </MenuGroup>
                 <MenuDivider />
