@@ -5,9 +5,7 @@ import CourseCard from "../Card/CourseCard";
 import Slider from "react-slick";
 import SmallCourseCard from "../Card/SmallCourseCard";
 
-const CardSlider = (props) => {
-  const {data} = props;
-  // console.log("Ye data hai slider ka", data);
+const CardSlider = ({ data }) => {
   var settings = {
     dots: true,
     infinite: false,

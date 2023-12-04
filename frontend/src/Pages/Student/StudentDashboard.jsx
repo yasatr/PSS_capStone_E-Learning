@@ -4,26 +4,37 @@ import { Box, Heading, VStack, StackDivider } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import CardSlider from "../../Components/Slider/CardSlider";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { set } from "react-hook-form";
+import fetchCourse from "../../ApiCall/FetchMyCourse";
 
 const StudentDashboard = () => {
-  const [data, setData] = useState([]);
-  const APIURL = "http://localhost:8080/allCourse";
+  const [dataComplete, setDataComplete] = useState([]);
+  const [dataProgress, setDataProgress] = useState([]);
+
+  const userCookie = Cookies.get("user") || {};
+  const user = JSON.parse(userCookie);
+  console.log(user);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(APIURL);
-        setData(response.data);
-      } catch (error) {
-        console.error("Error Fetching data: ", error);
-      }
-    };
-    fetchData();
+    fetchCourse(
+      `http://localhost:8080/enrolledCompleted?userId=${user?.userId}`
+    ).then((result) => {
+      console.log(result);
+      setDataComplete(result);
+    });
+    fetchCourse(
+      `http://localhost:8080/enrolledProgress?userId=${user?.userId}`
+    ).then((result) => {
+      console.log(result);
+      setDataProgress(result);
+    });
   }, []);
 
-  useEffect(() => {}, [data]);
+  console.log(dataComplete);
+  console.log(dataProgress);
 
-  console.log("data in dash", data);
+  // useEffect(() => {}, [data]);
 
   // const navigate = useNavigate();
   return (
@@ -35,11 +46,11 @@ const StudentDashboard = () => {
       >
         <Box>
           <Heading>In Progress</Heading>
-          <CardSlider data={data} />
+          <CardSlider data={dataProgress} />
         </Box>
         <Box>
           <Heading>Completed</Heading>
-          {/* <CardSlider /> */}
+          <CardSlider data={dataComplete} />
         </Box>
       </VStack>
     </Box>
