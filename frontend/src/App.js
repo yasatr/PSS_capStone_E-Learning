@@ -12,6 +12,7 @@ import SignIn from "./Components/Login/SignIn";
 import MyCourse from "./Pages/Teacher/MyCourse";
 import Welcome from "./Pages/LandingPage/Welcome";
 
+import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
 
 function App() {
   // const [isLoggedIn,setLoggedIn] = useState(false);
