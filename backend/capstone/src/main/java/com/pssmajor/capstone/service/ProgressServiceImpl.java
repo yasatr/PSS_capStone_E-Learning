@@ -20,6 +20,13 @@ public class ProgressServiceImpl implements ProgressService{
 		// TODO Auto-generated method stub
 		return progressRepository.getProgressByCourseIdAndUserId(courseId, userId);
 	}
+
+	@Override
+	public Boolean getStatusbyCourseId(Long courseId) {
+		// TODO Auto-generated method stub
+		Boolean status = progressRepository.getStatusbyCourseId(courseId);
+		return status;
+	}
 	
 	
 	

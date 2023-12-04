@@ -1,18 +1,19 @@
 import "./App.css";
 import StudentDashboard from "./Pages/Student/StudentDashboard";
-import { ChakraProvider, extendTheme} from '@chakra-ui/react';
-import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
-import Navbar from './Components/NavBar/Navbar';
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./Components/NavBar/Navbar";
 import MyCourses from "./Pages/Student/MyCourses";
 import AllCourses from "./Pages/Student/AllCourses";
 import CompletedCourses from "./Pages/Student/CompletedCourses";
-import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
 import Profile from "./Pages/Teacher/Profile";
 import SignUp from "./Components/Login/SignUp";
 import SignIn from "./Components/Login/SignIn";
 import MyCourse from "./Pages/Teacher/MyCourse";
 
 function App() {
+  // const [isLoggedIn,setLoggedIn] = useState(false);
+
   const colors = {
     brand: {
       50: "#ecefff",
@@ -37,16 +38,37 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Router>
-      {/* <Navbar/> */}
         <Routes>
-          <Route exact path="/student" Component={StudentDashboard} />
-          <Route exact path="/student/myCourses" Component={MyCourses} />
-          <Route exact path="/student/allCourses" Component={AllCourses} />
-          <Route exact path="/student/completedCourses" Component={CompletedCourses}/>
-          <Route exact path="/" Component={SignUp} />
-          <Route path="/login" Component={SignIn} />
-          <Route exact path="/dashboard" Component={TeacherDashboard} />
-          <Route path="/profile" Component={Profile} />
+          <Route exact path="/signin" Component={SignIn} />
+          <Route exact path="/signup" Component={SignUp} />
+          <Route
+            exact
+            path="/*"
+            element={
+              <>
+                <Navbar />
+                <Routes>
+                  <Route exact path="/student" Component={StudentDashboard} />
+                  <Route
+                    exact
+                    path="/student/myCourses"
+                    Component={MyCourses}
+                  />
+                  <Route
+                    exact
+                    path="/student/allCourses"
+                    Component={AllCourses}
+                  />
+                  <Route
+                    exact
+                    path="/student/completedCourses"
+                    Component={CompletedCourses}
+                  />
+                  <Route exact path="/profile" Component={Profile} />
+                </Routes>
+              </>
+            }
+          />
         </Routes>
         {/* <Profile/> */}
       </Router>
