@@ -1,4 +1,4 @@
-import React from "react";
+import React, {  useState } from "react";
 import {
   chakra,
   Box,
@@ -34,6 +34,85 @@ import { BsFillCameraVideoFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  // const [input,setInput] = useState("");
+  // const [filteredData, setFilteredData] = useState([]);
+
+
+  const [dashboard, setDashboard] = useState({
+    isClicked: true,
+    variant: "solid",
+  });
+  const [myCourse, setMyCourse] = useState({
+    isClicked: false,
+    variant: "ghost",
+  });
+  const [allCourse, setAllCourse] = useState({
+    isClicked: false,
+    variant: "ghost",
+  });
+
+  const handleDashboard = () => {
+    setDashboard({
+      isClicked: true,
+      variant: "solid",
+    });
+    setMyCourse({
+      isClicked: false,
+      variant: "ghost",
+    });
+    setAllCourse({
+      isClicked: false,
+      variant: "ghost",
+    });
+    navigate("/student");
+  };
+
+  const handleMyCourse = () => {
+    setDashboard({
+      isClicked: false,
+      variant: "ghost",
+    });
+    setMyCourse({
+      isClicked: true,
+      variant: "solid",
+    });
+    setAllCourse({
+      isClicked: false,
+      variant: "ghost",
+    });
+    navigate("/student/myCourses");
+  };
+
+  const handleAllCourse = () => {
+    setDashboard({
+      isClicked: false,
+      variant: "ghost",
+    });
+    setMyCourse({
+      isClicked: false,
+      variant: "ghost",
+    });
+    setAllCourse({
+      isClicked: true,
+      variant: "solid",
+    });
+    navigate("/student/allCourses");
+  };
+
+  // const handleSearch = (e) => {
+  //   const searchInput = e.target.value;
+  //   setInput(searchInput);
+  //   const newFilter = data.filter((value) => {
+  //     return value.first_name.toLowerCase().includes(searchInput.toLowerCase());
+  //   });
+  //     if (searchInput === "") {
+  //       setFilteredData([]);
+  //     } else {
+  //       setFilteredData(newFilter);
+  //     }
+  // };
+
+
   const bg = useColorModeValue("white", "gray.800");
   const mobileNav = useDisclosure();
   const navigate = useNavigate();
@@ -113,27 +192,29 @@ const Navbar = () => {
 
             <HStack spacing={3} display={{ base: "none", md: "inline-flex" }}>
               <Button
-                variant="ghost"
+                variant={dashboard.variant}
+                colorScheme={dashboard.isClicked ? "brand" : null}
                 leftIcon={<AiFillHome />}
                 size="sm"
-                onClick={() => navigate("/student")}
+                onClick={handleDashboard}
               >
                 Dashboard
               </Button>
               <Button
-                variant="solid"
-                colorScheme="brand"
+                variant={myCourse.variant}
+                colorScheme={myCourse.isClicked ? "brand" : null}
                 leftIcon={<AiOutlineInbox />}
                 size="sm"
-                onClick={() => navigate("/student/myCourses")}
+                onClick={handleMyCourse}
               >
                 My Courses
               </Button>
               <Button
-                variant="ghost"
+                variant={allCourse.variant}
+                colorScheme={allCourse.isClicked ? "brand" : null}
                 leftIcon={<BsFillCameraVideoFill />}
                 size="sm"
-                onClick={() => navigate("/student/allCourses")}
+                onClick={handleAllCourse}
               >
                 All Courses
               </Button>
@@ -148,7 +229,11 @@ const Navbar = () => {
               <InputLeftElement pointerEvents="none">
                 <AiOutlineSearch />
               </InputLeftElement>
-              <Input type="tel" placeholder="Search..." />
+              <Input
+                type="tel"
+                placeholder="Search..."
+                // onChange={(e) => handleSearch(e)}
+              />
             </InputGroup>
 
             <chakra.a
@@ -162,14 +247,15 @@ const Navbar = () => {
               <VisuallyHidden>Notifications</VisuallyHidden>
             </chakra.a>
 
-            <Button w="full" variant="ghost">
+            <Button
+              w="full"
+              variant="ghost"
+              onClick={() => navigate("/signin")}
+            >
               Log Out
             </Button>
 
             <Menu>
-              {/* <MenuButton as={Button} colorScheme="pink">
-                Profile
-              </MenuButton> */}
               <MenuButton>
                 <Avatar
                   size="sm"
@@ -179,7 +265,9 @@ const Navbar = () => {
               </MenuButton>
               <MenuList>
                 <MenuGroup title="Profile">
-                  <MenuItem>My Account</MenuItem>
+                  <MenuItem onClick={() => navigate("/profile")}>
+                    My Account
+                  </MenuItem>
                   <MenuItem>Payments </MenuItem>
                 </MenuGroup>
                 <MenuDivider />

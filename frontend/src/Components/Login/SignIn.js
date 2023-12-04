@@ -16,12 +16,14 @@ import {
   } from '@chakra-ui/react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const SignIn = () => {
     const[showPassword, setShowPassword] = useState(false);
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSignIn = async() => {
         try{
@@ -35,6 +37,7 @@ const SignIn = () => {
               return acc;
             },{});
             document.cookie = `user=${JSON.stringify(userData)};path=/`;
+            navigate("/student");
             console.log('Login Successful', userData);
         }catch(error){
             console.error('Login Failed', error.message)

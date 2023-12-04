@@ -21,9 +21,11 @@ import {
   import { useState } from 'react'
   import { useForm } from 'react-hook-form'
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
+import { useNavigate } from 'react-router-dom'
   
 
 const SignUp = () => {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [showMatchPassword, setshowMatchPassword] = useState(false);
 
@@ -186,7 +188,11 @@ const SignUp = () => {
                 _hover={{
                   bg: 'blue.500',
                 }}
-                onClick={()=>console.log(formData)} >
+                onClick={()=>{
+                  navigate("/signin");
+                  console.log(formData)
+                }
+                } >
                 Sign up
               </Button>
             </Stack>

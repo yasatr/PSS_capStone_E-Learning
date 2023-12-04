@@ -53,31 +53,6 @@ const CardSlider = (props) => {
             <SmallCourseCard data={data} />
           </div>;
         })}
-
-        {/* <div>
-          <SmallCourseCard />
-        </div>
-        <div>
-          <SmallCourseCard />
-        </div>
-        <div>
-          <SmallCourseCard />
-        </div>
-        <div>
-          <SmallCourseCard />
-        </div>
-        <div>
-          <SmallCourseCard />
-        </div>
-        <div>
-          <SmallCourseCard />
-        </div>
-        <div>
-          <SmallCourseCard />
-        </div>
-        <div>
-          <SmallCourseCard />
-        </div> */}
       </Slider>
     </div>
   );
