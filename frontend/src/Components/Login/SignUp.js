@@ -21,29 +21,32 @@ import {
   import { useState } from 'react'
   import { useForm } from 'react-hook-form'
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
+  import axios from 'axios'
+  import {useHistory} from 'react-router'
   
 
 const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showMatchPassword, setshowMatchPassword] = useState(false);
+  
 
     const [formData, setFormData] = useState({
         firstName : "",
         lastName : "",
         email : "",
         password : "",
-        matchingpassword : "",
-        phoneNumber : "",
+        matchingPass : "",
+        phoneNo : "",
         role : "",
-        profilePic : ""
+        profilePicUrl : ""
 
     })
     const [errors, setErrors] = useState({
         email : "",
         password : "",
-        matchingpassword : "",
-        phoneNumber : "",
-        profilePic : "",
+        matchingPass : "",
+        phoneNo : "",
+        profilePicUrl : "",
     })
 
     const handleChange=(e, value)=>{
@@ -61,18 +64,18 @@ const SignUp = () => {
                         setErrors({...errors,[e]:'password must be atleast 8 characters long'});
                     }
                     break;
-                case 'matchingpassword' :
+                case 'matchingPass' :
                     if(value !== formData.password){
                         setErrors({...errors,[e]:'passwords do not match'})
                     }
                     break;
-                case 'phoneNumber' :
+                case 'phoneNo' :
                     const phoneNumberRegex = /^\d{10}$/;
                     if(!phoneNumberRegex.test(value)){
                         setErrors({...errors,[e]:'should be a 10 digit phone number'})
                     }
                     break;
-                case 'profilePic' : 
+                case 'profilePicUrl' : 
                     const urlRegex = /^(ftp|http|https):\/\/[^'']+$/;
                     if(!urlRegex.test(value)){
                         setErrors({...errors,[e]:'Invalid url format'})
@@ -85,6 +88,16 @@ const SignUp = () => {
                 ...formData,
                 [e]:value,
             });
+            
+    }
+    const handleSignUp = async() => {
+      try{
+        const response = await axios.post('http://localhost:8080/signup', formData);
+        console.log(response.data);
+        console.log(formData);
+      }catch(error){
+        console.error('Signup error :', error);
+      }
     }
     
     
@@ -143,10 +156,10 @@ const SignUp = () => {
               </InputGroup>
               <FormErrorMessage>{errors.password}</FormErrorMessage>
             </FormControl>
-            <FormControl id="matchingpassword" isInvalid={errors.matchingpassword !== ''} isRequired>
+            <FormControl id="matchingPass" isInvalid={errors.matchingPass !== ''} isRequired>
               <FormLabel >Retype Password</FormLabel>
               <InputGroup>
-                <Input placeholder='Enter your password again' type={showMatchPassword ? 'text' : 'password'} onChange={(e)=>handleChange("matchingpassword", e.target.value)} value={formData.matchingpassword} />
+                <Input placeholder='Enter your password again' type={showMatchPassword ? 'text' : 'password'} onChange={(e)=>handleChange("matchingPass", e.target.value)} value={formData.matchingPass} />
                 <InputRightElement h={'full'}>
                   <Button
                     variant={'ghost'}
@@ -155,12 +168,12 @@ const SignUp = () => {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-              <FormErrorMessage>{errors.matchingpassword}</FormErrorMessage>
+              <FormErrorMessage>{errors.matchingPass}</FormErrorMessage>
             </FormControl>
-            <FormControl id="phoneNumber" isInvalid={errors.phoneNumber !== ''} isRequired>
+            <FormControl id="phoneNo" isInvalid={errors.phoneNo !== ''} isRequired>
               <FormLabel>Phone Number</FormLabel>
-              <Input placeholder='Enter your 10 digit mobile number' type="text" onChange={(e)=>handleChange("phoneNumber", e.target.value)} value={formData.phoneNumber} />
-              <FormErrorMessage>{errors.phoneNumber}</FormErrorMessage>
+              <Input placeholder='Enter your 10 digit mobile number' type="text" onChange={(e)=>handleChange("phoneNo", e.target.value)} value={formData.phoneNo} />
+              <FormErrorMessage>{errors.phoneNo}</FormErrorMessage>
             </FormControl>
             <FormControl id="role" isRequired>
               <FormLabel>Choose a role</FormLabel>
@@ -171,10 +184,10 @@ const SignUp = () => {
                 </HStack>
               </RadioGroup>
             </FormControl>
-            <FormControl id="profilePic" isInvalid={errors.profilePic !==''}>
+            <FormControl id="profilePicUrl" isInvalid={errors.profilePicUrl !==''}>
               <FormLabel >Profile Picture</FormLabel>
-              <Input placeholder='Enter the url of your picture' type="text" onChange={(e)=>handleChange("profilePic", e.target.value)} value={formData.profilePic}/>
-              <FormErrorMessage>{errors.profilePic}</FormErrorMessage>
+              <Input placeholder='Enter the url of your picture' type="text" onChange={(e)=>handleChange("profilePicUrl", e.target.value)} value={formData.profilePicUrl}/>
+              <FormErrorMessage>{errors.profilePicUrl}</FormErrorMessage>
             </FormControl>
             <Stack spacing={10} pt={2}>
               <Button
@@ -186,7 +199,7 @@ const SignUp = () => {
                 _hover={{
                   bg: 'blue.500',
                 }}
-                onClick={()=>console.log(formData)} >
+                onClick={handleSignUp} >
                 Sign up
               </Button>
             </Stack>
