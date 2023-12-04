@@ -1,20 +1,22 @@
-import React from "react";
-import { Box, Flex, HStack, chakra } from "@chakra-ui/react";
+import React, { useContext } from "react";
+import { Box, Flex, HStack, chakra, useAccordion } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
-function SmallCourseCard(props) {
-    const {title} = props
+function SmallCourseCard({ singleObject }) {
+  console.log(singleObject);
   return (
     <div>
       <Flex
         bg="#edf3f8"
         _dark={{
-          bg: "#3e3e3e",
+          bg: "#bac1c7",
         }}
         p={50}
         w="full"
         alignItems="center"
         justifyContent="center"
+        borderRadius="10"
+        
       >
         <Flex
           maxW="md"
@@ -32,7 +34,7 @@ function SmallCourseCard(props) {
             bgSize="cover"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')",
+              `url(./img/${singleObject.imgUrl})`,
             }}
           ></Box>
 
@@ -51,7 +53,7 @@ function SmallCourseCard(props) {
                 color: "white",
               }}
             >
-              {title}
+              {singleObject.courseTitle}
             </chakra.h1>
 
             <chakra.p
@@ -62,10 +64,10 @@ function SmallCourseCard(props) {
                 color: "gray.400",
               }}
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit In odit
+              {singleObject.courseDesc}
             </chakra.p>
 
-            <HStack spacing={1} display="flex" alignItems="center" mt={2}>
+            {/* <HStack spacing={1} display="flex" alignItems="center" mt={2}>
               <StarIcon
                 color="gray.700"
                 _dark={{
@@ -86,10 +88,10 @@ function SmallCourseCard(props) {
               />
               <StarIcon color="gray.500" />
               <StarIcon color="gray.500" />
-            </HStack>
+            </HStack> */}
 
             <Flex mt={3} alignItems="center" justifyContent="space-between">
-              <chakra.h1 color="white" fontWeight="bold" fontSize="lg">
+              <chakra.h1 color="#edf3f8" fontWeight="bold" fontSize="lg">
                 $220
               </chakra.h1>
               <chakra.button
@@ -114,7 +116,6 @@ function SmallCourseCard(props) {
           </Box>
         </Flex>
       </Flex>
-      
     </div>
   );
 }

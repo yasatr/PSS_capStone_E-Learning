@@ -16,15 +16,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 	  private static final String[] WHITE_LIST_URLS = {
-
-	            "/hello", "/signup", "/login" , "/addCourse" , "/addCourse**","/content","/content/*", "http://localhost:3000/*"
+	            "/hello", "/signup", "/login" , "/addCourse" , "/addCourse**","/content","/content/*", "/allCourse",
+	            "http://localhost:3000/", "/addEnrollment**", "/addEnrollment", "myCourse","/enrolledProgress", 
+	            "/enrolledCompleted", "/enrolledCourses",
+	            "/swagger-ui/**",
+	            "/api-docs",
+	            "/api-docs/**",
+	            "/api/v1/**"
 
 	    };
 
-	   
-
 	    @Bean
-
 	    public BCryptPasswordEncoder passwordEncoder() {
 
 	        return new BCryptPasswordEncoder();

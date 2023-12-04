@@ -1,12 +1,12 @@
-import { ChakraProvider, extendTheme} from '@chakra-ui/react';
-import './App.css';
-import Navbar from "./Components/NavBar/Navbar";
+import "./App.css";
 import StudentDashboard from "./Pages/Student/StudentDashboard";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./Components/NavBar/Navbar";
 import MyCourses from "./Pages/Student/MyCourses";
 import AllCourses from "./Pages/Student/AllCourses";
 import CompletedCourses from "./Pages/Student/CompletedCourses";
-import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
-
+import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
 
 function App() {
   const colors = {
@@ -33,14 +33,21 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Router>
-      <Navbar/>
+        {/* <Navbar/> */}
+        {/* <Profile/> */}
+        <Navbar />
+
         <Routes>
-        <Route exact path='/student' Component={StudentDashboard}/>
-        <Route exact path='/student/myCourses' Component={MyCourses}/>
-        <Route exact path='/student/allCourses' Component={AllCourses}/>
-        <Route exact path='/student/completedCourses' Component={CompletedCourses}/>
+          {/* <Route exact path="/student" Component={StudentDashboard} /> */}
+          {/* <Route exact path="/student/myCourses" Component={MyCourses} />
+          <Route exact path="/student/allCourses" Component={AllCourses} /> */}
+          {/* <Route
+            exact
+            path="/student/completedCourses"
+            Component={CompletedCourses}
+          /> */}
         </Routes>
-    </Router>
+      </Router>
     </ChakraProvider>
   );
 }
