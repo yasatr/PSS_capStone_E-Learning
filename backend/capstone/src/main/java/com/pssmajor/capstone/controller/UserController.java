@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pssmajor.capstone.entity.User;
 import com.pssmajor.capstone.model.LoginModel;
+import com.pssmajor.capstone.model.UpdateModel;
 import com.pssmajor.capstone.model.UserModel;
 import com.pssmajor.capstone.service.UserService;
 
@@ -28,4 +29,5 @@ public class UserController {
 		return userService.login(loginModel);
 		
 	}
+	
 }

@@ -16,7 +16,6 @@ function SmallCourseCard({ singleObject }) {
         alignItems="center"
         justifyContent="center"
         borderRadius="10"
-        
       >
         <Flex
           maxW="md"
@@ -28,6 +27,7 @@ function SmallCourseCard({ singleObject }) {
           shadow="lg"
           rounded="lg"
           overflow="hidden"
+          w="full"
         >
           <Box
             w={1 / 3}

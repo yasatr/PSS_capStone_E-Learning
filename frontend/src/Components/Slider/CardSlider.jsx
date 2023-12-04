@@ -5,7 +5,9 @@ import CourseCard from "../Card/CourseCard";
 import Slider from "react-slick";
 import SmallCourseCard from "../Card/SmallCourseCard";
 
-const CardSlider = ({ data }) => {
+const CardSlider = (props) => {
+  const {data} = props;
+  // console.log("Ye data hai slider ka", data);
   var settings = {
     dots: true,
     infinite: false,
@@ -44,7 +46,7 @@ const CardSlider = ({ data }) => {
     ],
   };
   return (
-    <div style={{ margin: "20px" }}>
+    <div style={{ margin: 30 }}>
       <Slider {...settings}>
         {data.map((item) => (
           <SmallCourseCard key={item.courseId} singleObject={item} />

@@ -13,6 +13,7 @@ import {
     useColorModeValue,
     InputGroup,
     InputRightElement,
+    Link
   } from '@chakra-ui/react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from 'axios';
@@ -20,10 +21,10 @@ import { useNavigate } from 'react-router-dom';
 
 
 const SignIn = () => {
+    const navigate = useNavigate();
     const[showPassword, setShowPassword] = useState(false);
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
-    const navigate = useNavigate();
     const[error, setError] = useState(null);
 
     const handleSignIn = async() => {
@@ -42,8 +43,8 @@ const SignIn = () => {
             },{});
             console.log(response.data);
             document.cookie = `user=${JSON.stringify(userData)};path=/`;
-            navigate("/student");
             console.log('Login Successful', userData);
+            navigate("/dashboard");
             setError(null);
         }catch(error){
           if(error.message==='Invalid username or password'){
@@ -101,6 +102,11 @@ const SignIn = () => {
                 Sign in
               </Button>
               {error && <Text color="red">{error}</Text>}
+            </Stack>
+            <Stack pt={6}>
+              <Text align={'center'}>
+                Dont't have account? <Link color={'blue.400'} href='/' >SignUp</Link>
+              </Text>
             </Stack>
           </Stack>
         </Box>

@@ -16,9 +16,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 	  private static final String[] WHITE_LIST_URLS = {
-<<<<<<< HEAD
-	            "/hello", "/signup", "/login" , "/addCourse" , "/addCourse**","/content","/content/*", "/allCourse", "http://localhost:3000/", "/addEnrollment**", "/addEnrollment"
-=======
 	            "/hello", "/signup", "/login" , "/addCourse" , "/addCourse**","/content","/content/*", "/allCourse",
 	            "http://localhost:3000/", "/addEnrollment**", "/addEnrollment", "myCourse","/enrolledProgress", 
 	            "/enrolledCompleted", "/enrolledCourses",
@@ -26,8 +23,6 @@ public class WebSecurityConfig {
 	            "/api-docs",
 	            "/api-docs/**",
 	            "/api/v1/**"
-
->>>>>>> main
 	    };
 
 	    @Bean

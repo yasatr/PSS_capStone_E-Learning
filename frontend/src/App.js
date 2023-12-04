@@ -7,8 +7,9 @@ import MyCourses from "./Pages/Student/MyCourses";
 import AllCourses from "./Pages/Student/AllCourses";
 import CompletedCourses from "./Pages/Student/CompletedCourses";
 import Profile from "./Pages/Teacher/Profile";
-import SignIn from "./Components/Login/SignIn";
 import SignUp from "./Components/Login/SignUp";
+import SignIn from "./Components/Login/SignIn";
+import MyCourse from "./Pages/Teacher/MyCourse";
 
 function App() {
   // const [isLoggedIn,setLoggedIn] = useState(false);
@@ -69,6 +70,7 @@ function App() {
             }
           />
         </Routes>
+        {/* <Profile/> */}
       </Router>
     </ChakraProvider>
   );
