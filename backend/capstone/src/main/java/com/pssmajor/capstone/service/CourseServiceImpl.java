@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.pssmajor.capstone.entity.Course;
@@ -42,9 +46,11 @@ public class CourseServiceImpl implements CourseService{
 	}
 	
 	@Override
-	public List<Course> getAllCourse() {
+	public Page<Course> getAllCourse(int Page, int Size) {
 		// TODO Auto-generated method stub
-		return courseRepository.findAll();
+		Pageable pageable = PageRequest.of(Page, Size);
+		List<Course> courseList = courseRepository.findAll();
+		return new PageImpl<>(courseList, pageable, courseList.size());
 	}
 
 	@Override
