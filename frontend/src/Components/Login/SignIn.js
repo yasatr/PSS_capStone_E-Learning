@@ -22,6 +22,7 @@ const SignIn = () => {
     const[showPassword, setShowPassword] = useState(false);
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
+    const[error, setError] = useState(null);
 
     const handleSignIn = async() => {
         try{
@@ -30,13 +31,23 @@ const SignIn = () => {
                 password,
             })
             const allowedFields = ['userId', 'firstName', 'lastName', 'email', 'phoneNo', 'role', 'profilePicUrl'];
+            if(!response.data.email || !response.data.password){
+              throw new Error("Invalid username or password")
+            }
             const userData = Object.keys(response.data).filter(field=>allowedFields.includes(field)).reduce((acc, field)=>{
               acc[field] = response.data[field];
               return acc;
             },{});
+            console.log(response.data);
             document.cookie = `user=${JSON.stringify(userData)};path=/`;
             console.log('Login Successful', userData);
+            setError(null);
         }catch(error){
+          if(error.message==='Invalid username or password'){
+            setError('Invalid username or password. Please try again')
+          }else{
+            setError('An unexpected error occurred. Try again')
+          }
             console.error('Login Failed', error.message)
         }
     }
@@ -86,6 +97,7 @@ const SignIn = () => {
                 onClick={handleSignIn}>
                 Sign in
               </Button>
+              {error && <Text color="red">{error}</Text>}
             </Stack>
           </Stack>
         </Box>
