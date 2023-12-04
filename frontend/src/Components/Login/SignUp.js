@@ -17,15 +17,14 @@ import {
     useColorModeValue,
     Link,
     FormErrorMessage,
-  } from '@chakra-ui/react'
-  import { useState } from 'react'
-  import { useForm } from 'react-hook-form'
-  import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
-  import axios from 'axios'
-  import {useHistory} from 'react-router'
+  } from '@chakra-ui/react';
+import { useState } from 'react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
   
-
 const SignUp = () => {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [showMatchPassword, setshowMatchPassword] = useState(false);
   
@@ -93,8 +92,6 @@ const SignUp = () => {
     const handleSignUp = async() => {
       try{
         const response = await axios.post('http://localhost:8080/signup', formData);
-        console.log(response.data);
-        console.log(formData);
       }catch(error){
         console.error('Signup error :', error);
       }
