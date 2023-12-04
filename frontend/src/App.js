@@ -7,6 +7,8 @@ import MyCourses from "./Pages/Student/MyCourses";
 import AllCourses from "./Pages/Student/AllCourses";
 import CompletedCourses from "./Pages/Student/CompletedCourses";
 import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
+import Profile from "./Pages/Teacher/Profile";
+import Loader from "./Components/Loader/Loader";
 
 function App() {
   const colors = {
