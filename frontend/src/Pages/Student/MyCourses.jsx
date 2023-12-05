@@ -6,7 +6,7 @@ import CourseCard from "../../Components/Card/CourseCard";
 
 const MyCourses = () => {
   const [data, setData] = useState([]);
-  const APIurl = "http://localhost:8080/allCourse";
+  const APIurl = "http://localhost:8080/allCourse/page=0&size=4";
 
   useEffect(() => {
     const fetchUsers = async () => {

@@ -3,15 +3,16 @@ import Navbar from "../../Components/NavBar/Navbar";
 import { SimpleGrid, Box } from "@chakra-ui/react";
 import SmallCourseCard from "../../Components/Card/SmallCourseCard";
 import { async } from "q";
-
+import Cookies from "js-cookie";
+import axios from "axios";
 
 function MyCourse() {
   
   const userCookie = Cookies.get("user") || {};
-  const { userId } = userCookie;
+  const user = JSON.parse(userCookie);
 
   const [data, setData] = useState([]);
-  const APIurl = `http://localhost:8080/myCourse?userId=${1}`
+  const APIurl = `http://localhost:8080/myCourse?userId=${user?.userId}`;
 
   useEffect(() =>{
     const fetchCourse = async () =>{

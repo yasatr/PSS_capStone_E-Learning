@@ -16,6 +16,7 @@ import {
 
 function CourseCard(props) {
   const { item } = props;
+  console.log(item);
   return (
     <div>
       <Card maxW="sm" mt="5">

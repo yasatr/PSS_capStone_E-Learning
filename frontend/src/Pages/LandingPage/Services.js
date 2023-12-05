@@ -8,6 +8,8 @@ import {
     useMediaQuery,
   } from '@chakra-ui/react';
 import image from '../../Assets/Eleraning.jpg'
+import { Link } from 'react-scroll';
+
 
 
 const Services = () => {
@@ -47,9 +49,11 @@ const Services = () => {
         and collaborative forums, ensuring an engaging and effective learning journey for every user.
       </Text>
 
+      <Link to='contactUs' spy={true} smooth={true}>
       <Button width="200px" size="lg" colorScheme="blue">
         CONTACT US
       </Button>
+      </Link>
     </Flex>
   </Flex>
   )

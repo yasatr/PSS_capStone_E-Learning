@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   chakra,
   Box,
@@ -31,13 +31,21 @@ import {
   AiFillBell,
 } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { MyContext } from "../../MyContext";
 
-const Navbar = () => {
-  // const [input,setInput] = useState("");
-  // const [filteredData, setFilteredData] = useState([]);
 
+const Navbar = (props) => {
+  const userCookie = Cookies.get("user") || {};
+  const user = JSON.parse(userCookie);
+
+  const data = useContext(MyContext);
+  // console.log(data);
+
+  const location = useLocation();
+  const [input, setInput] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
   const [dashboard, setDashboard] = useState({
     isClicked: true,
@@ -65,7 +73,9 @@ const Navbar = () => {
       isClicked: false,
       variant: "ghost",
     });
-    navigate("/student");
+    {
+      user.role === "Student" ? navigate("/student") : navigate("/teacher");
+    }
   };
 
   const handleMyCourse = () => {
@@ -81,7 +91,11 @@ const Navbar = () => {
       isClicked: false,
       variant: "ghost",
     });
-    navigate("/student/myCourses");
+    {
+      user.role === "Student"
+        ? navigate("/student/myCourses")
+        : navigate("/teacher/myCourse");
+    }
   };
 
   const handleAllCourse = () => {
@@ -100,19 +114,20 @@ const Navbar = () => {
     navigate("/student/allCourses");
   };
 
-  // const handleSearch = (e) => {
-  //   const searchInput = e.target.value;
-  //   setInput(searchInput);
-  //   const newFilter = data.filter((value) => {
-  //     return value.first_name.toLowerCase().includes(searchInput.toLowerCase());
-  //   });
-  //     if (searchInput === "") {
-  //       setFilteredData([]);
-  //     } else {
-  //       setFilteredData(newFilter);
-  //     }
-  // };
-
+  const handleSearch = (e) => {
+    const searchInput = e.target.value;
+    setInput(searchInput);
+    // console.log(data.content);
+    const filteredData = data.content.filter((item) =>
+      item.courseTitle.toLowerCase().includes(input.toLowerCase())
+    );
+    console.log(filteredData);
+    if (searchInput === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(filteredData);    
+    }
+  };
 
   const bg = useColorModeValue("white", "gray.800");
   const mobileNav = useDisclosure();
@@ -120,8 +135,12 @@ const Navbar = () => {
 
   const handleLogout = () => {
     Cookies.remove("user");
-    navigate("/login");
-  }
+    navigate("/signin");
+  };
+
+  let src = user.profilePicUrl
+    ? user.profilePicUrl
+    : "https://th.bing.com/th/id/R.7ea4af7d8401d2b43ee841bfa2abe89d?rik=xidyUKdveUKULQ&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fuser-png-icon-download-icons-logos-emojis-users-2240.png&ehk=2%2bOqgdMZqFkKaBclc%2fPL9B86vLju3iBGiFmH64kXaTM%3d&risl=&pid=ImgRaw&r=0";
 
   return (
     <React.Fragment>
@@ -215,15 +234,17 @@ const Navbar = () => {
               >
                 My Courses
               </Button>
-              <Button
-                variant={allCourse.variant}
-                colorScheme={allCourse.isClicked ? "brand" : null}
-                leftIcon={<BsFillCameraVideoFill />}
-                size="sm"
-                onClick={handleAllCourse}
-              >
-                All Courses
-              </Button>
+              {user.role === "Student" ? (
+                <Button
+                  variant={allCourse.variant}
+                  colorScheme={allCourse.isClicked ? "brand" : null}
+                  leftIcon={<BsFillCameraVideoFill />}
+                  size="sm"
+                  onClick={handleAllCourse}
+                >
+                  All Courses
+                </Button>
+              ) : null}
             </HStack>
           </HStack>
           <HStack
@@ -231,16 +252,19 @@ const Navbar = () => {
             display={mobileNav.isOpen ? "none" : "flex"}
             alignItems="center"
           >
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <AiOutlineSearch />
-              </InputLeftElement>
-              <Input
-                type="tel"
-                placeholder="Search..."
-                // onChange={(e) => handleSearch(e)}
-              />
-            </InputGroup>
+            {location.pathname === "/student/allCourses" ? (
+              <InputGroup>
+                <InputLeftElement pointerEvents="none">
+                  <AiOutlineSearch />
+                </InputLeftElement>
+                <Input
+                  type="tel"
+                  placeholder="Search..."
+                  value={input}
+                  onChange={(e) => handleSearch(e)}
+                />
+              </InputGroup>
+            ) : null}
 
             <chakra.a
               p={3}
@@ -259,21 +283,31 @@ const Navbar = () => {
 
             <Menu>
               <MenuButton>
-                <Avatar
-                  size="sm"
-                  name="Dan Abrahmov"
-                  src="https://bit.ly/dan-abramov"
-                />
+                <Avatar size="sm" name="Dan Abrahmov" src={src} />
               </MenuButton>
               <MenuList>
                 <MenuGroup title="Profile">
-                  <MenuItem onClick={() => {navigate("/profile")}}>My Account</MenuItem>
-                  <MenuItem>Payments </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/profile");
+                    }}
+                  >
+                    My Account
+                  </MenuItem>
+                  {/* <MenuItem>Payments </MenuItem> */}
                 </MenuGroup>
                 <MenuDivider />
                 <MenuGroup title="Help">
-                  <MenuItem>About</MenuItem>
-                  <MenuItem>FAQ</MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/aboutUs");
+                    }}
+                  >
+                    About Us
+                  </MenuItem>
+                  <MenuItem  onClick={() => {
+                      navigate("/contactUs");
+                    }}>Contact Us</MenuItem>
                 </MenuGroup>
               </MenuList>
             </Menu>
