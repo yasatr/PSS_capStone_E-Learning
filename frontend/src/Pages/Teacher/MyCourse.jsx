@@ -3,7 +3,8 @@ import Navbar from "../../Components/NavBar/Navbar";
 import { SimpleGrid, Box } from "@chakra-ui/react";
 import SmallCourseCard from "../../Components/Card/SmallCourseCard";
 import { async } from "q";
-
+import axios from "axios";
+import Cookies from "js-cookie";
 
 function MyCourse() {
   

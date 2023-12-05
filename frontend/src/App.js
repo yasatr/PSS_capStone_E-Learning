@@ -13,6 +13,7 @@ import MyCourse from "./Pages/Teacher/MyCourse";
 import Welcome from "./Pages/LandingPage/Welcome";
 
 import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
+import Cookies from "universal-cookie";
 
 function App() {
   // const [isLoggedIn,setLoggedIn] = useState(false);
@@ -44,7 +45,7 @@ function App() {
         <Routes>
           <Route exact path="/signin" Component={SignIn} />
           <Route exact path="/signup" Component={SignUp} />
-          <Route
+          {/* <Route
             exact
             path="/*"
             element={
@@ -72,7 +73,9 @@ function App() {
                 </Routes>
               </>
             }
-          />
+          /> */}
+          <Route exact path="/dashboard" Component={ TeacherDashboard } />
+          <Route path="/profile" Component={Profile} />
         </Routes>
         {/* <Profile/> */}
         {/* <Welcome/> */}

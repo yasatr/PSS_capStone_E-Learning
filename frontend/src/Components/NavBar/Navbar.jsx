@@ -120,7 +120,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     Cookies.remove("user");
-    navigate("/login");
+    navigate("/signin");
   }
 
   return (

@@ -202,7 +202,7 @@ const SignUp = () => {
             </Stack>
             <Stack pt={6}>
               <Text align={'center'}>
-                Already a user? <Link color={'blue.400'} href='/login' >Login</Link>
+                Already a user? <Link color={'blue.400'} href='/signin' >Login</Link>
               </Text>
             </Stack>
           </Stack>

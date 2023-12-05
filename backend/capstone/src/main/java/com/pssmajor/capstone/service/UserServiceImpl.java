@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
-	public void signUp(UserModel userModel) {
+	public String signUp(UserModel userModel) {
 		// TODO Auto-generated method stub
 		User user = new User();
 		user.setFirstName(userModel.getFirstName());
@@ -34,16 +34,19 @@ public class UserServiceImpl implements UserService {
 		if(userModel.getPassword().equals(userModel.getMatchingPass())) {
 			user.setPassword(bCryptPasswordEncoder.encode(userModel.getPassword()));
 		}
-		userRepository.save(user);
+		Object temp = userRepository.save(user);
+		if(temp != null) {
+			return "Singup Success";
+		}
+		else {
+			return "Signup Failed";
+		}
 	}
 
 	@Override
 	public User login(LoginModel loginModel) {
 		// TODO Auto-generated method stub
 		User user = userRepository.findByEmail(loginModel.getEmail());
-		System.err.println(user.getPassword());
-		System.out.println(bCryptPasswordEncoder.encode(loginModel.getPassword()));
-		System.err.println(user.getEmail() + loginModel.getEmail());
 		if(user.getEmail().equals(loginModel.getEmail())) {
 //			if(user.getPassword().equals(passwordEncoder.matches(null, null)) {
 //				return user;
@@ -52,7 +55,7 @@ public class UserServiceImpl implements UserService {
 				return user;
 			}
 		}
-		return null;
+		return null;			
 	}
 	
 	

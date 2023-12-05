@@ -107,7 +107,7 @@ const SignIn = () => {
             </Stack>
             <Stack pt={6}>
               <Text align={'center'}>
-                Dont't have account? <Link color={'blue.400'} href='/' >SignUp</Link>
+                Dont't have account? <Link color={'blue.400'} href='/signup' >SignUp</Link>
               </Text>
             </Stack>
           </Stack>
