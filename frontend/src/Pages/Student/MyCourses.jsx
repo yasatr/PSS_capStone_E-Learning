@@ -3,18 +3,19 @@ import { Grid } from "@chakra-ui/react";
 import axios from "axios";
 import { Heading } from "@chakra-ui/react";
 import CourseCard from "../../Components/Card/CourseCard";
+import Navbar from "../../Components/NavBar/Navbar";
 
 const MyCourses = () => {
   const [data, setData] = useState([]);
-  const APIurl = "http://localhost:8080/allCourse/page=0&size=4";
+  const APIurl = "http://localhost:8080/allCourse?page=0&size=4";
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(APIurl);
-        const output = await response.data;
+        const output = await response.data.content;
         setData(output);
-        // console.log(output);
+        console.log("response: ", output);
       } catch (error) {
         console.log(error);
       }
