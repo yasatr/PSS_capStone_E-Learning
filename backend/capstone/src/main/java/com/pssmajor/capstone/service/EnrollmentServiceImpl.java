@@ -55,10 +55,10 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 			Enrollment enrollment = new Enrollment();
 			enrollment.setCourse(course);
 			enrollment.setUser(user);
-			Progress progress = new Progress();
-			progress.setCourse(course);
-			progress.setUser(user);
-			progressRepository.save(progress);
+//			Progress progress = new Progress();
+//			progress.setCourse(course);
+//			progress.setUser(user);
+//			progressRepository.save(progress);
 			enrollmentRepository.save(enrollment);
 		}
 		return null;
