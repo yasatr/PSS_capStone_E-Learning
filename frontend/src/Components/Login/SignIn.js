@@ -31,10 +31,11 @@ const SignIn = () => {
 
     const handleSignIn = async() => {
         try{
-            const response = await axios.post('http://localhost:8080/login',{
+            const responseData = await axios.post('http://localhost:8080/login',{
                 email,
                 password,
             })
+            const response = responseData.data;
             const allowedFields = ['userId', 'firstName', 'lastName', 'email', 'phoneNo', 'role', 'profilePicUrl'];
             if(!response.data.email || !response.data.password){
               throw new Error("Invalid username or password")
