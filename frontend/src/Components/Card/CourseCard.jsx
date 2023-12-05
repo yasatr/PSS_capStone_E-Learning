@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardHeader,
@@ -14,20 +14,40 @@ import {
   Grid,
 } from "@chakra-ui/react";
 
-function CourseCard(props) {
-  const { item } = props;
+function CourseCard({ singleObject }) {
+  // const userCookie = Cookies.get("user") || {};
+  // const user = JSON.parse(userCookie);
+
+  // const url = `http://localhost:8080/addEnrollment?userId=${user.userId}&courseId=${singleObject.courseId}`;
+  // const addCourse = async () => {
+  //   try {
+  //     const res = await axios.post(url);
+  //     const resData = await res.data.enrollment;
+
+  //     console.log(user.userId);
+  //     console.log(singleObject.courseId);
+  //     console.log(res);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  // const handleSubmit = () => {
+  //   addCourse();
+  // };
+
   return (
     <div>
       <Card maxW="sm" mt="5">
         <CardBody>
           <Image
-            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+            src={singleObject.imgUrl}
             alt="Green double couch with wooden legs"
             borderRadius="lg"
           />
           <Stack mt="6" spacing="3">
-            <Heading size="md">{item.courseTitle}</Heading>
-            <Text>{item.courseDesc}</Text>
+            <Heading size="md">{singleObject.courseTitle}</Heading>
+            <Text>{singleObject.courseDesc}</Text>
             <Text color="blue.600" fontSize="2xl">
               &#x20b9;450
             </Text>
@@ -36,11 +56,8 @@ function CourseCard(props) {
         <Divider />
         <CardFooter>
           <ButtonGroup spacing="2">
-            <Button variant="solid" colorScheme="blue">
+            <Button variant="solid" colorScheme="blue" /*onClick={handleSubmit}*/>
               Enroll now
-            </Button>
-            <Button variant="ghost" colorScheme="blue">
-              Add to cart
             </Button>
           </ButtonGroup>
         </CardFooter>
