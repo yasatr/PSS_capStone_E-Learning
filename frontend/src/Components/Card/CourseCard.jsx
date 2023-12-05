@@ -48,7 +48,7 @@ function CourseCard({ singleObject }) {
           <Stack mt="6" spacing="3">
             <Heading size="md">{singleObject.courseTitle}</Heading>
             <Text>{singleObject.courseDesc}</Text>
-            <Text color="blue.600" fontSize="2xl">
+            <Text color="#4d5499" fontSize="2xl" fontWeight="600">
               &#x20b9;450
             </Text>
           </Stack>
@@ -56,7 +56,7 @@ function CourseCard({ singleObject }) {
         <Divider />
         <CardFooter>
           <ButtonGroup spacing="2">
-            <Button variant="solid" colorScheme="blue" /*onClick={handleSubmit}*/>
+            <Button variant="solid" backgroundColor="#4d5499" color="white" /*onClick={handleSubmit}*/>
               Enroll now
             </Button>
           </ButtonGroup>
