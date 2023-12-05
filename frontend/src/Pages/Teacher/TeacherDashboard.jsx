@@ -4,7 +4,7 @@ import CardSlider from "../../Components/Slider/CardSlider";
 import AddCourse from "./AddCourse";
 import Footer from "../../Components/Footer/Footer";
 import fetchCourse from "../../ApiCall/FetchMyCourse";
-import Cookies from "js-cookie";
+import Cookies from "universal-cookie";
 
 function TeacherDashboard() {
   const [data, setData] = useState([]);
