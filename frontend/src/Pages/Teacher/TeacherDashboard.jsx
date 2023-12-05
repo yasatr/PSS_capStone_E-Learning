@@ -3,28 +3,35 @@ import CardSlider from "../../Components/Slider/CardSlider";
 import AddCourse from "./AddCourse";
 import Footer from "../../Components/Footer/Footer";
 import fetchCourse from "../../ApiCall/FetchMyCourse";
-import Cookies from "js-cookie";
+import Cookies from "universal-cookie";
 
 function TeacherDashboard() {
   const [data, setData] = useState([]);
+  const [courseAdded, setCourseAdded] = useState(false);
 
-  const userCookie = Cookies.get("user") || {};
-  const user = JSON.parse(userCookie);
+  const cookies = new Cookies();
+  const user = cookies.get("user") || {};
 
   // const url = `http://localhost:8080/myCourse?userId=${1}`;
   useEffect(() => {
     fetchCourse(`http://localhost:8080/myCourse?userId=${user?.userId}`)
     .then(
       (result) => {
-        console.log("result hai: ", result);
         setData(result);
       }
     );
-  }, [data]);
+  }, [courseAdded]);
+
+  const handleAddCourse = () => {
+    // Logic to add a new course...
+    // After adding a new course successfully, update courseAdded to trigger re-render
+    setCourseAdded(prev => !prev);
+  };
+ 
   return (
     <div>
       <CardSlider data={data} />
-      <AddCourse />
+      <AddCourse onAddCourse={handleAddCourse} />
     </div>
   );
 }

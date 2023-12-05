@@ -15,30 +15,38 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
+import Cookies from "universal-cookie";
+import { useEffect } from "react";
+import fetchCourse from "../../ApiCall/FetchMyCourse";
+import { useCallback } from "react";
 
-function AddCourse() {
+function AddCourse(props) {
+  const {onAddCourse} = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [course, setCourse] = useState({});
+  const [state, setState] = useState(false);
+
+  const cookies = new Cookies();
+  const user = cookies.get("user") || {};
 
   // const handleChange = (e) => {
   //   setCourse({...course, [e.target.id]:e.target.value});
   // }
  
-  const url = 'http://localhost:8080/addCourse?userId=1';
-  const addCourse = async (data) => {
-    try{
-      const res = await axios.post(url, data);
-      const resData = res.data;
-      console.log(resData);
-    }
-    catch(err){
-      console.log(err);
-    }
-  }
+  const url = `http://localhost:8080/addCourse?userId=${user?.userId}`;
+  const addCourse = useCallback(async () => {
+      if(state) return;
+      setState(true);
+      const response = await axios.post(url, course);
+      const data = await response.data;
+      console.log("Course data:", data);
+      setState(false);
+      onAddCourse();
+  }, [state]);
 
-  const handleSubmit = () => {
-    addCourse(course)
-  }
+  // const handleSubmit = () => {
+  //   addCourse();
+  // }
 
   return (
     <div className={styles.center}>
@@ -73,7 +81,7 @@ function AddCourse() {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={handleSubmit} onClickCapture={onClose}>
+            <Button colorScheme="blue" mr={3} onClick={addCourse} onClickCapture={onClose}>
               Add Course
             </Button>
             <Button variant="ghost" onClick={onClose}>Cancel</Button>

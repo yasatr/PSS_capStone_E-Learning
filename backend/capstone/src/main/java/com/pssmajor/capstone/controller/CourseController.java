@@ -38,7 +38,7 @@ public class CourseController {
 	public Course addCourse(@RequestParam("userId") Long userId, @RequestBody CourseModel courseModel) {
 		System.out.println("main andar hun");
 		Course course = courseService.addCourse(userId, courseModel);
-		System.out.println(course);
+		System.out.println(course);	
 		return course;
 	}
 	

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Grid } from "@chakra-ui/react";
 import axios from "axios";
 import { Heading } from "@chakra-ui/react";
-import CourseCard from "../../Components/Card/CourseCard";
-import Navbar from "../../Components/NavBar/Navbar";
+import MyCourseCard from "../../Components/Card/MyCourseCard";
+
 
 const MyCourses = () => {
   const [data, setData] = useState([]);
@@ -30,7 +30,7 @@ const MyCourses = () => {
         <Grid templateColumns="repeat(4, 1fr)" gap={6}>
           {data.map((item, index) => (
             <div key={index}>
-              <CourseCard item={item} />
+              <MyCourseCard item={item} />
             </div>
           ))}
         </Grid>
