@@ -31,9 +31,6 @@ const StudentDashboard = () => {
     });
   }, []);
 
-  console.log(dataComplete);
-  console.log(dataProgress);
-
   // useEffect(() => {}, [data]);
 
   // const navigate = useNavigate();
