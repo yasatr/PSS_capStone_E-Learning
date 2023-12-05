@@ -20,10 +20,10 @@ const AllCourses = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchCourse("http://localhost:8080/allCourse").then(
+    fetchCourse("http://localhost:8080/allCourse?page=0&size=4").then(
       (result) => {
         console.log("result hai: ", result);
-        setData(result);
+        setData(result.content);
       }
     );
   }, []);
