@@ -11,7 +11,7 @@ const ProtectedRoute = ({ path, element, ...rest }) => {
   //   user? element : <Navigate to="/signin" state={{ from: location }} />
   // ); 
   console.log(user)
-  if(user && path.startsWith(`${user.role}`) ||  publicPaths.includes(path)){
+  if((user && path.startsWith(`${user.role}`)) ||  publicPaths.includes(path)){
     return element;
   }
   else{

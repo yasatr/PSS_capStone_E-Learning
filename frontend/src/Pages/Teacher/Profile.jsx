@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   Stack,
   Heading,
-  Text,
   Button,
   Box,
   chakra,
@@ -15,7 +14,6 @@ import {
   IconButton,
   Highlight
 } from "@chakra-ui/react";
-import Footer from "../../Components/Footer/Footer";
 import { BsPencil } from "react-icons/bs";
 import Cookies from "universal-cookie";
 

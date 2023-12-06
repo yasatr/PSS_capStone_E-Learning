@@ -1,4 +1,4 @@
-import { border, useDisclosure } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import styles from './AddCourse.module.css';
 import {
   Modal,
@@ -16,7 +16,7 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import Cookies from "universal-cookie";
-import { useCallback } from "react";
+import { useEffect } from "react";
 
 function AddCourse(props) {
   const {onAddCourse} = props;
