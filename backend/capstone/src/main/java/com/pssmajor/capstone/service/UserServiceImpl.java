@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 		user.setLastName(userModel.getLastName());
 		user.setEmail(userModel.getEmail());
 		user.setPhoneNo(userModel.getPhoneNo());
-		user.setRole(userModel.getRole());
+		user.setRole(userModel.getRole().toLowerCase());
 		user.setProfilePicUrl(userModel.getProfilePicUrl());
 		if(userModel.getPassword().equals(userModel.getMatchingPass())) {
 			user.setPassword(bCryptPasswordEncoder.encode(userModel.getPassword()));

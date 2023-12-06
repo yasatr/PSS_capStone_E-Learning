@@ -108,10 +108,11 @@ function Profile() {
                 >
                   <SimpleGrid columns={6} spacing={6}>
                     <Image
-                      borderRadius="full"
-                      boxSize="150px"
+                      borderRadius="30%"
+                      boxSize="120px"
                       src={profilePicUrl}
-                      alt="Dan Abramov"
+                      alt="Babu Rao"
+                      w="100%"
                     />
                     <FormControl as={GridItem} colSpan={[6, 4]}>
                       <FormLabel
