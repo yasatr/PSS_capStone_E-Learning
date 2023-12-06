@@ -1,11 +1,6 @@
 import "./App.css";
 import StudentDashboard from "./Pages/Student/StudentDashboard";
-import {
-  ChakraProvider,
-  extendTheme,
-  Box,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/NavBar/Navbar";
 import MyCourses from "./Pages/Student/MyCourses";
@@ -18,7 +13,6 @@ import MyCourse from "./Pages/Teacher/MyCourse";
 import Welcome from "./Pages/LandingPage/Welcome";
 
 import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
-import DataProvider from "./MyContext";
 import AboutUs from "./Pages/LandingPage/AboutUs";
 import ContactUs from "./Pages/LandingPage/ContactUs";
 import ProtectedRoute from "./ProtectedRoute";
@@ -50,55 +44,83 @@ function App() {
     <ChakraProvider theme={theme}>
       <Router>
         <Routes>
-          <Route exact path="/signin" Component={SignIn} />
-          <Route exact path="/signup" Component={SignUp} />
-          <Route exact path="/" Component={Welcome} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/" element={<Welcome />} />
           <Route
-            exact
             path="/*"
             element={
               <>
-                <DataProvider>
-                  <Navbar />
-                  <Routes>
-                    <Route element={<ProtectedRoute />}>
-                      <Route
-                        exact
-                        path="/student"
-                        Component={StudentDashboard}
+                <Navbar />
+                <Routes>
+                  <Route
+                    path="student"
+                    element={
+                      <ProtectedRoute
+                        path="student"
+                        element={<StudentDashboard />}
                       />
-                      <Route
-                        exact
-                        path="/student/myCourses"
-                        Component={MyCourses}
+                    }
+                  />
+                  <Route
+                    path="student/myCourses"
+                    element={
+                      <ProtectedRoute path="student" element={<MyCourses />} />
+                    }
+                  />
+                  <Route
+                    path="student/allCourses"
+                    element={
+                      <ProtectedRoute path="student" element={<AllCourses />} />
+                    }
+                  />
+                  <Route
+                    path="student/completedCourses"
+                    element={
+                      <ProtectedRoute
+                        path="student"
+                        element={<CompletedCourses />}
                       />
-                      <Route
-                        exact
-                        path="/student/allCourses"
-                        Component={AllCourses}
+                    }
+                  />
+                  <Route
+                    path="/profile"
+                    element={
+                      <ProtectedRoute path="/profile" element={<Profile />} />
+                    }
+                  />
+                  <Route
+                    path="teacher"
+                    element={
+                      <ProtectedRoute
+                        path="teacher"
+                        element={<TeacherDashboard />}
                       />
-                      <Route
-                        exact
-                        path="/student/completedCourses"
-                        Component={CompletedCourses}
+                    }
+                  />
+                  <Route
+                    path="teacher/myCourse"
+                    element={
+                      <ProtectedRoute path="teacher" element={<MyCourse />} />
+                    }
+                  />
+                  <Route
+                    path="/aboutUs"
+                    element={
+                      <ProtectedRoute path="/aboutUs" element={<AboutUs />} />
+                    }
+                  />
+                  <Route
+                    path="/contactUs"
+                    element={
+                      <ProtectedRoute
+                        path="/contactUs"
+                        element={<ContactUs />}
                       />
-                      <Route exact path="/profile" Component={Profile} />
-                      <Route
-                        exact
-                        path="/teacher/myCourse"
-                        Component={MyCourse}
-                      />
-                      <Route
-                        exact
-                        path="/teacher"
-                        Component={TeacherDashboard}
-                      />
-                      <Route exact path="/aboutUs" Component={AboutUs} />
-                      <Route exact path="/contactUs" Component={ContactUs} />
-                    </Route>
-                  </Routes>
-                    <Footer  mx="auto" />
-                </DataProvider>
+                    }
+                  />
+                </Routes>
+                <Footer mx="auto" />
               </>
             }
           />

@@ -55,7 +55,7 @@ const SignIn = () => {
       console.log(response.data);
       cookies.set("user", userData, { path: "/" });
       console.log("Login Successful", userData);
-      {userData.role === "Student" ? navigate("/student") : navigate("/teacher")}
+      {userData.role === "student" ? navigate("/student") : navigate("/teacher")}
       setError(null);
     } catch (error) {
       if (error.message === "Invalid username or password") {
