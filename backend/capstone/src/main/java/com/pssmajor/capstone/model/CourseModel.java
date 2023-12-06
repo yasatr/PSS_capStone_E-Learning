@@ -21,7 +21,7 @@ public class CourseModel {
 	
 	private String courseTitle;
 	private String courseDesc;
-	private Long userId;
+//	private Long userId;
 	private Date startDate;
 	private Date endDate;
 	private String imgUrl;

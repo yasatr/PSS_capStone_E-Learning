@@ -32,7 +32,7 @@ public class CourseServiceImpl implements CourseService{
 		// TODO Auto-generated method stub
 		User user = userRepository.findById(userId).get();
 		System.out.println(user);
-		if(user.getRole().equals("teacher")) {
+		if(user.getRole().toLowerCase().equals("teacher")) {
 			Course course=new Course();
 			course.setCourseTitle(courseModel.getCourseTitle());
 			course.setCourseDesc(courseModel.getCourseDesc());

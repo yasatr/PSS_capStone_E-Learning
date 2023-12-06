@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Grid } from '@chakra-ui/react'
 import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button } from "@chakra-ui/react";
+import { Paginate } from 'react-paginate-chakra-ui';
+import { MyContext } from '../../MyContext';
 
 const AllCourses = () => {
+  const [page,setPage] = useState(0);
+
+  const { filteredData } = useContext(MyContext);
+  console.log(filteredData);
+  
+
+  const handlePageClick= (e)=> {
+    setPage(e);
+  }
   return (
     <div>
          <Heading textAlign={'center'} >All Courses</Heading>
@@ -163,6 +174,22 @@ const AllCourses = () => {
         </CardFooter>
       </Card>
       </Grid>
+      <Stack p={5}>
+        <Paginate
+          page={page}
+          count={100}
+          pageSize={10}
+          onPageChange={handlePageClick}
+          margin={2}
+          _dark={{ color: "inherit" }}
+          shadow="lg"
+          fontWeight="blue"
+          variant="outline"
+          border="2px solid"
+          w="full"
+        />
+         <Heading size="md" textAlign={'right'}>Page: {page}</Heading>
+      </Stack>
     </div>
   )
 }

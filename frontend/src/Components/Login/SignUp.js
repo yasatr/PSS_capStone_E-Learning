@@ -95,6 +95,7 @@ const SignUp = () => {
       }catch(error){
         console.error('Signup error :', error);
       }
+      navigate("/signin");
     }
     
     
