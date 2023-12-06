@@ -29,11 +29,8 @@ public class Progress {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long progressId;
 	@OneToOne 
-	@JoinColumn(name = "courseId", nullable = false, foreignKey = @ForeignKey(name="FK_COURSE_PROGRESS"))
-	private Course course;
-	@ManyToOne
-	@JoinColumn(name = "userId", nullable = false, foreignKey = @ForeignKey(name="FK_USER_PROGRESS"))
-	private User user;
+	@JoinColumn(name = "enrollmentId", nullable = false, foreignKey = @ForeignKey(name="FK_COURSE_PROGRESS"))
+	private Enrollment enrollment;
 	private int score = 0;
 	private Boolean status = false;
 }

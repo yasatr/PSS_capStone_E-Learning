@@ -44,6 +44,9 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 	
 	@Autowired
 	private ProgressRepository progressRepository;
+	
+	@Autowired
+	private ProgressService progressService;
 
 	@Override
 	public Enrollment addEnrollment(Long userId, Long courseId) {
@@ -52,14 +55,16 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 		User user = userRepository.findById(userId).get();
 		Course course = courseRepository.findById(courseId).get();
 		if(user.getRole().equals("student") && course.getIsActive()) {
-			Enrollment enrollment = new Enrollment();
-			enrollment.setCourse(course);
-			enrollment.setUser(user);
-			Progress progress = new Progress();
-			progress.setCourse(course);
-			progress.setUser(user);
-			progressRepository.save(progress);
-			enrollmentRepository.save(enrollment);
+			if(enrollmentRepository.findByUserIdCourseId(userId, courseId) == null) {
+				Enrollment enrollment = new Enrollment();
+				enrollment.setCourse(course);
+				enrollment.setUser(user);
+				enrollmentRepository.save(enrollment);
+				progressService.addProgress(userId, courseId);
+			}
+			else {
+				return null;
+			}
 		}
 		return null;
 	}
@@ -71,7 +76,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 		List<Course> courseListProgress = new ArrayList<Course>();
 		for (Enrollment enrollment : enrollmentList) {
 			//Boolean status = progressRepository.getStatusbyCourseId(enrollment.getCourse().getCourseId());
-			if(progressRepository.getStatusbyCourseId(enrollment.getCourse().getCourseId()) == false) {
+			if(progressRepository.getStatusbyEnrollmentId(enrollment.getEnrollmentId()) == false) {
 				courseListProgress.add(enrollment.getCourse());
 			}
 		}
@@ -84,7 +89,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 		List<Enrollment> enrollmentList = enrollmentRepository.findCourseIdByUserId(userId);
 		List<Course> courseListCompleted = new ArrayList<Course>();
 		for (Enrollment enrollment : enrollmentList) {
-			if(progressRepository.getStatusbyCourseId(enrollment.getCourse().getCourseId())) {
+			if(progressRepository.getStatusbyEnrollmentId(enrollment.getEnrollmentId())) {
 				courseListCompleted.add(enrollment.getCourse());
 			}
 		}
