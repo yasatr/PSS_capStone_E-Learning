@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   Stack,
   Heading,
@@ -12,20 +12,20 @@ import {
   FormLabel,
   FormControl,
   Image,
-  IconButton
+  IconButton,
+  Highlight
 } from "@chakra-ui/react";
 import Footer from "../../Components/Footer/Footer";
 import { BsPencil } from "react-icons/bs";
 import Cookies from "universal-cookie";
 
 function Profile() {
-
   // const userCookie = Cookies.get("user") || {};
   // const user = JSON.parse(userCookie);
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
   console.log(user);
-  const { firstName, lastName, email, phoneNo, profilePicUrl } = user;
+  const { firstName, lastName, email, phoneNo, profilePicUrl, role } = user;
   const [editMode, setEditMode] = useState(false);
 
   return (
@@ -56,19 +56,21 @@ function Profile() {
               }}
             >
               <Box px={[4, 0]}>
-                <Heading fontSize="lg" fontWeight="medium" lineHeight="6">
-                  Profile
+                
+                <Heading lineHeight="tall" size="4xl">Hi, {firstName} <br/>
                 </Heading>
-                <Text
-                  mt={1}
-                  fontSize="sm"
-                  color="gray.600"
-                  _dark={{
-                    color: "gray.400",
-                  }}
-                >
-                  Please Find Details.
-                </Text>
+                      <Highlight
+                        query={[role]}
+                        styles={{
+                          px: "5",
+                          py: "3",
+                          rounded: "full",
+                          bg: "teal.100",
+                          fontSize: "25"
+                        }}
+                      >
+                        {role}
+                      </Highlight>
               </Box>
             </GridItem>
             <GridItem
@@ -77,7 +79,15 @@ function Profile() {
                 md: 2,
               }}
             >
-              <IconButton colorScheme="teal" size="sm" icon={<BsPencil/>} onClick={() => {setEditMode(true)}} float="right" />
+              <IconButton
+                colorScheme="teal"
+                size="sm"
+                icon={<BsPencil />}
+                onClick={() => {
+                  setEditMode(true);
+                }}
+                float="right"
+              />
               <chakra.form
                 method="POST"
                 shadow="base"
@@ -98,10 +108,11 @@ function Profile() {
                 >
                   <SimpleGrid columns={6} spacing={6}>
                     <Image
-                      borderRadius="full"
-                      boxSize="150px"
+                      borderRadius="30%"
+                      boxSize="120px"
                       src={profilePicUrl}
-                      alt="Dan Abramov"
+                      alt="Babu Rao"
+                      w="100%"
                     />
                     <FormControl as={GridItem} colSpan={[6, 4]}>
                       <FormLabel
@@ -115,31 +126,36 @@ function Profile() {
                       >
                         Image URL
                       </FormLabel>
-                      {editMode ? (<Input
-                        type="text"
-                        name="image"
-                        id="image"
-                        autoComplete="given-name"
-                        mt={1}
-                        focusBorderColor="brand.400"
-                        shadow="sm"
-                        size="sm"
-                        w="full"
-                        rounded="md"
-                        placeholder={profilePicUrl}
-                      />) : (<Input
-                        type="text"
-                        name="image"
-                        id="image"
-                        autoComplete="given-name"
-                        mt={1}
-                        focusBorderColor="brand.400"
-                        shadow="sm"
-                        size="sm"
-                        w="full"
-                        rounded="md"
-                        placeholder={profilePicUrl} disabled
-                      />)}
+                      {editMode ? (
+                        <Input
+                          type="text"
+                          name="image"
+                          id="image"
+                          autoComplete="given-name"
+                          mt={1}
+                          focusBorderColor="brand.400"
+                          shadow="sm"
+                          size="sm"
+                          w="full"
+                          rounded="md"
+                          value={profilePicUrl}
+                        />
+                      ) : (
+                        <Input
+                          type="text"
+                          name="image"
+                          id="image"
+                          autoComplete="given-name"
+                          mt={1}
+                          focusBorderColor="brand.400"
+                          shadow="sm"
+                          size="sm"
+                          w="full"
+                          rounded="md"
+                          value={profilePicUrl}
+                          disabled
+                        />
+                      )}
                     </FormControl>
                     <FormControl as={GridItem} colSpan={[6, 3]}>
                       <FormLabel
@@ -153,31 +169,36 @@ function Profile() {
                       >
                         First name
                       </FormLabel>
-                      {editMode ? (<Input
-                        type="text"
-                        name="first_name"
-                        id="first_name"
-                        autoComplete="given-name"
-                        mt={1}
-                        focusBorderColor="brand.400"
-                        shadow="sm"
-                        size="sm"
-                        w="full"
-                        rounded="md"
-                        placeholder={firstName}
-                      />) : (<Input
-                        type="text"
-                        name="first_name"
-                        id="first_name"
-                        autoComplete="given-name"
-                        mt={1}
-                        focusBorderColor="brand.400"
-                        shadow="sm"
-                        size="sm"
-                        w="full"
-                        rounded="md"
-                        placeholder={firstName} disabled
-                      />)}
+                      {editMode ? (
+                        <Input
+                          type="text"
+                          name="first_name"
+                          id="first_name"
+                          autoComplete="given-name"
+                          mt={1}
+                          focusBorderColor="brand.400"
+                          shadow="sm"
+                          size="sm"
+                          w="full"
+                          rounded="md"
+                          value={firstName}
+                        />
+                      ) : (
+                        <Input
+                          type="text"
+                          name="first_name"
+                          id="first_name"
+                          autoComplete="given-name"
+                          mt={1}
+                          focusBorderColor="brand.400"
+                          shadow="sm"
+                          size="sm"
+                          w="full"
+                          rounded="md"
+                          value={firstName}
+                          disabled
+                        />
+                      )}
                     </FormControl>
 
                     <FormControl as={GridItem} colSpan={[6, 3]}>
@@ -192,31 +213,36 @@ function Profile() {
                       >
                         Last name
                       </FormLabel>
-                      {editMode ? (<Input
-                        type="text"
-                        name="last_name"
-                        id="last_name"
-                        autoComplete="family-name"
-                        mt={1}
-                        focusBorderColor="brand.400"
-                        shadow="sm"
-                        size="sm"
-                        w="full"
-                        rounded="md"
-                        placeholder={lastName}
-                      />) : (<Input
-                        type="text"
-                        name="last_name"
-                        id="last_name"
-                        autoComplete="family-name"
-                        mt={1}
-                        focusBorderColor="brand.400"
-                        shadow="sm"
-                        size="sm"
-                        w="full"
-                        rounded="md"
-                        placeholder={lastName} disabled
-                      />)}
+                      {editMode ? (
+                        <Input
+                          type="text"
+                          name="last_name"
+                          id="last_name"
+                          autoComplete="family-name"
+                          mt={1}
+                          focusBorderColor="brand.400"
+                          shadow="sm"
+                          size="sm"
+                          w="full"
+                          rounded="md"
+                          value={lastName}
+                        />
+                      ) : (
+                        <Input
+                          type="text"
+                          name="last_name"
+                          id="last_name"
+                          autoComplete="family-name"
+                          mt={1}
+                          focusBorderColor="brand.400"
+                          shadow="sm"
+                          size="sm"
+                          w="full"
+                          rounded="md"
+                          value={lastName}
+                          disabled
+                        />
+                      )}
                     </FormControl>
 
                     <FormControl as={GridItem} colSpan={[6, 4]}>
@@ -231,31 +257,36 @@ function Profile() {
                       >
                         Email address
                       </FormLabel>
-                      {editMode ? (<Input
-                        type="text"
-                        name="email_address"
-                        id="email_address"
-                        autoComplete="email"
-                        mt={1}
-                        focusBorderColor="brand.400"
-                        shadow="sm"
-                        size="sm"
-                        w="full"
-                        rounded="md"
-                        placeholder={email}
-                      />) : (<Input
-                        type="text"
-                        name="email_address"
-                        id="email_address"
-                        autoComplete="email"
-                        mt={1}
-                        focusBorderColor="brand.400"
-                        shadow="sm"
-                        size="sm"
-                        w="full"
-                        rounded="md"
-                        placeholder={email} disabled
-                      />)}
+                      {editMode ? (
+                        <Input
+                          type="text"
+                          name="email_address"
+                          id="email_address"
+                          autoComplete="email"
+                          mt={1}
+                          focusBorderColor="brand.400"
+                          shadow="sm"
+                          size="sm"
+                          w="full"
+                          rounded="md"
+                          value={email}
+                        />
+                      ) : (
+                        <Input
+                          type="text"
+                          name="email_address"
+                          id="email_address"
+                          autoComplete="email"
+                          mt={1}
+                          focusBorderColor="brand.400"
+                          shadow="sm"
+                          size="sm"
+                          w="full"
+                          rounded="md"
+                          value={email}
+                          disabled
+                        />
+                      )}
                     </FormControl>
 
                     <FormControl as={GridItem} colSpan={[6, 3]}>
@@ -270,31 +301,36 @@ function Profile() {
                       >
                         Phone
                       </FormLabel>
-                      {editMode ? (<Input
-                        type="text"
-                        name="phone"
-                        id="phone"
-                        autoComplete="email"
-                        mt={1}
-                        focusBorderColor="brand.400"
-                        shadow="sm"
-                        size="sm"
-                        w="full"
-                        rounded="md"
-                        placeholder={phoneNo}
-                      />) : (<Input
-                        type="text"
-                        name="phone"
-                        id="phone"
-                        autoComplete="email"
-                        mt={1}
-                        focusBorderColor="brand.400"
-                        shadow="sm"
-                        size="sm"
-                        w="full"
-                        rounded="md"
-                        placeholder={phoneNo} disabled
-                      />)}
+                      {editMode ? (
+                        <Input
+                          type="text"
+                          name="phone"
+                          id="phone"
+                          autoComplete="email"
+                          mt={1}
+                          focusBorderColor="brand.400"
+                          shadow="sm"
+                          size="sm"
+                          w="full"
+                          rounded="md"
+                          value={phoneNo}
+                        />
+                      ) : (
+                        <Input
+                          type="text"
+                          name="phone"
+                          id="phone"
+                          autoComplete="email"
+                          mt={1}
+                          focusBorderColor="brand.400"
+                          shadow="sm"
+                          size="sm"
+                          w="full"
+                          rounded="md"
+                          value={phoneNo}
+                          disabled
+                        />
+                      )}
                     </FormControl>
                     <br></br>
                   </SimpleGrid>

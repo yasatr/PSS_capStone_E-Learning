@@ -101,7 +101,7 @@ function App() {
                 </DataProvider>
               </>
             }
-          />
+          /> 
         </Routes>
       </Router>
     </ChakraProvider>

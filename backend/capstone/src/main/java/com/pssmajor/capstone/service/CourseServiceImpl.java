@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.pssmajor.capstone.entity.Course;
 import com.pssmajor.capstone.entity.User;
 import com.pssmajor.capstone.model.CourseModel;
+import com.pssmajor.capstone.model.UserSmallModel;
 import com.pssmajor.capstone.repository.CourseRepository;
 import com.pssmajor.capstone.repository.UserRepository;
 
