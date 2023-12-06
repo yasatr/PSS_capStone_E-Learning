@@ -38,7 +38,7 @@ function CourseCard({ singleObject }) {
 
   return (
     <div>
-      <Card maxW="sm" mt="5">
+      <Card maxW="sm" mt="5" backgroundcolor="#c9cce4">
         <CardBody>
           <Image
             src={singleObject.imgUrl}

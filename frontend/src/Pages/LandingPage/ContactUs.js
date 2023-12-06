@@ -23,6 +23,7 @@ const ContactUs = () => {
     });
   };
   return (
+    <div id='contactUs'>
     <Flex
       w="full"
       minHeight="90vh"
@@ -68,6 +69,7 @@ const ContactUs = () => {
         </Button>
       </FormControl>
     </Flex>
+    </div>
   )
 }
 

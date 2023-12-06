@@ -2,19 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Grid } from "@chakra-ui/react";
 import axios from "axios";
 import { Heading } from "@chakra-ui/react";
-import CourseCard from "../../Components/Card/CourseCard";
+import MyCourseCard from "../../Components/Card/MyCourseCard";
+
 
 const MyCourses = () => {
   const [data, setData] = useState([]);
-  const APIurl = "http://localhost:8080/allCourse";
+  const APIurl = "http://localhost:8080/allCourse?page=0&size=4";
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(APIurl);
-        const output = await response.data;
+        const output = await response.data.content;
         setData(output);
-        // console.log(output);
+        console.log("response: ", output);
       } catch (error) {
         console.log(error);
       }
@@ -29,7 +30,7 @@ const MyCourses = () => {
         <Grid templateColumns="repeat(4, 1fr)" gap={6}>
           {data.map((item, index) => (
             <div key={index}>
-              <CourseCard item={item} />
+              <MyCourseCard item={item} />
             </div>
           ))}
         </Grid>

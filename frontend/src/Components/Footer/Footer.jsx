@@ -24,12 +24,12 @@ function Footer() {
         >
           <Flex justify="center">
             <Image
-              src="http://placehold.jp/2a2a2c/ffffff/200x100.png?text=Company%20Logo&css=%7B%22font-size%20%22%3A%22%2016px%22%7D"
+              src="https://th.bing.com/th/id/R.e67b585df9667e1e78ee74f7c10b4c70?rik=glFZMiRKF%2feo8w&riu=http%3a%2f%2fphotos.prnewswire.com%2fprnfull%2f20090115%2fAQTH541LOGO&ehk=Ohv2cwn5H%2f30j%2fFi1JvSjUW0fBN44HsREQEX%2flXIhBg%3d&risl=&pid=ImgRaw&r=0"
               alt="Company Logo"
               rounded="lg"
               width={{
                 base: "150px",
-                lg: "200px",
+                lg: "400px",
               }}
               height={{
                 base: "75px",

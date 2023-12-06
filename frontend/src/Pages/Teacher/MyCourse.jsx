@@ -3,19 +3,17 @@ import Navbar from "../../Components/NavBar/Navbar";
 import { SimpleGrid, Box } from "@chakra-ui/react";
 import SmallCourseCard from "../../Components/Card/SmallCourseCard";
 import { async } from "q";
-import { json } from "body-parser";
-import Cookies from "universal-cookie";
 import axios from "axios";
+import Cookies from "universal-cookie";
+import CourseCard from "../../Components/Card/CourseCard";
+
 
 function MyCourse() {
-  
-  const userCookie = Cookies.get("user") || {};
-  
-  const user = JSON.parse(userCookie);
-
-
+  const cookies = new Cookies();
+  const user = cookies.get("user") || {};
+  console.log("user id: ", user);
   const [data, setData] = useState([]);
-  const APIurl = `http://localhost:8080/myCourse?userId=${user.userId}`
+  const APIurl = `http://localhost:8080/myCourse?userId=${user?.userId}`;
 
   useEffect(() =>{
     const fetchCourse = async () =>{
@@ -40,7 +38,7 @@ function MyCourse() {
       {/* <Navbar /> */}
       <SimpleGrid columns={3} spacing={10} >
       {data.map(datas => (
-        <SmallCourseCard singleObject={datas} key={datas.courseId}/>
+        <CourseCard singleObject={datas} key={datas.courseId}/>
       ))}
       </SimpleGrid>
     </div>

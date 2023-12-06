@@ -3,6 +3,7 @@ import {BlobLoader} from "react-loaders-kit";
 import styles from '../../Pages/Teacher/AddCourse.module.css'
 
 const Loader = ({onLoadingComplete}) => {
+  
   const[isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

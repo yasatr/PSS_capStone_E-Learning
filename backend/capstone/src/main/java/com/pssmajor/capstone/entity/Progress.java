@@ -28,7 +28,7 @@ public class Progress {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long progressId;
-	@OneToOne 
+	@OneToOne
 	@JoinColumn(name = "courseId", nullable = false, foreignKey = @ForeignKey(name="FK_COURSE_PROGRESS"))
 	private Course course;
 	@ManyToOne

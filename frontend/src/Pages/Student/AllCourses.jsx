@@ -1,27 +1,18 @@
-import React, { useEffect, useState } from "react";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  Image,
-  Stack,
-  Heading,
-  Text,
-  Divider,
-  ButtonGroup,
-  Button,
-  Grid,
-} from "@chakra-ui/react";
+import React, { useEffect, useState, useContext } from "react";
+import { Heading, Grid } from "@chakra-ui/react";
 import CourseCard from "../../Components/Card/CourseCard";
 import fetchCourse from "../../ApiCall/FetchMyCourse";
-import Loader from "../../Components/Loader/Loader";
+import { MyContext } from "../../MyContext";
 
 const AllCourses = () => {
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(0);
 
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
+  const { filteredData } = useContext(MyContext);
+  console.log(filteredData);
+
+  const handlePageClick = (e) => {
+    setPage(e);
   };
 
   useEffect(() => {
@@ -35,17 +26,12 @@ const AllCourses = () => {
 
   return (
     <div>
-      <Loader onLoadingComplete={handleLoadingComplete}/>
-      {!isLoading && (
-        <div>
-        <Heading textAlign={"center"}>All Courses</Heading>
-        <Grid templateColumns="repeat(4, 1fr)" gap={6}>
-          {data.map((datas) => (
-            <CourseCard singleObject={datas} key={datas.courseId} />
-          ))}
-        </Grid>
-      </div>
-      )}
+      <Heading textAlign={"center"}>All Courses</Heading>
+      <Grid templateColumns="repeat(4, 1fr)" gap={6}>
+        {data.map((datas) => (
+          <CourseCard singleObject={datas} key={datas.courseId} />
+        ))}
+      </Grid>
     </div>
   );
 };
