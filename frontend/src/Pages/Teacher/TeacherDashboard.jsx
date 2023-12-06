@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardSlider from "../../Components/Slider/CardSlider";
 import AddCourse from "./AddCourse";
-import Footer from "../../Components/Footer/Footer";
 import fetchCourse from "../../ApiCall/FetchMyCourse";
 import Cookies from "universal-cookie";
 import { useToast } from "@chakra-ui/react";

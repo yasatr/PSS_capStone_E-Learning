@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../Components/NavBar/Navbar";
-import { SimpleGrid, Box } from "@chakra-ui/react";
+import { SimpleGrid, Heading } from "@chakra-ui/react";
 import SmallCourseCard from "../../Components/Card/SmallCourseCard";
-import { async } from "q";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import CourseCard from "../../Components/Card/CourseCard";
@@ -35,7 +33,7 @@ function MyCourse() {
 
   return (
     <div>
-      {/* <Navbar /> */}
+       <Heading textAlign={"center"}>My Courses</Heading>
       <SimpleGrid columns={3} spacing={10} >
       {data.map(datas => (
         <CourseCard singleObject={datas} key={datas.courseId}/>

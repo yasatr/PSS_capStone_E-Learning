@@ -66,11 +66,7 @@ const SignIn = () => {
         isClosable: true,
         position: 'top-right',
       });
-      {
-        userData.role === "student"
-          ? navigate("/student")
-          : navigate("/teacher");
-      }
+      {userData.role === "student" ? navigate("/student") : navigate("/teacher")}
       setError(null);
     } catch (error) {
       toast({

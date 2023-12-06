@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid } from '@chakra-ui/react'
 import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button } from "@chakra-ui/react";
-import CourseCard from '../../Components/Card/CourseCard';
+
 
 const CompletedCourses = () => {
   return (
