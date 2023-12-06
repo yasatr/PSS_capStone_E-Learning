@@ -4,17 +4,15 @@ import { Box, Heading, VStack, StackDivider } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import CardSlider from "../../Components/Slider/CardSlider";
 import axios from "axios";
-import Cookies from "js-cookie";
-import { set } from "react-hook-form";
+import Cookies from "universal-cookie";
 import fetchCourse from "../../ApiCall/FetchMyCourse";
 
 const StudentDashboard = () => {
   const [dataComplete, setDataComplete] = useState([]);
   const [dataProgress, setDataProgress] = useState([]);
 
-  const userCookie = Cookies.get("user") || {};
-  const user = JSON.parse(userCookie);
-  console.log(user);
+  const cookies = new Cookies();
+  const user = cookies.get("user") || {};
 
   useEffect(() => {
     fetchCourse(
@@ -31,9 +29,6 @@ const StudentDashboard = () => {
     });
   }, []);
 
-  // useEffect(() => {}, [data]);
-
-  // const navigate = useNavigate();
   return (
     <Box p={4}>
       <VStack

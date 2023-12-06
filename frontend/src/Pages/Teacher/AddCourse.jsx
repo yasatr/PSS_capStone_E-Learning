@@ -16,8 +16,6 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import Cookies from "universal-cookie";
-import { useEffect } from "react";
-import fetchCourse from "../../ApiCall/FetchMyCourse";
 import { useCallback } from "react";
 
 function AddCourse(props) {
