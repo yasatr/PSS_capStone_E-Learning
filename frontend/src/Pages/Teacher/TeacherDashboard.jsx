@@ -4,10 +4,12 @@ import AddCourse from "./AddCourse";
 import Footer from "../../Components/Footer/Footer";
 import fetchCourse from "../../ApiCall/FetchMyCourse";
 import Cookies from "universal-cookie";
+import { useToast } from "@chakra-ui/react";
 
 function TeacherDashboard() {
   const [data, setData] = useState([]);
   const [courseAdded, setCourseAdded] = useState(false);
+  const toast = useToast();
 
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
@@ -22,9 +24,27 @@ function TeacherDashboard() {
     );
   }, [courseAdded]);
 
-  const handleAddCourse = () => {
+  const handleAddCourse = (error) => {
     // Logic to add a new course...
     // After adding a new course successfully, update courseAdded to trigger re-render
+    console.log(error);
+    if(error == false){
+      toast({
+        title: 'Course Added Successfully',
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+        position: 'top-right',
+      });
+    }else{
+      toast({
+        title: 'Error Adding Course',
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+        position: 'top-right',
+      });
+    }
     setCourseAdded(prev => !prev);
   };
  

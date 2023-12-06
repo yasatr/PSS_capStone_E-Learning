@@ -17,6 +17,7 @@ import {
     useColorModeValue,
     Link,
     FormErrorMessage,
+    useToast,
   } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
@@ -27,6 +28,7 @@ const SignUp = () => {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [showMatchPassword, setshowMatchPassword] = useState(false);
+    const toast = useToast();
   
 
     const [formData, setFormData] = useState({
@@ -92,6 +94,14 @@ const SignUp = () => {
     const handleSignUp = async() => {
       try{
         const response = await axios.post('http://localhost:8080/signup', formData);
+        toast({
+          title: 'SignUp Successfull',
+          description: 'Sign in now!!',
+          status: 'success',
+          duration: 2000,
+          isClosable: true,
+          position: 'top-right',
+        });
       }catch(error){
         console.error('Signup error :', error);
       }

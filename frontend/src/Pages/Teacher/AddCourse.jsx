@@ -26,6 +26,7 @@ function AddCourse(props) {
   const [course, setCourse] = useState({});
   const [state, setState] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
+  const [error, setError] = useState(false);
 
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
@@ -43,12 +44,15 @@ function AddCourse(props) {
       try {
         const response = await axios.post(url, course);
         const data = await response.data;
+        setError(false);
         console.log("Course data:", data);
       } catch (error) {
         console.error("Error adding course:", error);
+        setError(true);
       }
       setState(false);
       setButtonClicked(false);
+      onAddCourse(error);
     };
     addCourse();
   }, [buttonClicked]);

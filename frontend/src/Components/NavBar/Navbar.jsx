@@ -21,6 +21,7 @@ import {
   MenuItem,
   MenuGroup,
   MenuDivider,
+  useToast,
 } from "@chakra-ui/react";
 import { Logo } from "@choc-ui/logo";
 import {
@@ -45,6 +46,7 @@ const Navbar = (props) => {
   const location = useLocation();
   const [input, setInput] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const toast = useToast();
 
   const [dashboard, setDashboard] = useState({
     isClicked: true,
@@ -134,6 +136,14 @@ const Navbar = (props) => {
 
   const handleLogout = () => {
     Cookies.remove("user");
+    toast({
+      title: 'Logout Successfull',
+      description: 'Please visit again',
+      status: 'success',
+      duration: 2000,
+      isClosable: true,
+      position: 'top-right',
+    });
     navigate("/signin");
   };
 

@@ -14,6 +14,7 @@ import {
   InputGroup,
   InputRightElement,
   Link,
+  useToast,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
@@ -27,6 +28,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const cookies = new Cookies();
+  const toast= useToast();
 
   const handleSignIn = async () => {
     try {
@@ -56,6 +58,14 @@ const SignIn = () => {
       console.log(response.data);
       cookies.set("user", userData, { path: "/" });
       console.log("Login Successful", userData);
+      toast({
+        title: 'Login Successfull',
+        description: 'Welcome back!',
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+        position: 'top-right',
+      });
       {
         userData.role === "student"
           ? navigate("/student")
@@ -63,6 +73,14 @@ const SignIn = () => {
       }
       setError(null);
     } catch (error) {
+      toast({
+        title: 'Login Failed',
+        description: 'Try Again!',
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+        position: 'top-right',
+      });
       if (error.message === "Invalid username or password") {
         setError("Invalid username or password. Please try again");
       } else {
