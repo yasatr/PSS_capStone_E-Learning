@@ -41,13 +41,7 @@ public class UserServiceImpl implements UserService {
 	public User login(LoginModel loginModel) {
 		// TODO Auto-generated method stub
 		User user = userRepository.findByEmail(loginModel.getEmail());
-		System.err.println(user.getPassword());
-		System.out.println(bCryptPasswordEncoder.encode(loginModel.getPassword()));
-		System.err.println(user.getEmail() + loginModel.getEmail());
 		if(user.getEmail().equals(loginModel.getEmail())) {
-//			if(user.getPassword().equals(passwordEncoder.matches(null, null)) {
-//				return user;
-//			}
 			if(bCryptPasswordEncoder.matches(loginModel.getPassword(), user.getPassword())) {
 				return user;
 			}

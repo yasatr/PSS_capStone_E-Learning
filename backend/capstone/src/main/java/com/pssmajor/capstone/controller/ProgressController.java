@@ -16,10 +16,10 @@ public class ProgressController {
 	@Autowired
 	private ProgressService progressService;
 	
-	@GetMapping("/progress")
+	/*@GetMapping("/progress")
 	public Progress getProgressById(@RequestParam Long courseId, @RequestParam Long userId) {
 		return progressService.getProgressByCourseIdAndUserId(courseId, userId);
-	}
+	}*/
 	
 	
 }

@@ -23,4 +23,7 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Long>{
 	@Query(value = "select * from enrollment where user_Id = :userId", nativeQuery = true)
 	List<Enrollment> findCourseIdByUserId(@Param("userId") Long userId);
 	
+	@Query(value = "select * from enrollment where user_Id = :userId and course_Id = :courseId", nativeQuery = true)
+	Enrollment findByUserIdCourseId(@Param("userId") Long userId, @Param("courseId") Long courseId);
+	
 }

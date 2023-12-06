@@ -5,8 +5,10 @@ import com.pssmajor.capstone.entity.Progress;
 
 public interface ProgressService {
 
-	Progress getProgressByCourseIdAndUserId(Long courseId, Long userId);
-	Boolean getStatusbyCourseId(Long courseId);
+	//Progress getProgressByCourseIdAndUserId(Long courseId, Long userId);
+	Boolean getStatusbyEnrollmentId(Long courseId);
+	
+	Progress addProgress(Long userId, Long courseId);
 	
 
 }
