@@ -14,7 +14,7 @@ import img from '../../Assets/image1.webp';
 
 const Hero = () => {
     const [isLargerThanLG] = useMediaQuery('(min-width: 62em)');
-    // const navigate = useNavigate
+    const navigate = useNavigate();
   return (
     <Flex
       alignItems="center"
@@ -48,10 +48,9 @@ const Hero = () => {
           h="50px"
           size={isLargerThanLG ? 'lg' : 'md'}
           mb={isLargerThanLG ? '0' : '10'}
-        //   onClick={(e) => {
-        //     e.preventDefault();
-        //     navigate('/signup');
-        //     }}
+          onClick={(e) => {
+            navigate('/signup');
+            }}
         >
           Sign Up
         </Button>

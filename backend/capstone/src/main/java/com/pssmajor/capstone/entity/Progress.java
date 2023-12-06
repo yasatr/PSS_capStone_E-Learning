@@ -31,6 +31,7 @@ public class Progress {
 	@OneToOne 
 	@JoinColumn(name = "enrollmentId", nullable = false, foreignKey = @ForeignKey(name="FK_COURSE_PROGRESS"))
 	private Enrollment enrollment;
+
 	private int score = 0;
 	private Boolean status = false;
 }

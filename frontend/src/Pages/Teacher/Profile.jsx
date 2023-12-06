@@ -327,7 +327,6 @@ function Profile() {
           </SimpleGrid>
         </Box>
       </Box>
-      <Footer />
     </div>
   );
 }
