@@ -7,7 +7,7 @@ import com.pssmajor.capstone.model.UserModel;
 
 public interface UserService {
 
-	void signUp(UserModel userModel);
+	String signUp(UserModel userModel);
 
 	User login(LoginModel loginModel);
 	

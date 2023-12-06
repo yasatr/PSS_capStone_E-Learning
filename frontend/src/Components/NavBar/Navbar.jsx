@@ -35,7 +35,6 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { MyContext } from "../../MyContext";
 
-
 const Navbar = (props) => {
   const userCookie = Cookies.get("user") || {};
   const user = JSON.parse(userCookie);
@@ -74,7 +73,7 @@ const Navbar = (props) => {
       variant: "ghost",
     });
     {
-      user.role === "Student" ? navigate("/student") : navigate("/teacher");
+      user.role === "student" ? navigate("/student") : navigate("/teacher");
     }
   };
 
@@ -92,7 +91,7 @@ const Navbar = (props) => {
       variant: "ghost",
     });
     {
-      user.role === "Student"
+      user.role === "student"
         ? navigate("/student/myCourses")
         : navigate("/teacher/myCourse");
     }
@@ -125,7 +124,7 @@ const Navbar = (props) => {
     if (searchInput === "") {
       setFilteredData([]);
     } else {
-      setFilteredData(filteredData);    
+      setFilteredData(filteredData);
     }
   };
 
@@ -234,7 +233,7 @@ const Navbar = (props) => {
               >
                 My Courses
               </Button>
-              {user.role === "Student" ? (
+              {user.role === "student" ? (
                 <Button
                   variant={allCourse.variant}
                   colorScheme={allCourse.isClicked ? "brand" : null}
@@ -305,9 +304,13 @@ const Navbar = (props) => {
                   >
                     About Us
                   </MenuItem>
-                  <MenuItem  onClick={() => {
+                  <MenuItem
+                    onClick={() => {
                       navigate("/contactUs");
-                    }}>Contact Us</MenuItem>
+                    }}
+                  >
+                    Contact Us
+                  </MenuItem>
                 </MenuGroup>
               </MenuList>
             </Menu>

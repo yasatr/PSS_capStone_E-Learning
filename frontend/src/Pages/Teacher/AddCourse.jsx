@@ -25,6 +25,7 @@ function AddCourse(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [course, setCourse] = useState({});
   const [state, setState] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
@@ -34,16 +35,23 @@ function AddCourse(props) {
   // }
  
   const url = `http://localhost:8080/addCourse?userId=${user?.userId}`;
-  const addCourse = useCallback(async () => {
+  useEffect(() => {
+    if (!buttonClicked) return;
+    const addCourse = async () => {
       if(state) return;
       setState(true);
-      const response = await axios.post(url, course);
-      const data = await response.data;
-      console.log("Course data:", data);
+      try {
+        const response = await axios.post(url, course);
+        const data = await response.data;
+        console.log("Course data:", data);
+      } catch (error) {
+        console.error("Error adding course:", error);
+      }
       setState(false);
-      onAddCourse();
-  }, [state]);
-
+      setButtonClicked(false);
+    };
+    addCourse();
+  }, [buttonClicked]);
   // const handleSubmit = () => {
   //   addCourse();
   // }
@@ -81,7 +89,7 @@ function AddCourse(props) {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={addCourse} onClickCapture={onClose}>
+            <Button colorScheme="blue" mr={3} onClick={() => {setButtonClicked(true)}} onClickCapture={onClose}>
               Add Course
             </Button>
             <Button variant="ghost" onClick={onClose}>Cancel</Button>

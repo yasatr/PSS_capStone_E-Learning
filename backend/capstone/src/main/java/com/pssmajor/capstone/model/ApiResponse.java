@@ -1,9 +1,5 @@
 package com.pssmajor.capstone.model;
 
-import java.util.Date;
-
-import com.pssmajor.capstone.entity.User;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -17,12 +13,13 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class CourseModel {
-	
-	private String courseTitle;
-	private String courseDesc;
-//	private Long userId;
-	private Date startDate;
-	private Date endDate;
-	private String imgUrl;
+public class ApiResponse {
+	private boolean success;
+	private String message;
+	private Object data;
+	public ApiResponse(String message, boolean success) {
+		super();
+		this.success = success;
+		this.message = message;
+	}
 }
