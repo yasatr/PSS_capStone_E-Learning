@@ -2,34 +2,32 @@ import { useNavigate } from "react-router-dom";
 import { Box, Heading, VStack, StackDivider} from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import CardSlider from "../../Components/Slider/CardSlider";
+import Cookies from "universal-cookie";
 import fetchCourse from "../../ApiCall/FetchMyCourse";
 import Cookies from "universal-cookie";
 
 const StudentDashboard = () => {
   const [dataComplete, setDataComplete] = useState([]);
   const [dataProgress, setDataProgress] = useState([]);
+
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
-  console.log(user);
 
   useEffect(() => {
     fetchCourse(
       `http://localhost:8080/enrolledCompleted?userId=${user?.userId}`
     ).then((result) => {
-      console.log(result);
+      // console.log(result);
       setDataComplete(result);
     });
     fetchCourse(
       `http://localhost:8080/enrolledProgress?userId=${user?.userId}`
     ).then((result) => {
-      console.log(result);
+      // console.log(result);
       setDataProgress(result);
     });
   }, []);
 
-  // useEffect(() => {}, [data]);
-
-  // const navigate = useNavigate();
   return (
     <Box p={4}>
       <VStack

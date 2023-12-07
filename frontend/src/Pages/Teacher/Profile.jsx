@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   Stack,
   Heading,
-  Text,
   Button,
   Box,
   chakra,
@@ -13,9 +12,8 @@ import {
   FormControl,
   Image,
   IconButton,
-  Highlight
+  Highlight,
 } from "@chakra-ui/react";
-import Footer from "../../Components/Footer/Footer";
 import { BsPencil } from "react-icons/bs";
 import Cookies from "universal-cookie";
 
@@ -56,21 +54,21 @@ function Profile() {
               }}
             >
               <Box px={[4, 0]}>
-                
-                <Heading lineHeight="tall" size="4xl">Hi, {firstName} <br/>
+                <Heading lineHeight="tall" size="4xl">
+                  Hi, {firstName} <br />
                 </Heading>
-                      <Highlight
-                        query={[role]}
-                        styles={{
-                          px: "5",
-                          py: "3",
-                          rounded: "full",
-                          bg: "teal.100",
-                          fontSize: "25"
-                        }}
-                      >
-                        {role}
-                      </Highlight>
+                <Highlight
+                  query={[role]}
+                  styles={{
+                    px: "5",
+                    py: "3",
+                    rounded: "full",
+                    bg: "teal.100",
+                    fontSize: "25",
+                  }}
+                >
+                  {role}
+                </Highlight>
               </Box>
             </GridItem>
             <GridItem

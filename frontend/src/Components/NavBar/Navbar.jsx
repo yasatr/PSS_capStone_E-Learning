@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   chakra,
   Box,
@@ -11,9 +11,6 @@ import {
   VStack,
   IconButton,
   CloseButton,
-  InputGroup,
-  InputLeftElement,
-  Input,
   Avatar,
   Menu,
   MenuButton,
@@ -27,24 +24,15 @@ import {
   AiOutlineMenu,
   AiFillHome,
   AiOutlineInbox,
-  AiOutlineSearch,
   AiFillBell,
 } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-import { MyContext } from "../../MyContext";
+import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 const Navbar = (props) => {
-  const userCookie = Cookies.get("user") || {};
-  const user = JSON.parse(userCookie);
-
-  const data = useContext(MyContext);
-  // console.log(data);
-
-  const location = useLocation();
-  const [input, setInput] = useState("");
-  const [filteredData, setFilteredData] = useState([]);
+  const cookies = new Cookies();
+  const user = cookies.get("user") || {};
 
   const [dashboard, setDashboard] = useState({
     isClicked: true,
@@ -113,27 +101,12 @@ const Navbar = (props) => {
     navigate("/student/allCourses");
   };
 
-  const handleSearch = (e) => {
-    const searchInput = e.target.value;
-    setInput(searchInput);
-    // console.log(data.content);
-    const filteredData = data.content.filter((item) =>
-      item.courseTitle.toLowerCase().includes(input.toLowerCase())
-    );
-    console.log(filteredData);
-    if (searchInput === "") {
-      setFilteredData([]);
-    } else {
-      setFilteredData(filteredData);
-    }
-  };
-
   const bg = useColorModeValue("white", "gray.800");
   const mobileNav = useDisclosure();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    Cookies.remove("user");
+    cookies.remove("user");
     navigate("/signin");
   };
 
@@ -149,6 +122,8 @@ const Navbar = (props) => {
         px={{ base: 2, sm: 4 }}
         py={4}
         shadow="md"
+        position="relative"
+        zIndex="banner"
       >
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
           <HStack display="flex" spacing={3} alignItems="center">
@@ -183,33 +158,38 @@ const Navbar = (props) => {
                   justifySelf="self-start"
                   onClick={mobileNav.onClose}
                 />
-                <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
+                <Button
+                  w="full"
+                  variant={dashboard.variant}
+                  colorScheme={dashboard.isClicked ? "brand" : null}
+                  leftIcon={<AiFillHome />}
+                  onClick={handleDashboard}
+                >
                   Dashboard
                 </Button>
                 <Button
                   w="full"
-                  variant="solid"
-                  colorScheme="brand"
+                  variant={myCourse.variant}
+                  colorScheme={myCourse.isClicked ? "brand" : null}
                   leftIcon={<AiOutlineInbox />}
+                  onClick={handleMyCourse}
                 >
                   MyCourses
                 </Button>
+                {user.role === "student" ? (
                 <Button
                   w="full"
-                  variant="solid"
-                  colorScheme="brand"
+                  variant={allCourse.variant}
+                  colorScheme={allCourse.isClicked ? "brand" : null}
                   leftIcon={<AiOutlineInbox />}
+                  onClick={handleAllCourse}
                 >
                   AllCourses
                 </Button>
+                 ) : null}
               </VStack>
             </Box>
-            <chakra.a
-              href="/"
-              title="Choc Home Page"
-              display="flex"
-              alignItems="center"
-            >
+            <chakra.a title="Choc Home Page" display="flex" alignItems="center">
               <Logo />
               <VisuallyHidden>Choc</VisuallyHidden>
             </chakra.a>
@@ -251,20 +231,6 @@ const Navbar = (props) => {
             display={mobileNav.isOpen ? "none" : "flex"}
             alignItems="center"
           >
-            {location.pathname === "/student/allCourses" ? (
-              <InputGroup>
-                <InputLeftElement pointerEvents="none">
-                  <AiOutlineSearch />
-                </InputLeftElement>
-                <Input
-                  type="tel"
-                  placeholder="Search..."
-                  value={input}
-                  onChange={(e) => handleSearch(e)}
-                />
-              </InputGroup>
-            ) : null}
-
             <chakra.a
               p={3}
               color="red.800"
@@ -293,7 +259,6 @@ const Navbar = (props) => {
                   >
                     My Account
                   </MenuItem>
-                  {/* <MenuItem>Payments </MenuItem> */}
                 </MenuGroup>
                 <MenuDivider />
                 <MenuGroup title="Help">

@@ -1,179 +1,79 @@
-import React, { useContext, useState } from 'react'
-import { Grid } from '@chakra-ui/react'
-import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button } from "@chakra-ui/react";
-import { Paginate } from 'react-paginate-chakra-ui';
-import { MyContext } from '../../MyContext';
+import React, { useContext, useState,useEffect } from "react";
+import { Grid } from "@chakra-ui/react";
+import {
+  Stack,
+  Heading,
+  InputRightElement,
+  Flex
+} from "@chakra-ui/react";
+import { Paginate } from "react-paginate-chakra-ui";
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import axios from "axios";
+import MyCourseCard from "../../Components/Card/MyCourseCard";
 
 const AllCourses = () => {
-  const [page,setPage] = useState(0);
+  const [page, setPage] = useState(0);
+  const [data, setData] = useState([]);
+  const [input,setInput] = useState('');
+  const [filteredData,setFilteredData] = useState([]);  
+  const APIurl = `http://localhost:8080/allCourse?page=${page}&size=4`;
 
-  const { filteredData } = useContext(MyContext);
-  console.log(filteredData);
-  
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get(APIurl);
+        const output = await response.data.content;
+        setData(output);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUsers();
+  },[]);
 
-  const handlePageClick= (e)=> {
+  const handlePageClick = (e) => {
     setPage(e);
-  }
+  };
+
+  const handleSearch = (e) => {
+    const searchInput = e.target.value;
+    setInput(searchInput);
+    const filteredData = data.filter(item => item.courseTitle.toLowerCase().includes(input.toLowerCase()))
+    if (searchInput === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(filteredData);
+    }
+  };
+
   return (
     <div>
-         <Heading textAlign={'center'} >All Courses</Heading>
-        <Grid templateColumns='repeat(4, 1fr)' gap={6}>
-        <Card maxW="sm" mt="5">
-        <CardBody>
-          <Image
-            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            alt="Green double couch with wooden legs"
-            borderRadius="lg"
-          />
-          <Stack mt="6" spacing="3">
-            <Heading size="md">Living room Sofa</Heading>
-            <Text>
-              This sofa is perfect for modern tropical spaces, baroque inspired
-              spaces, earthy toned spaces and for people who love a chic design
-              with a sprinkle of vintage design.
-            </Text>
-            <Text color="blue.600" fontSize="2xl">
-              $450
-            </Text>
-          </Stack>
-        </CardBody>
-        <Divider />
-        <CardFooter>
-          <ButtonGroup spacing="2">
-            <Button variant="solid" colorScheme="blue">
-              Buy now
-            </Button>
-            <Button variant="ghost" colorScheme="blue">
-              Add to cart
-            </Button>
-          </ButtonGroup>
-        </CardFooter>
-      </Card>
-      <Card maxW="sm" mt="5">
-        <CardBody>
-          <Image
-            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            alt="Green double couch with wooden legs"
-            borderRadius="lg"
-          />
-          <Stack mt="6" spacing="3">
-            <Heading size="md">Living room Sofa</Heading>
-            <Text>
-              This sofa is perfect for modern tropical spaces, baroque inspired
-              spaces, earthy toned spaces and for people who love a chic design
-              with a sprinkle of vintage design.
-            </Text>
-            <Text color="blue.600" fontSize="2xl">
-              $450
-            </Text>
-          </Stack>
-        </CardBody>
-        <Divider />
-        <CardFooter>
-          <ButtonGroup spacing="2">
-            <Button variant="solid" colorScheme="blue">
-              Buy now
-            </Button>
-            <Button variant="ghost" colorScheme="blue">
-              Add to cart
-            </Button>
-          </ButtonGroup>
-        </CardFooter>
-      </Card>
-      <Card maxW="sm" mt="5">
-        <CardBody>
-          <Image
-            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            alt="Green double couch with wooden legs"
-            borderRadius="lg"
-          />
-          <Stack mt="6" spacing="3">
-            <Heading size="md">Living room Sofa</Heading>
-            <Text>
-              This sofa is perfect for modern tropical spaces, baroque inspired
-              spaces, earthy toned spaces and for people who love a chic design
-              with a sprinkle of vintage design.
-            </Text>
-            <Text color="blue.600" fontSize="2xl">
-              $450
-            </Text>
-          </Stack>
-        </CardBody>
-        <Divider />
-        <CardFooter>
-          <ButtonGroup spacing="2">
-            <Button variant="solid" colorScheme="blue">
-              Buy now
-            </Button>
-            <Button variant="ghost" colorScheme="blue">
-              Add to cart
-            </Button>
-          </ButtonGroup>
-        </CardFooter>
-      </Card>
-      <Card maxW="sm" mt="5">
-        <CardBody>
-          <Image
-            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            alt="Green double couch with wooden legs"
-            borderRadius="lg"
-          />
-          <Stack mt="6" spacing="3">
-            <Heading size="md">Living room Sofa</Heading>
-            <Text>
-              This sofa is perfect for modern tropical spaces, baroque inspired
-              spaces, earthy toned spaces and for people who love a chic design
-              with a sprinkle of vintage design.
-            </Text>
-            <Text color="blue.600" fontSize="2xl">
-              $450
-            </Text>
-          </Stack>
-        </CardBody>
-        <Divider />
-        <CardFooter>
-          <ButtonGroup spacing="2">
-            <Button variant="solid" colorScheme="blue">
-              Buy now
-            </Button>
-            <Button variant="ghost" colorScheme="blue">
-              Add to cart
-            </Button>
-          </ButtonGroup>
-        </CardFooter>
-      </Card>
-      <Card maxW="sm" mt="5">
-        <CardBody>
-          <Image
-            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            alt="Green double couch with wooden legs"
-            borderRadius="lg"
-          />
-          <Stack mt="6" spacing="3">
-            <Heading size="md">Living room Sofa</Heading>
-            <Text>
-              This sofa is perfect for modern tropical spaces, baroque inspired
-              spaces, earthy toned spaces and for people who love a chic design
-              with a sprinkle of vintage design.
-            </Text>
-            <Text color="blue.600" fontSize="2xl">
-              $450
-            </Text>
-          </Stack>
-        </CardBody>
-        <Divider />
-        <CardFooter>
-          <ButtonGroup spacing="2">
-            <Button variant="solid" colorScheme="blue">
-              Buy now
-            </Button>
-            <Button variant="ghost" colorScheme="blue">
-              Add to cart
-            </Button>
-          </ButtonGroup>
-        </CardFooter>
-      </Card>
-      </Grid>
+      <Heading textAlign={"center"}>All Courses</Heading>
+      <Flex justifyContent={"flex-end"}>
+      <InputGroup size='md' width='350px'>
+      <Input
+        pr='4.5rem'
+        placeholder='Search...'
+        value={input}
+        onChange={(e) => handleSearch(e)}
+      />
+      <InputRightElement width='4.5rem'>
+      </InputRightElement>
+    </InputGroup>
+    </Flex>
+
+
+    <Grid templateColumns="repeat(4, 1fr)" gap={6}>
+    {input === '' ? data.map((item, index) => (
+            <div key={index}>
+              <MyCourseCard item={item} />
+            </div>
+          ))  : filteredData.map((item, index) => (
+            <div key={index}>
+              <MyCourseCard item={item} />
+            </div>
+          ))} 
+        </Grid>
       <Stack p={5}>
         <Paginate
           page={page}
@@ -188,10 +88,12 @@ const AllCourses = () => {
           border="2px solid"
           w="full"
         />
-         <Heading size="md" textAlign={'right'}>Page: {page}</Heading>
+        <Heading size="md" textAlign={"right"}>
+          Page: {page}
+        </Heading>
       </Stack>
     </div>
-  )
-}
+  );
+};
 
-export default AllCourses
+export default AllCourses;

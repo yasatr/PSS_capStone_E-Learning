@@ -1,22 +1,22 @@
-import React, { useState, useEffect, createContext } from 'react';
-import axios from 'axios';
+// import React, { useState, useEffect, createContext } from 'react';
+// import axios from 'axios';
 
-export const MyContext = React.createContext();
+// export const MyContext = React.createContext();
 
-const DataProvider = ({ children }) => {
-  const [data, setData] = useState([]);
+// const DataProvider = ({ children }) => {
+//   const [data, setData] = useState([]);
   
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios("http://localhost:8080/allCourse");
-      setData(result.data);
-    };
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const result = await axios("http://localhost:8080/allCourse");
+//       setData(result.data);
+//     };
 
-    fetchData();
-  }, []);
+//     fetchData();
+//   }, []);
 
-  return <MyContext.Provider value={data}>{children}</MyContext.Provider>;
-};
+//   return <MyContext.Provider value={data}>{children}</MyContext.Provider>;
+// };
 
-export default DataProvider;
+// export default DataProvider;

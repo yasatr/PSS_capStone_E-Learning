@@ -1,4 +1,4 @@
-import { border, useDisclosure } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import styles from './AddCourse.module.css';
 import {
   Modal,
@@ -17,8 +17,6 @@ import axios from "axios";
 import { useState } from "react";
 import Cookies from "universal-cookie";
 import { useEffect } from "react";
-import fetchCourse from "../../ApiCall/FetchMyCourse";
-import { useCallback } from "react";
 
 function AddCourse(props) {
   const {onAddCourse} = props;
@@ -80,7 +78,7 @@ function AddCourse(props) {
               </FormControl>
             <FormControl isRequired id="courseUrl">
               <FormLabel>Logo Url</FormLabel>
-              <Input id="courseUrl" placeholder="Logo Url" onChangeCapture={(e) => setCourse({ ...course, imgUrl: e.target.value })}  />
+              <Input id="imgUrl" placeholder="Logo Url" onChangeCapture={(e) => setCourse({ ...course, imgUrl: e.target.value })} type="text" />
             </FormControl>
             <FormControl>
               <FormLabel>Start Data</FormLabel>

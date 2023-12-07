@@ -37,7 +37,7 @@ function MyCourseCard(props) {
           </Stack>
         </CardBody>
         <Divider />
-        <CardFooter>
+        {/* <CardFooter>
           <ButtonGroup spacing="2">
             <Button variant="solid" colorScheme="blue">
               Enroll now
@@ -46,7 +46,7 @@ function MyCourseCard(props) {
               Add to cart
             </Button>
           </ButtonGroup>
-        </CardFooter>
+        </CardFooter> */}
       </Card>
     </div>
   );
