@@ -18,13 +18,13 @@ const StudentDashboard = () => {
     fetchCourse(
       `http://localhost:8080/enrolledCompleted?userId=${user?.userId}`
     ).then((result) => {
-      console.log(result);
+      // console.log(result);
       setDataComplete(result);
     });
     fetchCourse(
       `http://localhost:8080/enrolledProgress?userId=${user?.userId}`
     ).then((result) => {
-      console.log(result);
+      // console.log(result);
       setDataProgress(result);
     });
   }, []);

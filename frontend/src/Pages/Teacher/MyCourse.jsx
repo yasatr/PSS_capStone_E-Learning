@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { SimpleGrid, Heading } from "@chakra-ui/react";
-import SmallCourseCard from "../../Components/Card/SmallCourseCard";
+import { Heading, Grid } from "@chakra-ui/react";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import MyCourseCard from "../../Components/Card/MyCourseCard";
 
 
 function MyCourse() {
@@ -33,11 +33,13 @@ function MyCourse() {
   return (
     <div>
        <Heading textAlign={"center"}>My Courses</Heading>
-      <SimpleGrid columns={3} spacing={10} >
-      {data.map(datas => (
-        <SmallCourseCard singleObject={datas} key={datas.courseId}/>
-      ))}
-      </SimpleGrid>
+       <Grid templateColumns="repeat(4, 1fr)" gap={6}>
+          {data.map((item, index) => (
+            <div key={index}>
+              <MyCourseCard item={item} />
+            </div>
+          ))}
+        </Grid>
     </div>
   );
 }

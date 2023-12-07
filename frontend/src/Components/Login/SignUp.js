@@ -15,12 +15,11 @@ import {
     Heading,
     Text,
     useColorModeValue,
-    Link,
     FormErrorMessage,
   } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
   
 const SignUp = () => {
@@ -203,7 +202,7 @@ const SignUp = () => {
             </Stack>
             <Stack pt={6}>
               <Text align={'center'}>
-                Already a user? <Link color={'blue.400'} href='/signin' >Login</Link>
+                Already a user? <Link style={{color:"blue"}}  onMouseOver={(e) => e.target.style.textDecoration = 'underline'} onMouseOut={(e) => e.target.style.textDecoration = 'none'} to='/signin' >Login</Link>
               </Text>
             </Stack>
           </Stack>
