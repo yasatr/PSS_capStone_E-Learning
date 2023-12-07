@@ -355,7 +355,7 @@ function Profile() {
                     }}
                     fontWeight="md"
                   >
-                    Edit
+                    Update & Save
                   </Button>
                 </Box>
               </chakra.form>

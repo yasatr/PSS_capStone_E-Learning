@@ -22,7 +22,7 @@ function TeacherDashboard() {
     );
   }, [courseAdded]);
 
-  const handleAddCourse = () => {
+  const handleAddCourse = (error) => {
     // Logic to add a new course...
     // After adding a new course successfully, update courseAdded to trigger re-render
     setCourseAdded(prev => !prev);

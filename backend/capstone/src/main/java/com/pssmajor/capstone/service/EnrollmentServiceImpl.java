@@ -54,7 +54,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 		
 		User user = userRepository.findById(userId).get();
 		Course course = courseRepository.findById(courseId).get();
-		if(user.getRole().equals("student") && course.getIsActive()) {
+		if(user.getRole().toLowerCase().equals("student") && course.getIsActive()) {
 			if(enrollmentRepository.findByUserIdCourseId(userId, courseId) == null) {
 				Enrollment enrollment = new Enrollment();
 				enrollment.setCourse(course);

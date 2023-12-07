@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -31,15 +32,16 @@ public class Feedback {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long feedbackId;
-	@ManyToOne
-	@JoinColumn(name = "courseId", nullable = false, foreignKey = @ForeignKey(name="FK_COURSE_FEEDBACK"))
-	private Course courseId;
+	
 	@OneToOne
-	@JoinColumn(name = "userId", nullable = false, foreignKey = @ForeignKey(name="FK_USER_FEEDBACK"))
-	private User userId;
+	@JoinColumn(name = "enrollmentId", nullable = false, foreignKey = @ForeignKey(name="FK_COURSE_FEEDBACK"))
+	private Enrollment enrollment;
+	
 	@Column(length = 100)
 	private String feedbackDesc;
 	@CreationTimestamp
 	private Instant createdAt;
+	@Size(min=1, max=5)
+	private int rating;
 	private Boolean isActive=true;
 }
