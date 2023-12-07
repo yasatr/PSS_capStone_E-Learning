@@ -17,6 +17,8 @@ import AboutUs from "./Pages/LandingPage/AboutUs";
 import ContactUs from "./Pages/LandingPage/ContactUs";
 import ProtectedRoute from "./ProtectedRoute";
 import Footer from "./Components/Footer/Footer";
+import Loader from "./Components/Loader/Loader";
+import Layout from "./Components/Layout/Layout";
 
 function App() {
   const colors = {
@@ -42,6 +44,7 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
+      
       <Router>
         <Routes>
           <Route path="/signin" element={<SignIn />} />
@@ -50,8 +53,9 @@ function App() {
           <Route
             path="/*"
             element={
+              <Loader>
               <>
-                <Navbar />
+                <Layout hideNavbar={false} hideFooter={false}>
                 <Routes>
                   <Route
                     path="student"
@@ -104,6 +108,17 @@ function App() {
                       <ProtectedRoute path="teacher" element={<MyCourse />} />
                     }
                   />
+                  {/* <Route
+                        exact
+                        path="/teacher/myCourse"
+                        render={()=>(
+                         
+                            <Layout hideNavbar={true} hideFooter={true}>
+                              <MyCourse />
+                            </Layout>
+                         
+                        )}
+                      /> */}
                   <Route
                     path="/aboutUs"
                     element={
@@ -120,13 +135,14 @@ function App() {
                     }
                   />
                 </Routes>
-                <Footer mx="auto" />
+                </Layout>
               </>
+              </Loader>
             }
           /> 
         </Routes>
       </Router>
-    </ChakraProvider>
+    </ChakraProvider> 
   );
 }
 

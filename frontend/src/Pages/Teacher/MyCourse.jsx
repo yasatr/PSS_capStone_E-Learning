@@ -3,14 +3,16 @@ import { Heading, Grid } from "@chakra-ui/react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import MyCourseCard from "../../Components/Card/MyCourseCard";
+import Loader from "../../Components/Loader/Loader";
+
 
 
 function MyCourse() {
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
-  console.log("user id: ", user);
   const [data, setData] = useState([]);
   const APIurl = `http://localhost:8080/myCourse?userId=${user?.userId}`;
+ 
 
   useEffect(() =>{
     const fetchCourse = async () =>{
@@ -20,15 +22,11 @@ function MyCourse() {
         setData(output);
       } catch (error){
         console.log(error);
-      }
-    }
-    fetchCourse();
-  }, []);
 
-  // useEffect(() => {
-  //   console.log(data);
-  //   // setIsLoading(false);
-  // },[data]);
+      fetchCourse();
+      }     
+  }},[])  
+  
 
   return (
     <div>
