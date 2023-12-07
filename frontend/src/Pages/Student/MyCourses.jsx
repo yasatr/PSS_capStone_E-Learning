@@ -18,7 +18,7 @@ const MyCourses = () => {
         const response = await axios.get(APIurl);
         const output = await response.data;
         setData(output);
-        console.log("response: ", output);
+        // console.log("response: ", output);
       } catch (error) {
         console.log(error);
       }

@@ -16,7 +16,7 @@ const AllCourses = () => {
   const [data, setData] = useState([]);
   const [input,setInput] = useState('');
   const [filteredData,setFilteredData] = useState([]);  
-  const APIurl = "http://localhost:8080/allCourse?page=0&size=4";
+  const APIurl = `http://localhost:8080/allCourse?page=${page}&size=4`;
 
   useEffect(() => {
     const fetchUsers = async () => {

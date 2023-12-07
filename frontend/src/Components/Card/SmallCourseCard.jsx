@@ -16,7 +16,7 @@ function SmallCourseCard({ singleObject }) {
   };
 
   return (
-    <div>
+    <div style={{ margin: "5px" }}>
       <Flex
         bg="#edf3f8"
         _dark={{
@@ -101,9 +101,16 @@ function SmallCourseCard({ singleObject }) {
               <StarIcon color="gray.500" />
             </HStack> */}
 
-            <Flex mt={3} alignItems="center" justifyContent="space-between">
-              <chakra.h1 color="#edf3f8" fontWeight="bold" fontSize="lg">
-                $220
+            <Flex mt={3} alignItems="center" justifyContent="space-between" flexWrap="wrap">
+              <chakra.h1
+                color="gray.900"
+                fontWeight="bold"
+                fontSize="lg"
+                _dark={{
+                  color: "white",
+                }}
+              >
+                &#x20b9;450
               </chakra.h1>
               <chakra.button
                 px={2}

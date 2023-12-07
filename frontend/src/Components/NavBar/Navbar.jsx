@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import {
   chakra,
   Box,
@@ -24,17 +24,15 @@ import {
   AiOutlineMenu,
   AiFillHome,
   AiOutlineInbox,
-  AiFillBell
+  AiFillBell,
 } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-
 
 const Navbar = (props) => {
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
-
 
   const [dashboard, setDashboard] = useState({
     isClicked: true,
@@ -124,8 +122,10 @@ const Navbar = (props) => {
         px={{ base: 2, sm: 4 }}
         py={4}
         shadow="md"
+        position="relative"
+        zIndex="banner"
       >
-        <Flex alignItems="center" justifyContent="space-between"  mx="auto">
+        <Flex alignItems="center" justifyContent="space-between" mx="auto">
           <HStack display="flex" spacing={3} alignItems="center">
             <Box display={{ base: "inline-flex", md: "none" }}>
               <IconButton
@@ -158,32 +158,38 @@ const Navbar = (props) => {
                   justifySelf="self-start"
                   onClick={mobileNav.onClose}
                 />
-                <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
+                <Button
+                  w="full"
+                  variant={dashboard.variant}
+                  colorScheme={dashboard.isClicked ? "brand" : null}
+                  leftIcon={<AiFillHome />}
+                  onClick={handleDashboard}
+                >
                   Dashboard
                 </Button>
                 <Button
                   w="full"
-                  variant="solid"
-                  colorScheme="brand"
+                  variant={myCourse.variant}
+                  colorScheme={myCourse.isClicked ? "brand" : null}
                   leftIcon={<AiOutlineInbox />}
+                  onClick={handleMyCourse}
                 >
                   MyCourses
                 </Button>
+                {user.role === "student" ? (
                 <Button
                   w="full"
-                  variant="solid"
-                  colorScheme="brand"
+                  variant={allCourse.variant}
+                  colorScheme={allCourse.isClicked ? "brand" : null}
                   leftIcon={<AiOutlineInbox />}
+                  onClick={handleAllCourse}
                 >
                   AllCourses
                 </Button>
+                 ) : null}
               </VStack>
             </Box>
-            <chakra.a
-              title="Choc Home Page"
-              display="flex"
-              alignItems="center"
-            >
+            <chakra.a title="Choc Home Page" display="flex" alignItems="center">
               <Logo />
               <VisuallyHidden>Choc</VisuallyHidden>
             </chakra.a>
