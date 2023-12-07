@@ -23,6 +23,8 @@ import AboutUs from "./Pages/LandingPage/AboutUs";
 import ContactUs from "./Pages/LandingPage/ContactUs";
 import ProtectedRoute from "./ProtectedRoute";
 import Footer from "./Components/Footer/Footer";
+import Loader from "./Components/Loader/Loader";
+import Layout from "./Components/Layout/Layout";
 
 function App() {
   const colors = {
@@ -48,19 +50,24 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
+      
       <Router>
         <Routes>
           <Route exact path="/signin" Component={SignIn} />
           <Route exact path="/signup" Component={SignUp} />
           <Route exact path="/" Component={Welcome} />
+      
           <Route
             exact
             path="/*"
             element={
+              <Loader>
               <>
-                <DataProvider>
-                  <Navbar />
+                  <Layout hideNavbar={false} hideFooter={false}>
+                  
+                
                   <Routes>
+                    
                     <Route element={<ProtectedRoute />}>
                       <Route
                         exact
@@ -86,7 +93,13 @@ function App() {
                       <Route
                         exact
                         path="/teacher/myCourse"
-                        Component={MyCourse}
+                        render={()=>(
+                         
+                            <Layout hideNavbar={true} hideFooter={true}>
+                              <MyCourse />
+                            </Layout>
+                         
+                        )}
                       />
                       <Route
                         exact
@@ -97,14 +110,14 @@ function App() {
                       <Route exact path="/contactUs" Component={ContactUs} />
                     </Route>
                   </Routes>
-                    <Footer  mx="auto" />
-                </DataProvider>
+                    </Layout>
               </>
+              </Loader>
             }
-          />
+          />     
         </Routes>
       </Router>
-    </ChakraProvider>
+    </ChakraProvider> 
   );
 }
 

@@ -5,6 +5,8 @@ export const MyContext = React.createContext();
 
 const DataProvider = ({ children }) => {
   const [data, setData] = useState([]);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const[isFooterVisible, setIsFooterVisible] = useState(true);
   
 
   useEffect(() => {
@@ -14,7 +16,7 @@ const DataProvider = ({ children }) => {
     };
 
     fetchData();
-  }, []);
+  }, [setIsNavbarVisible,setIsFooterVisible]);
 
   return <MyContext.Provider value={data}>{children}</MyContext.Provider>;
 };
