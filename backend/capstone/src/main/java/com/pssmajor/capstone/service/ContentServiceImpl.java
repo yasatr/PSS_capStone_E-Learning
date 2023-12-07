@@ -1,5 +1,6 @@
 package com.pssmajor.capstone.service;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,12 @@ public class ContentServiceImpl implements ContentService {
 		}
 		contentRepository.save(content);
 		return content;
+	}
+
+	@Override
+	public List<Content> getContentByCourseId(Long courseId) {
+		// TODO Auto-generated method stub
+		List<Content> contentList =  contentRepository.getContentByCourseId(courseId);
+		return contentList;
 	}
 }

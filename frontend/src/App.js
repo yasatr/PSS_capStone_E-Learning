@@ -1,7 +1,12 @@
 import "./App.css";
 import StudentDashboard from "./Pages/Student/StudentDashboard";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Navbar from "./Components/NavBar/Navbar";
 import MyCourses from "./Pages/Student/MyCourses";
 import AllCourses from "./Pages/Student/AllCourses";
@@ -17,6 +22,8 @@ import AboutUs from "./Pages/LandingPage/AboutUs";
 import ContactUs from "./Pages/LandingPage/ContactUs";
 import ProtectedRoute from "./ProtectedRoute";
 import Footer from "./Components/Footer/Footer";
+import Content from "./Pages/Teacher/Content";
+import ErrorPage from "./Components/Styles/ErrorPage";
 
 function App() {
   const colors = {
@@ -47,6 +54,8 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/" element={<Welcome />} />
+          <Route path="/error" element={<ErrorPage />} />
+
           <Route
             path="/*"
             element={
@@ -119,11 +128,18 @@ function App() {
                       />
                     }
                   />
+                  <Route
+                    path="/content"
+                    element={
+                      <ProtectedRoute path="teacher" element={<Content />} />
+                    }
+                  />
+                  <Route path="*" element={<Navigate to="/error" />} />
                 </Routes>
                 <Footer mx="auto" />
               </>
             }
-          /> 
+          />
         </Routes>
       </Router>
     </ChakraProvider>

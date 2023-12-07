@@ -1,9 +1,20 @@
 import React, { useContext } from "react";
 import { Box, Flex, HStack, chakra, useAccordion } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 
 function SmallCourseCard({ singleObject }) {
-  console.log(singleObject);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/content", {
+      state: {
+        courseId: singleObject.courseId,
+        courseTitle: singleObject.courseTitle,
+      },
+    });
+  };
+
   return (
     <div>
       <Flex
@@ -33,8 +44,7 @@ function SmallCourseCard({ singleObject }) {
             w={1 / 3}
             bgSize="cover"
             style={{
-              backgroundImage:
-              `url(./img/${singleObject.imgUrl})`,
+              backgroundImage: `url(./img/${singleObject.imgUrl})`,
             }}
           ></Box>
 
@@ -52,6 +62,7 @@ function SmallCourseCard({ singleObject }) {
               _dark={{
                 color: "white",
               }}
+              onClick={handleClick}
             >
               {singleObject.courseTitle}
             </chakra.h1>
