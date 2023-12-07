@@ -5,8 +5,6 @@ import Cookies from "universal-cookie";
 import MyCourseCard from "../../Components/Card/MyCourseCard";
 import Loader from "../../Components/Loader/Loader";
 
-
-
 function MyCourse() {
   const cookies = new Cookies();
   const user = cookies.get("user") || {};

@@ -2,7 +2,6 @@ import "./App.css";
 import StudentDashboard from "./Pages/Student/StudentDashboard";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./Components/NavBar/Navbar";
 import MyCourses from "./Pages/Student/MyCourses";
 import AllCourses from "./Pages/Student/AllCourses";
 import CompletedCourses from "./Pages/Student/CompletedCourses";
@@ -16,7 +15,6 @@ import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
 import AboutUs from "./Pages/LandingPage/AboutUs";
 import ContactUs from "./Pages/LandingPage/ContactUs";
 import ProtectedRoute from "./ProtectedRoute";
-import Footer from "./Components/Footer/Footer";
 import Loader from "./Components/Loader/Loader";
 import Layout from "./Components/Layout/Layout";
 
