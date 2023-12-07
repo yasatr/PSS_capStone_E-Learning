@@ -7,19 +7,16 @@ const ProtectedRoute = ({ path, element, ...rest }) => {
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
   const location = useLocation();
-  const publicPaths = ['/aboutUs', '/contactUs','/profile']; 
+  const publicPaths = ["/aboutUs", "/contactUs", "/profile"];
   // return (
   //   user? element : <Navigate to="/signin" state={{ from: location }} />
-  // ); 
-  if((user && path.startsWith(`${user.role}`)) ||  publicPaths.includes(path)){
+  // );
+  if ((user && path.startsWith(`${user.role}`)) || publicPaths.includes(path)) {
     return element;
-  }
-  else{
+  } else {
     cookies.remove("user");
-    return <Navigate to="/signin" state={{ from: location }} />
-    
+    return <Navigate to="/signin" state={{ from: location }} />;
   }
-
 };
 
 export default ProtectedRoute;
