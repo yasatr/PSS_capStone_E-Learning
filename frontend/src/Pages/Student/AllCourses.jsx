@@ -1,22 +1,18 @@
-import React, { useContext, useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@chakra-ui/react";
-import {
-  Stack,
-  Heading,
-  InputRightElement,
-  Flex
-} from "@chakra-ui/react";
+import { Stack, Heading, InputRightElement, Flex } from "@chakra-ui/react";
 import { Paginate } from "react-paginate-chakra-ui";
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { Input, InputGroup } from "@chakra-ui/react";
 import axios from "axios";
 import MyCourseCard from "../../Components/Card/MyCourseCard";
 
 const AllCourses = () => {
   const [page, setPage] = useState(0);
   const [data, setData] = useState([]);
-  const [input,setInput] = useState('');
-  const [filteredData,setFilteredData] = useState([]);  
-  const APIurl = `http://localhost:8080/allCourse?page=${page}&size=4`;
+  const [input, setInput] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+  const pageSize = 4;
+  const APIurl = `http://localhost:8080/allCourse?page=${page}&size=${pageSize}`;
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -29,16 +25,18 @@ const AllCourses = () => {
       }
     };
     fetchUsers();
-  },[]);
+  }, [page]);
 
   const handlePageClick = (e) => {
     setPage(e);
   };
-
+ 
   const handleSearch = (e) => {
     const searchInput = e.target.value;
     setInput(searchInput);
-    const filteredData = data.filter(item => item.courseTitle.toLowerCase().includes(input.toLowerCase()))
+    const filteredData = data.filter((item) =>
+      item.courseTitle.toLowerCase().includes(input.toLowerCase())
+    );
     if (searchInput === "") {
       setFilteredData([]);
     } else {
@@ -50,33 +48,34 @@ const AllCourses = () => {
     <div>
       <Heading textAlign={"center"}>All Courses</Heading>
       <Flex justifyContent={"flex-end"}>
-      <InputGroup size='md' width='350px'>
-      <Input
-        pr='4.5rem'
-        placeholder='Search...'
-        value={input}
-        onChange={(e) => handleSearch(e)}
-      />
-      <InputRightElement width='4.5rem'>
-      </InputRightElement>
-    </InputGroup>
-    </Flex>
+        <InputGroup size="md" width="350px">
+          <Input
+            pr="4.5rem"
+            placeholder="Search..."
+            value={input}
+            onChange={(e) => handleSearch(e)}
+          />
+          <InputRightElement width="4.5rem"></InputRightElement>
+        </InputGroup>
+      </Flex>
 
-
-    <Grid templateColumns="repeat(4, 1fr)" gap={6}>
-    {input === '' ? data.map((item, index) => (
-            <div key={index}>
-              <MyCourseCard item={item} />
-            </div>
-          ))  : filteredData.map((item, index) => (
-            <div key={index}>
-              <MyCourseCard item={item} />
-            </div>
-          ))} 
-        </Grid>
+      <Grid templateColumns="repeat(4, 1fr)" gap={6}>
+        {input === ""
+          ? data.map((item, index) => (
+              <div key={index}>
+                <MyCourseCard item={item} />
+              </div>
+            ))
+          : filteredData.map((item, index) => (
+              <div key={index}>
+                <MyCourseCard item={item} />
+              </div>
+            ))}
+      </Grid>
       <Stack p={5}>
         <Paginate
           page={page}
+          // count={Math.ceil(data.length / pageSize)}
           count={100}
           pageSize={10}
           onPageChange={handlePageClick}
