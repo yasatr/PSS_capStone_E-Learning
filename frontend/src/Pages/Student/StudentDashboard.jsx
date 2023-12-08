@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { Box, Heading, VStack, StackDivider} from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import CardSlider from "../../Components/Slider/CardSlider";
-import Cookies from "universal-cookie";
 import fetchCourse from "../../ApiCall/FetchMyCourse";
 import Cookies from "universal-cookie";
 

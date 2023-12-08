@@ -42,7 +42,7 @@ function CourseContent() {
 
       {/* Video content */}
       <Box my={4} ml={10}>
-        <ReactPlayer url='https://www.youtube.com/watch?v=wv7XUzlVi3Y' controls={true} width="90%" height={700} />
+        <ReactPlayer url='https://www.youtube.com/watch?v=QFaFIcGhPoM&list=PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3' controls={true} width="90%" height={700} />
       </Box>
     </Box>
   );
