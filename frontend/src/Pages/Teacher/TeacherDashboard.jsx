@@ -4,6 +4,7 @@ import AddCourse from "./AddCourse";
 import fetchCourse from "../../ApiCall/FetchMyCourse";
 import Cookies from "universal-cookie";
 import { useToast } from "@chakra-ui/react";
+import FeedbackModal from "../../Components/Feedback/FeedbackModal";
 
 function TeacherDashboard() {
   const [data, setData] = useState([]);
@@ -51,6 +52,7 @@ function TeacherDashboard() {
     <div>
       <CardSlider data={data} />
       <AddCourse onAddCourse={handleAddCourse} />
+      <FeedbackModal/>
     </div>
   );
 }

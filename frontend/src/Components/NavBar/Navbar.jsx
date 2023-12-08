@@ -109,7 +109,7 @@ const Navbar = (props) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    Cookies.remove("user");
+    cookies.remove("user");
     toast({
       title: 'Logout Successfull',
       description: 'Please visit again',
