@@ -14,7 +14,7 @@ import MyCourseCard from "../../Components/Card/MyCourseCard";
 const AllCourses = () => {
   const [page, setPage] = useState(0);
   const [data, setData] = useState([]);
-  const [input,setInput] = useState('');
+  const [input,setInput] = useState("");
   const [filteredData,setFilteredData] = useState([]);  
   const APIurl = `http://localhost:8080/allCourse?page=${page}&size=4`;
 

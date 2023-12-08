@@ -7,7 +7,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Navbar from "./Components/NavBar/Navbar";
 import MyCourses from "./Pages/Student/MyCourses";
 import AllCourses from "./Pages/Student/AllCourses";
 import CompletedCourses from "./Pages/Student/CompletedCourses";
@@ -16,12 +15,13 @@ import SignUp from "./Components/Login/SignUp";
 import SignIn from "./Components/Login/SignIn";
 import MyCourse from "./Pages/Teacher/MyCourse";
 import Welcome from "./Pages/LandingPage/Welcome";
-
+ 
 import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
 import AboutUs from "./Pages/LandingPage/AboutUs";
 import ContactUs from "./Pages/LandingPage/ContactUs";
 import ProtectedRoute from "./ProtectedRoute";
-import Footer from "./Components/Footer/Footer";
+import Loader from "./Components/Loader/Loader";
+import Layout from "./Components/Layout/Layout";
 import Content from "./Pages/Teacher/Content";
 import ErrorPage from "./Components/Styles/ErrorPage";
 
@@ -44,11 +44,12 @@ function App() {
     initialColorMode: "dark",
     useSystemColorMode: false,
   };
-
+ 
   const theme = extendTheme({ colors, config });
-
+ 
   return (
     <ChakraProvider theme={theme}>
+      
       <Router>
         <Routes>
           <Route path="/signin" element={<SignIn />} />
@@ -59,8 +60,9 @@ function App() {
           <Route
             path="/*"
             element={
+              <Loader>
               <>
-                <Navbar />
+                <Layout hideNavbar={false} hideFooter={false}>
                 <Routes>
                   <Route
                     path="student"
@@ -113,6 +115,17 @@ function App() {
                       <ProtectedRoute path="teacher" element={<MyCourse />} />
                     }
                   />
+                  {/* <Route
+                        exact
+                        path="/teacher/myCourse"
+                        render={()=>(
+                         
+                            <Layout hideNavbar={true} hideFooter={true}>
+                              <MyCourse />
+                            </Layout>
+                         
+                        )}
+                      /> */}
                   <Route
                     path="/aboutUs"
                     element={
@@ -136,14 +149,16 @@ function App() {
                   />
                   <Route path="*" element={<Navigate to="/error" />} />
                 </Routes>
-                <Footer mx="auto" />
+                </Layout>
               </>
+              </Loader>
             }
           />
         </Routes>
       </Router>
-    </ChakraProvider>
+    </ChakraProvider> 
   );
 }
-
+ 
 export default App;
+ 
