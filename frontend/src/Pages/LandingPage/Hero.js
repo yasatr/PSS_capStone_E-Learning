@@ -9,7 +9,7 @@ import {
     useMediaQuery,
   } from '@chakra-ui/react';
 import { useNavigate } from 'react-router';
-import img from '../../Assets/image1.webp';
+import img from '../../Assets/image1.jpg';
 
 
 const Hero = () => {

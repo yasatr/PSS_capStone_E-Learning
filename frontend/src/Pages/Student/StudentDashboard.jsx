@@ -1,11 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "@chakra-ui/react";
-import { Box, Heading, VStack, StackDivider } from "@chakra-ui/react";
+import { Box, Heading, VStack, StackDivider} from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import CardSlider from "../../Components/Slider/CardSlider";
-import axios from "axios";
-import Cookies from "universal-cookie";
 import fetchCourse from "../../ApiCall/FetchMyCourse";
+import Cookies from "universal-cookie";
 
 const StudentDashboard = () => {
   const [dataComplete, setDataComplete] = useState([]);

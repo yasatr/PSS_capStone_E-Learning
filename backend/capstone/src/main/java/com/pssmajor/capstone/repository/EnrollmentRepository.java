@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.pssmajor.capstone.entity.Course;
 import com.pssmajor.capstone.entity.Enrollment;
+import com.pssmajor.capstone.entity.User;
 
 @Repository
 public interface EnrollmentRepository extends JpaRepository<Enrollment, Long>{
@@ -26,4 +27,6 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Long>{
 	@Query(value = "select * from enrollment where user_Id = :userId and course_Id = :courseId", nativeQuery = true)
 	Enrollment findByUserIdCourseId(@Param("userId") Long userId, @Param("courseId") Long courseId);
 	
+	@Query(value = "select * from enrollment where course_id = :courseId", nativeQuery = true)
+	List<Enrollment> getEnrolledUser(@Param("courseId") Long courseId);
 }

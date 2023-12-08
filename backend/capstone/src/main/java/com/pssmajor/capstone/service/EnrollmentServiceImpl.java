@@ -54,7 +54,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 		
 		User user = userRepository.findById(userId).get();
 		Course course = courseRepository.findById(courseId).get();
-		if(user.getRole().equals("student") && course.getIsActive()) {
+		if(user.getRole().toLowerCase().equals("student") && course.getIsActive()) {
 			if(enrollmentRepository.findByUserIdCourseId(userId, courseId) == null) {
 				Enrollment enrollment = new Enrollment();
 				enrollment.setCourse(course);
@@ -71,40 +71,58 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
 	@Override
 	public List<Course> enrolledProgress(Long userId) {
-		// TODO Auto-generated method stub
-		List<Enrollment> enrollmentList = enrollmentRepository.findCourseIdByUserId(userId);
-		List<Course> courseListProgress = new ArrayList<Course>();
-		for (Enrollment enrollment : enrollmentList) {
-			//Boolean status = progressRepository.getStatusbyCourseId(enrollment.getCourse().getCourseId());
-			if(progressRepository.getStatusbyEnrollmentId(enrollment.getEnrollmentId()) == false) {
-				courseListProgress.add(enrollment.getCourse());
-			}
-		}
-		return courseListProgress;
+	    List<Course> courseListProgress = new ArrayList<Course>();
+	    try {
+	        List<Enrollment> enrollmentList = enrollmentRepository.findCourseIdByUserId(userId);
+	        if(enrollmentList == null)
+	        	throw new Exception("No courses enrolled by this user");
+	        for (Enrollment enrollment : enrollmentList) {
+	            if(progressRepository.getStatusbyEnrollmentId(enrollment.getEnrollmentId()) == false) {
+	                courseListProgress.add(enrollment.getCourse());
+	            }
+	        }
+	    } catch (Exception e) {
+	        System.out.println("An error occurred: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return courseListProgress;
 	}
 
 	@Override
 	public List<Course> enrolledCompleted(Long userId) {
-		// TODO Auto-generated method stub
-		List<Enrollment> enrollmentList = enrollmentRepository.findCourseIdByUserId(userId);
-		List<Course> courseListCompleted = new ArrayList<Course>();
-		for (Enrollment enrollment : enrollmentList) {
-			if(progressRepository.getStatusbyEnrollmentId(enrollment.getEnrollmentId())) {
-				courseListCompleted.add(enrollment.getCourse());
-			}
-		}
-		return courseListCompleted;
+	    List<Course> courseListCompleted = new ArrayList<Course>();
+	    try {
+	        List<Enrollment> enrollmentList = enrollmentRepository.findCourseIdByUserId(userId);
+	        if(enrollmentList == null)
+	        	throw new Exception("No courses enrolled by this user");
+	        for (Enrollment enrollment : enrollmentList) {
+	            if(progressRepository.getStatusbyEnrollmentId(enrollment.getEnrollmentId())) {
+	                courseListCompleted.add(enrollment.getCourse());
+	            }
+	        }
+	    } catch (Exception e) {
+	        System.out.println("An error occurred: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return courseListCompleted;
 	}
 
 	@Override
 	public Page<Course> enrolledCourses(Long userId, int page, int size) {
-		Pageable pageable = PageRequest.of(page, size);
-		Page<Enrollment> enrollmentList = enrollmentRepository.findCourseIdByUserId(userId, pageable);
-		List<Course> courseList = new ArrayList<Course>();
-		for (Enrollment enrollment : enrollmentList) {
-			courseList.add(enrollment.getCourse());
-		}
-		return new PageImpl<>(courseList, pageable, enrollmentList.getTotalElements());
+	    Pageable pageable = PageRequest.of(page, size);
+	    List<Course> courseList = new ArrayList<Course>();
+	    Page<Enrollment> enrollmentList;
+	    try {
+	        enrollmentList = enrollmentRepository.findCourseIdByUserId(userId, pageable);
+	        for (Enrollment enrollment : enrollmentList) {
+	            courseList.add(enrollment.getCourse());
+	        }
+	    } catch (Exception e) {
+	        System.out.println("An error occurred: " + e.getMessage());
+	        e.printStackTrace();
+	        return new PageImpl<>(courseList, pageable, 0);
+	    }
+	    return new PageImpl<>(courseList, pageable, enrollmentList.getTotalElements());
 	}
 	
 	

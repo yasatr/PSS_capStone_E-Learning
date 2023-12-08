@@ -6,7 +6,6 @@ import MyCourseCard from "../../Components/Card/MyCourseCard";
 import Cookies from "universal-cookie";
 import { Paginate } from "react-paginate-chakra-ui";
 
-
 const MyCourses = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);

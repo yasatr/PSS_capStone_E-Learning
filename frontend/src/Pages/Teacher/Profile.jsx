@@ -12,14 +12,12 @@ import {
   FormControl,
   Image,
   IconButton,
-  Highlight
+  Highlight,
 } from "@chakra-ui/react";
 import { BsPencil } from "react-icons/bs";
 import Cookies from "universal-cookie";
 
 function Profile() {
-  // const userCookie = Cookies.get("user") || {};
-  // const user = JSON.parse(userCookie);
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
   console.log(user);
@@ -54,21 +52,21 @@ function Profile() {
               }}
             >
               <Box px={[4, 0]}>
-                
-                <Heading lineHeight="tall" size="4xl">Hi, {firstName} <br/>
+                <Heading lineHeight="tall" size="4xl">
+                  Hi, {firstName} <br />
                 </Heading>
-                      <Highlight
-                        query={[role]}
-                        styles={{
-                          px: "5",
-                          py: "3",
-                          rounded: "full",
-                          bg: "teal.100",
-                          fontSize: "25"
-                        }}
-                      >
-                        {role}
-                      </Highlight>
+                <Highlight
+                  query={[role]}
+                  styles={{
+                    px: "5",
+                    py: "3",
+                    rounded: "full",
+                    bg: "teal.100",
+                    fontSize: "25",
+                  }}
+                >
+                  {role}
+                </Highlight>
               </Box>
             </GridItem>
             <GridItem
@@ -353,7 +351,7 @@ function Profile() {
                     }}
                     fontWeight="md"
                   >
-                    Edit
+                    Update & Save
                   </Button>
                 </Box>
               </chakra.form>
