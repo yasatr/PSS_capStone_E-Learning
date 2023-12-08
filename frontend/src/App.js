@@ -13,9 +13,10 @@ import CompletedCourses from "./Pages/Student/CompletedCourses";
 import Profile from "./Pages/Teacher/Profile";
 import SignUp from "./Components/Login/SignUp";
 import SignIn from "./Components/Login/SignIn";
+import Forgot from "./Components/Login/Forgot";
 import MyCourse from "./Pages/Teacher/MyCourse";
 import Welcome from "./Pages/LandingPage/Welcome";
- 
+
 import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
 import AboutUs from "./Pages/LandingPage/AboutUs";
 import ContactUs from "./Pages/LandingPage/ContactUs";
@@ -44,12 +45,11 @@ function App() {
     initialColorMode: "dark",
     useSystemColorMode: false,
   };
- 
+
   const theme = extendTheme({ colors, config });
- 
+
   return (
     <ChakraProvider theme={theme}>
-      
       <Router>
         <Routes>
           <Route path="/signin" element={<SignIn />} />
@@ -61,61 +61,73 @@ function App() {
             path="/*"
             element={
               <Loader>
-              <>
-                <Layout hideNavbar={false} hideFooter={false}>
-                <Routes>
-                  <Route
-                    path="student"
-                    element={
-                      <ProtectedRoute
+                <>
+                  <Layout hideNavbar={false} hideFooter={false}>
+                    <Routes>
+                      <Route
                         path="student"
-                        element={<StudentDashboard />}
+                        element={
+                          <ProtectedRoute
+                            path="student"
+                            element={<StudentDashboard />}
+                          />
+                        }
                       />
-                    }
-                  />
-                  <Route
-                    path="student/myCourses"
-                    element={
-                      <ProtectedRoute path="student" element={<MyCourses />} />
-                    }
-                  />
-                  <Route
-                    path="student/allCourses"
-                    element={
-                      <ProtectedRoute path="student" element={<AllCourses />} />
-                    }
-                  />
-                  <Route
-                    path="student/completedCourses"
-                    element={
-                      <ProtectedRoute
-                        path="student"
-                        element={<CompletedCourses />}
+                      <Route
+                        path="student/myCourses"
+                        element={
+                          <ProtectedRoute
+                            path="student"
+                            element={<MyCourses />}
+                          />
+                        }
                       />
-                    }
-                  />
-                  <Route
-                    path="/profile"
-                    element={
-                      <ProtectedRoute path="/profile" element={<Profile />} />
-                    }
-                  />
-                  <Route
-                    path="teacher"
-                    element={
-                      <ProtectedRoute
+                      <Route
+                        path="student/allCourses"
+                        element={
+                          <ProtectedRoute
+                            path="student"
+                            element={<AllCourses />}
+                          />
+                        }
+                      />
+                      <Route
+                        path="student/completedCourses"
+                        element={
+                          <ProtectedRoute
+                            path="student"
+                            element={<CompletedCourses />}
+                          />
+                        }
+                      />
+                      <Route
+                        path="/profile"
+                        element={
+                          <ProtectedRoute
+                            path="/profile"
+                            element={<Profile />}
+                          />
+                        }
+                      />
+                      <Route
                         path="teacher"
-                        element={<TeacherDashboard />}
+                        element={
+                          <ProtectedRoute
+                            path="teacher"
+                            element={<TeacherDashboard />}
+                          />
+                        }
                       />
-                    }
-                  />
-                  <Route
-                    path="teacher/myCourse"
-                    element={
-                      <ProtectedRoute path="teacher" element={<MyCourse />} />
-                    }
-                  />
-                  {/* <Route
+                      <Route
+                        path="teacher/myCourse"
+                        element={
+                          <ProtectedRoute
+                            path="teacher"
+                            element={<MyCourse />}
+                          />
+                        }
+                      />
+                      {/* <Route
                         exact
                         path="/teacher/myCourse"
                         render={()=>(
@@ -126,39 +138,44 @@ function App() {
                          
                         )}
                       /> */}
-                  <Route
-                    path="/aboutUs"
-                    element={
-                      <ProtectedRoute path="/aboutUs" element={<AboutUs />} />
-                    }
-                  />
-                  <Route
-                    path="/contactUs"
-                    element={
-                      <ProtectedRoute
-                        path="/contactUs"
-                        element={<ContactUs />}
+                      <Route
+                        path="/aboutUs"
+                        element={
+                          <ProtectedRoute
+                            path="/aboutUs"
+                            element={<AboutUs />}
+                          />
+                        }
                       />
-                    }
-                  />
-                  <Route
-                    path="/content"
-                    element={
-                      <ProtectedRoute path="teacher" element={<Content />} />
-                    }
-                  />
-                  <Route path="*" element={<Navigate to="/error" />} />
-                </Routes>
-                </Layout>
-              </>
+                      <Route
+                        path="/contactUs"
+                        element={
+                          <ProtectedRoute
+                            path="/contactUs"
+                            element={<ContactUs />}
+                          />
+                        }
+                      />
+                      <Route
+                        path="/content"
+                        element={
+                          <ProtectedRoute
+                            path="teacher"
+                            element={<Content />}
+                          />
+                        }
+                      />
+                      <Route path="*" element={<Navigate to="/error" />} />
+                    </Routes>
+                  </Layout>
+                </>
               </Loader>
             }
           />
         </Routes>
       </Router>
-    </ChakraProvider> 
+    </ChakraProvider>
   );
 }
- 
+
 export default App;
- 
