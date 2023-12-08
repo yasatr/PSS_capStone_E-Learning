@@ -78,7 +78,7 @@ function AddCourse(props) {
               </FormControl>
             <FormControl isRequired id="courseUrl">
               <FormLabel>Logo Url</FormLabel>
-              <Input id="courseUrl" placeholder="Logo Url" onChangeCapture={(e) => setCourse({ ...course, imgUrl: e.target.value })}  />
+              <Input id="imgUrl" placeholder="Logo Url" onChangeCapture={(e) => setCourse({ ...course, imgUrl: e.target.value })} type="text" />
             </FormControl>
             <FormControl>
               <FormLabel>Start Data</FormLabel>

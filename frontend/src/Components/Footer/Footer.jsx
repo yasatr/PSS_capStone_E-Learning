@@ -1,12 +1,25 @@
-import { Box, Divider, Flex, HStack, Icon, Image, Link, Stack, Text, VStack } from "@chakra-ui/react";
+import { Box, Divider, Flex, HStack, Icon, Image, Stack, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { GrInstagram } from "react-icons/gr";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { FiTwitter } from "react-icons/fi";
+import { Link } from "react-router-dom";
+
+function StyledLink(props) {
+  return (
+    <Link
+      {...props}
+      style={{ textDecoration: 'none' }}
+      onMouseOver={(e) => e.target.style.textDecoration = 'underline'}
+      onMouseOut={(e) => e.target.style.textDecoration = 'none'}
+    />
+  );
+}
 
 function Footer() {
+  // console.log('Rendering Navbar')
   return (
-    <div>
+    <div style={{marginTop:"20px"}}>
       <Box
         bg="white"
         _dark={{
@@ -59,16 +72,16 @@ function Footer() {
             }}
           >
             <Flex justify="start" direction="column">
-              <Link textTransform="uppercase">Pre-Sale FAQS</Link>
-              <Link textTransform="uppercase">Submit a ticket</Link>
+              <StyledLink textTransform="uppercase">Pre-Sale FAQS</StyledLink>
+              <StyledLink to="/contactUs" textTransform="uppercase">Submit a ticket</StyledLink>
             </Flex>
             <Flex justify="start" direction="column">
-              <Link textTransform="uppercase">Services</Link>
-              <Link textTransform="uppercase">Theme Tweak</Link>
+              <StyledLink textTransform="uppercase">Services</StyledLink>
+              <StyledLink textTransform="uppercase">Theme Tweak</StyledLink>
             </Flex>
           </HStack>
           <HStack
-            alignItems="start"
+            alignItems="start"  
             flex={1}
             justify="space-around"
             fontSize={{
@@ -85,14 +98,14 @@ function Footer() {
             }}
           >
             <Flex justify="start" direction="column">
-              <Link textTransform="uppercase">Show Case</Link>
-              <Link textTransform="uppercase">Widget Kit</Link>
-              <Link textTransform="uppercase">Support</Link>
+              <StyledLink textTransform="uppercase">Show Case</StyledLink>
+              <StyledLink textTransform="uppercase">Widget Kit</StyledLink>
+              <StyledLink to="/contactUs" textTransform="uppercase">Support</StyledLink>
             </Flex>
             <Flex justify="start" direction="column">
-              <Link textTransform="uppercase">About Us</Link>
-              <Link textTransform="uppercase">Contact Us</Link>
-              <Link textTransform="uppercase">Resources</Link>
+              <StyledLink to="/aboutUs" textTransform="uppercase">About Us</StyledLink>
+              <StyledLink to="/contactUs" textTransform="uppercase">Contact Us</StyledLink>
+              <StyledLink to="https://ishare.protiviti.com/home" target="_blank" textTransform="uppercase">Resources</StyledLink>
             </Flex>
           </HStack>
         </Stack>
@@ -107,7 +120,7 @@ function Footer() {
         />
         <VStack py={3}>
           <HStack justify="center">
-            <Link>
+            <Link to="https://www.facebook.com/ProtivitiIndiaPCC/" target="_blank">
               <Icon
                 color="gray.800"
                 _dark={{
@@ -118,7 +131,7 @@ function Footer() {
                 as={FaFacebookF}
               />
             </Link>
-            <Link>
+            <Link to="https://twitter.com/protiviti" target="_blank">
               <Icon
                 color="gray.800"
                 _dark={{
@@ -129,7 +142,7 @@ function Footer() {
                 as={FiTwitter}
               />
             </Link>
-            <Link>
+            <Link to="https://www.instagram.com/protiviticapability_india/" target="_blank">
               <Icon
                 _dark={{
                   color: "white",
@@ -139,7 +152,7 @@ function Footer() {
                 as={GrInstagram}
               />
             </Link>
-            <Link>
+            <Link to="https://www.linkedin.com/company/protiviti" target="_blank">
               <Icon
                 _dark={{
                   color: "white",

@@ -13,12 +13,11 @@ import {
   useColorModeValue,
   InputGroup,
   InputRightElement,
-  Link,
   useToast,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 const SignIn = () => {
@@ -150,7 +149,7 @@ const SignIn = () => {
             <Stack pt={6}>
               <Text align={"center"}>
                 Dont't have account?{" "}
-                <Link color={"blue.400"} href="/signup">
+                <Link style={{color:"blue"}}  onMouseOver={(e) => e.target.style.textDecoration = 'underline'} onMouseOut={(e) => e.target.style.textDecoration = 'none'} to="/signup">
                   SignUp
                 </Link>
               </Text>

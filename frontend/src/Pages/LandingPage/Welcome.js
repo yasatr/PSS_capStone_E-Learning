@@ -7,7 +7,6 @@ import Services from "./Services";
 import Testimonials from "./Testimonials";
 import ContactUs from "./ContactUs";
 import Footer from "../../Components/Footer/Footer";
-import { BrowserRouter } from "react-router-dom";
 import Loader from "../../Components/Loader/Loader";
 
 const Welcome = () => {
@@ -18,17 +17,14 @@ const Welcome = () => {
 
   return (
     <div>
-      <Loader onLoadingComplete={handleLoadingComplete} />
-      {!isLoading && (
-        <Box>
-          <Hero />
-          <AboutUs />
-          <Services />
-          <Testimonials />
-          <ContactUs />
-          <Footer />
-        </Box>
-      )}
+      <Box>
+        <Hero />
+        <AboutUs />
+        <Services />
+        <Testimonials />
+        <ContactUs />
+        <Footer />
+      </Box>
     </div>
   );
 };

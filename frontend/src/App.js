@@ -1,8 +1,12 @@
 import "./App.css";
 import StudentDashboard from "./Pages/Student/StudentDashboard";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./Components/NavBar/Navbar";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import MyCourses from "./Pages/Student/MyCourses";
 import AllCourses from "./Pages/Student/AllCourses";
 import CompletedCourses from "./Pages/Student/CompletedCourses";
@@ -16,8 +20,11 @@ import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
 import AboutUs from "./Pages/LandingPage/AboutUs";
 import ContactUs from "./Pages/LandingPage/ContactUs";
 import ProtectedRoute from "./ProtectedRoute";
-import Footer from "./Components/Footer/Footer";
- 
+import Loader from "./Components/Loader/Loader";
+import Layout from "./Components/Layout/Layout";
+import Content from "./Pages/Teacher/Content";
+import ErrorPage from "./Components/Styles/ErrorPage";
+
 function App() {
   const colors = {
     brand: {
@@ -42,16 +49,20 @@ function App() {
  
   return (
     <ChakraProvider theme={theme}>
+      
       <Router>
         <Routes>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/" element={<Welcome />} />
+          <Route path="/error" element={<ErrorPage />} />
+
           <Route
             path="/*"
             element={
+              <Loader>
               <>
-                <Navbar />
+                <Layout hideNavbar={false} hideFooter={false}>
                 <Routes>
                   <Route
                     path="student"
@@ -104,6 +115,17 @@ function App() {
                       <ProtectedRoute path="teacher" element={<MyCourse />} />
                     }
                   />
+                  {/* <Route
+                        exact
+                        path="/teacher/myCourse"
+                        render={()=>(
+                         
+                            <Layout hideNavbar={true} hideFooter={true}>
+                              <MyCourse />
+                            </Layout>
+                         
+                        )}
+                      /> */}
                   <Route
                     path="/aboutUs"
                     element={
@@ -119,14 +141,22 @@ function App() {
                       />
                     }
                   />
+                  <Route
+                    path="/content"
+                    element={
+                      <ProtectedRoute path="teacher" element={<Content />} />
+                    }
+                  />
+                  <Route path="*" element={<Navigate to="/error" />} />
                 </Routes>
-                <Footer mx="auto" />
+                </Layout>
               </>
+              </Loader>
             }
-          /> 
+          />
         </Routes>
       </Router>
-    </ChakraProvider>
+    </ChakraProvider> 
   );
 }
  
