@@ -8,9 +8,9 @@ import NoData from "../../Components/Styles/NoData";
 function MyCourse() {
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
-  console.log("user id: ", user);
   const [data, setData] = useState([]);
   const APIurl = `http://localhost:8080/myCourse?userId=${user?.userId}`;
+ 
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -24,12 +24,6 @@ function MyCourse() {
     };
     fetchCourse();
   }, []);
-
-  // useEffect(() => {
-  //   console.log(data);
-  //   // setIsLoading(false);
-  // },[data]);
-
   console.log(data);
 
   return (

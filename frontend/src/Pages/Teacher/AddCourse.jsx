@@ -42,6 +42,7 @@ function AddCourse(props) {
       try {
         const response = await axios.post(url, course);
         const data = await response.data;
+        setError(false);
         console.log("Course data:", data);
         setError(false);
       } catch (error) {

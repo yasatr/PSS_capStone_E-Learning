@@ -18,8 +18,6 @@ import { BsPencil } from "react-icons/bs";
 import Cookies from "universal-cookie";
 
 function Profile() {
-  // const userCookie = Cookies.get("user") || {};
-  // const user = JSON.parse(userCookie);
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
   console.log(user);
