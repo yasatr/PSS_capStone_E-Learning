@@ -28,7 +28,7 @@ function TeacherDashboard() {
     // Logic to add a new course...
     // After adding a new course successfully, update courseAdded to trigger re-render
     console.log(error);
-    if(error == false){
+    if(error === false){
       toast({
         title: 'Course Added Successfully',
         status: 'success',
