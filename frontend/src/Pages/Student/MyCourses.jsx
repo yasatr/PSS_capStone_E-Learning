@@ -5,18 +5,18 @@ import { Heading } from "@chakra-ui/react";
 import MyCourseCard from "../../Components/Card/MyCourseCard";
 import Cookies from "universal-cookie";
 
-
 const MyCourses = () => {
   const [data, setData] = useState([]);
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
-  const APIurl = `http://localhost:8080/myCourse?userId=${user?.userId}`;
+  const APIurl = `http://localhost:8080/enrolledCourses?userId=${user?.userId}&page=0&size=2`;
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(APIurl);
-        const output = await response.data;
+        const output = await response.data.content;
+        console.log(output);
         setData(output);
         // console.log("response: ", output);
       } catch (error) {
