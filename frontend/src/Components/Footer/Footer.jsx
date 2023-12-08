@@ -17,6 +17,7 @@ function StyledLink(props) {
 }
 
 function Footer() {
+  // console.log('Rendering Navbar')
   return (
     <div style={{marginTop:"20px"}}>
       <Box

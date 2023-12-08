@@ -18,6 +18,7 @@ import {
   MenuItem,
   MenuGroup,
   MenuDivider,
+  useToast,
 } from "@chakra-ui/react";
 import { Logo } from "@choc-ui/logo";
 import {
@@ -33,7 +34,8 @@ import Cookies from "universal-cookie";
 const Navbar = (props) => {
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
-
+  const toast = useToast();
+  
   const [dashboard, setDashboard] = useState({
     isClicked: true,
     variant: "solid",
@@ -107,6 +109,14 @@ const Navbar = (props) => {
 
   const handleLogout = () => {
     cookies.remove("user");
+    toast({
+      title: 'Logout Successfull',
+      description: 'Please visit again',
+      status: 'success',
+      duration: 2000,
+      isClosable: true,
+      position: 'top-right',
+    });
     navigate("/signin");
   };
 
@@ -114,6 +124,7 @@ const Navbar = (props) => {
     ? user.profilePicUrl
     : "https://th.bing.com/th/id/R.7ea4af7d8401d2b43ee841bfa2abe89d?rik=xidyUKdveUKULQ&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fuser-png-icon-download-icons-logos-emojis-users-2240.png&ehk=2%2bOqgdMZqFkKaBclc%2fPL9B86vLju3iBGiFmH64kXaTM%3d&risl=&pid=ImgRaw&r=0";
 
+  // console.log('Rendering Navbar')
   return (
     <React.Fragment>
       <chakra.header
