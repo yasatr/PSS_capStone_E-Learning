@@ -15,26 +15,6 @@ import {
 } from "@chakra-ui/react";
 
 function CourseCard({ singleObject }) {
-  // const userCookie = Cookies.get("user") || {};
-  // const user = JSON.parse(userCookie);
-
-  // const url = `http://localhost:8080/addEnrollment?userId=${user.userId}&courseId=${singleObject.courseId}`;
-  // const addCourse = async () => {
-  //   try {
-  //     const res = await axios.post(url);
-  //     const resData = await res.data.enrollment;
-
-  //     console.log(user.userId);
-  //     console.log(singleObject.courseId);
-  //     console.log(res);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // const handleSubmit = () => {
-  //   addCourse();
-  // };
 
   return (
     <div>
