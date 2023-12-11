@@ -4,10 +4,12 @@ import React, { useState, useEffect } from "react";
 import CardSlider from "../../Components/Slider/CardSlider";
 import fetchCourse from "../../ApiCall/FetchMyCourse";
 import Cookies from "universal-cookie";
+import Loader from "../../Components/Loader/Loader";
 
 const StudentDashboard = () => {
   const [dataComplete, setDataComplete] = useState([]);
   const [dataProgress, setDataProgress] = useState([]);
+  const [dataLoaded,setDataLoaded] = useState(false);
 
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
@@ -18,16 +20,19 @@ const StudentDashboard = () => {
     ).then((result) => {
       // console.log(result);
       setDataComplete(result);
+      setDataLoaded(true);
     });
     fetchCourse(
       `http://localhost:8080/enrolledProgress?userId=${user?.userId}`
     ).then((result) => {
       // console.log(result);
       setDataProgress(result);
+      setDataLoaded(true);
     });
   }, []);
 
   return (
+    <Loader dataLoaded={dataLoaded}>
     <Box p={4}>
       <VStack
         divider={<StackDivider borderColor="gray.200" />}
@@ -44,6 +49,7 @@ const StudentDashboard = () => {
         </Box>
       </VStack>
     </Box>
+    </Loader>
   );
 };
 

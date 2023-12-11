@@ -7,12 +7,15 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pssmajor.capstone.entity.User;
 import com.pssmajor.capstone.model.ApiResponse;
 import com.pssmajor.capstone.model.LoginModel;
+import com.pssmajor.capstone.model.ProfileModel;
 import com.pssmajor.capstone.model.UpdateModel;
 import com.pssmajor.capstone.model.UserModel;
 import com.pssmajor.capstone.service.UserService;
@@ -31,8 +34,7 @@ public class UserController {
 		}
 		else{
 			return new ResponseEntity<ApiResponse>(new ApiResponse(true, res, null), HttpStatus.BAD_REQUEST);
-		}
-		
+		}	
 	}
 	
 	@PostMapping("/login")
@@ -45,4 +47,20 @@ public class UserController {
 		
 	}
 	
+	@PutMapping("/forgot")
+	public ResponseEntity<ApiResponse> forgot(@RequestBody LoginModel loginModel){
+		String user = userService.forgot(loginModel);
+		if(user.equals("Password Updated")) {
+			return new ResponseEntity<ApiResponse>(new ApiResponse(true,"Password Updated",user),HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<ApiResponse>(new ApiResponse(false,"Password did not update",user),HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@PutMapping("/profile")
+	public ResponseEntity<ApiResponse> profile(@RequestBody ProfileModel profileModel, @RequestParam("userId") Long userId){
+		String user = userService.profile(profileModel, userId);
+		return new ResponseEntity<ApiResponse>(new ApiResponse(true,"Profile Updated",user),HttpStatus.OK);
+	}
 }

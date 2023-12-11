@@ -1,15 +1,18 @@
 package com.pssmajor.capstone.service;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pssmajor.capstone.entity.Course;
 import com.pssmajor.capstone.entity.Enrollment;
 import com.pssmajor.capstone.entity.Progress;
+import com.pssmajor.capstone.model.ProgressModel;
 import com.pssmajor.capstone.repository.CourseRepository;
 import com.pssmajor.capstone.repository.EnrollmentRepository;
 import com.pssmajor.capstone.repository.ProgressRepository;
-//import com.pssmajor.capstone.repository.UserRepository;
+
 @Service
 public class ProgressServiceImpl implements ProgressService{
 	@Autowired
@@ -42,6 +45,11 @@ public class ProgressServiceImpl implements ProgressService{
 		return progressRepository.save(progress);
 	}
 	
-	
+	public void updateStatus(Long userId, Long courseId) {
+		 Enrollment enrollment =  enrollmentRepository.findByUserIdCourseId(userId, courseId);
+		 Progress progress = progressRepository.findByEnrollment(enrollment);
+		 progress.setStatus(true);
+		 progressRepository.save(progress);
+    }
 	
 }
