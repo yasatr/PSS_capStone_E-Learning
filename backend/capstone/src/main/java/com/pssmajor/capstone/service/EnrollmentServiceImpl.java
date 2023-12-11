@@ -49,7 +49,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 	private ProgressService progressService;
 
 	@Override
-	public Enrollment addEnrollment(Long userId, Long courseId) {
+	public String addEnrollment(Long userId, Long courseId) {
 		// TODO Auto-generated method stub
 		
 		User user = userRepository.findById(userId).get();
@@ -61,12 +61,13 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 				enrollment.setUser(user);
 				enrollmentRepository.save(enrollment);
 				progressService.addProgress(userId, courseId);
+				return "enrolled";
 			}
 			else {
-				return null;
+				return "already enrolled";
 			}
 		}
-		return null;
+		return "not enrolled";
 	}
 
 	@Override

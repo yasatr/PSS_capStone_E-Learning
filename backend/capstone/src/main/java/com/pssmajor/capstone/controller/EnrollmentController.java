@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pssmajor.capstone.entity.Course;
 import com.pssmajor.capstone.entity.Enrollment;
+import com.pssmajor.capstone.model.ApiResponse;
 import com.pssmajor.capstone.model.EnrollmentModel;
 import com.pssmajor.capstone.service.EnrollmentService;
 
@@ -26,9 +28,17 @@ public class EnrollmentController {
 	private EnrollmentService enrollmentService;
 	
 	@PostMapping("/addEnrollment")
-	public Enrollment addEnrollment(@RequestParam("userId") Long userId, @RequestParam("courseId") Long courseId) {
-		Enrollment enrollment = enrollmentService.addEnrollment(userId, courseId);
-		return enrollment;
+	public ResponseEntity<ApiResponse> addEnrollment(@RequestParam("userId") Long userId, @RequestParam("courseId") Long courseId) {
+		String res = enrollmentService.addEnrollment(userId, courseId);
+		if(res.equals("already enrolled")) {
+			return new ResponseEntity<ApiResponse>(new ApiResponse(true, res, null), HttpStatus.BAD_REQUEST);
+		}
+		else if(res.equals("enrolled")) {
+			return new ResponseEntity<ApiResponse>(new ApiResponse(true, res, null), HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<ApiResponse>(new ApiResponse(true, res, null), HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@GetMapping("/enrolledProgress")

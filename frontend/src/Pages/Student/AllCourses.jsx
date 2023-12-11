@@ -29,7 +29,7 @@ const AllCourses = () => {
   const handlePageClick = (e) => {
     setPage(e);
   };
- 
+
   const handleSearch = (e) => {
     const searchInput = e.target.value;
     setInput(searchInput);
@@ -62,12 +62,12 @@ const AllCourses = () => {
         {input === ""
           ? data.map((item, index) => (
               <div key={index}>
-                <MyCourseCard item={item} />
+                <MyCourseCard item={item} showButton={true} />
               </div>
             ))
           : filteredData.map((item, index) => (
               <div key={index}>
-                <MyCourseCard item={item} />
+                <MyCourseCard item={item} showButton={true} />
               </div>
             ))}
       </Grid>

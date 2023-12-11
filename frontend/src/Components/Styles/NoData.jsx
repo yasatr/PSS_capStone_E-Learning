@@ -13,8 +13,8 @@ const NoData = () => {
     },
   };
   return (
-    <Box>
-      <Lottie options={defaultOptions} height="50%" width="50%"></Lottie>
+    <Box marginTop="30px">
+      <Lottie options={defaultOptions} height="20%" width="20%"></Lottie>
     </Box>
   );
 };

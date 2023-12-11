@@ -77,7 +77,6 @@ function MyCourse() {
             ))
           )
         }
-
         {/* {data.length !== 0 ? (
           data.map((datas) => (
             <SmallCourseCard singleObject={datas} key={datas.courseId} />

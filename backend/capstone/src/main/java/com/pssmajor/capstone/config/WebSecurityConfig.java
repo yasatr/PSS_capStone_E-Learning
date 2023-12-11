@@ -1,13 +1,19 @@
 package com.pssmajor.capstone.config;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled=true)
 @RequiredArgsConstructor
-public class WebSecurityConfig {
+public class WebSecurityConfig implements WebMvcConfigurer {
 	  private static final String[] WHITE_LIST_URLS = {
 
 	            
@@ -56,5 +62,11 @@ public class WebSecurityConfig {
 
 	        return http.build();
 
+	    }
+	    
+	    public void addCorsMapping(CorsRegistry registry) {
+	    	registry.addMapping("http://localhost:3000/**")
+            .allowedMethods("*")
+            .allowedOrigins("http://localhost:3000/*");
 	    }
 }

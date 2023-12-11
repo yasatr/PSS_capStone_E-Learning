@@ -36,6 +36,7 @@ public class CourseServiceImpl implements CourseService{
 			Course course=new Course();
 			course.setCourseTitle(courseModel.getCourseTitle());
 			course.setCourseDesc(courseModel.getCourseDesc());
+			course.setImgUrl(courseModel.getImgUrl());
 			course.setStartDate(courseModel.getStartDate());
 			course.setEndDate(courseModel.getEndDate());
 			course.setTeacher(user);

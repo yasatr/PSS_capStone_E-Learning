@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { Box, Heading, VStack, StackDivider} from "@chakra-ui/react";
+import { Box, Heading, VStack, StackDivider } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import CardSlider from "../../Components/Slider/CardSlider";
 import fetchCourse from "../../ApiCall/FetchMyCourse";
 import Cookies from "universal-cookie";
+import NoData from "../../Components/Styles/NoData";
 
 const StudentDashboard = () => {
   const [dataComplete, setDataComplete] = useState([]);
@@ -36,11 +37,19 @@ const StudentDashboard = () => {
       >
         <Box>
           <Heading>In Progress</Heading>
-          <CardSlider data={dataProgress} />
+          {dataProgress.length !== 0 ? (
+            <CardSlider data={dataProgress} />
+          ) : (
+            <NoData />
+          )}
         </Box>
         <Box>
           <Heading>Completed</Heading>
-          <CardSlider data={dataComplete} />
+          {dataComplete.length !== 0 ? (
+            <CardSlider data={dataComplete} />
+          ) : (
+            <NoData />
+          )}
         </Box>
       </VStack>
     </Box>

@@ -5,6 +5,7 @@ import { Heading } from "@chakra-ui/react";
 import MyCourseCard from "../../Components/Card/MyCourseCard";
 import Cookies from "universal-cookie";
 import { Paginate } from "react-paginate-chakra-ui";
+import NoData from "../../Components/Styles/NoData";
 
 const MyCourses = () => {
   const [data, setData] = useState([]);
@@ -37,11 +38,15 @@ const MyCourses = () => {
       <Heading textAlign={"center"}>My Courses</Heading>
       <>
         <Grid templateColumns="repeat(4, 1fr)" gap={6}>
-          {data.map((item, index) => (
-            <div key={index}>
-              <MyCourseCard item={item} />
-            </div>
-          ))}
+          {data.length !== 0 ? (
+            data.map((item, index) => (
+              <div key={index}>
+                <MyCourseCard item={item} />
+              </div>
+            ))
+          ) : (
+            <NoData />
+          )}
         </Grid>
       </>
       <Stack p={5}>
