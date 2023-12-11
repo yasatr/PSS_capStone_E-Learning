@@ -24,6 +24,7 @@ import Loader from "./Components/Loader/Loader";
 import Layout from "./Components/Layout/Layout";
 import Content from "./Pages/Teacher/Content";
 import ErrorPage from "./Components/Styles/ErrorPage";
+import CourseContent from "./Pages/Student/CourseContent";
 
 function App() {
   const colors = {
@@ -92,6 +93,12 @@ function App() {
                         path="student"
                         element={<CompletedCourses />}
                       />
+                    }
+                  />
+                  <Route
+                    path="student/content"
+                    element={
+                      <ProtectedRoute path="student" element={<CourseContent/>} />
                     }
                   />
                   <Route

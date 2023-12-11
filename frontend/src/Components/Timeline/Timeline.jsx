@@ -18,12 +18,15 @@ const Timeline = ({ update }) => {
         console.log(result.data);
         setContents(result.data);
       }
-    );
+    ).catch((err) => {
+      console.log(err);
+      setContents(null);
+    });
   }, [update]);
 
   return (
     <Container maxWidth="4xl" p={{ base: 2, sm: 10 }} marginTop="-10">
-      {contents ? (
+      {contents != null ? (
         contents.map((content) => (
           <Flex key={content.contentId} mb="10px">
             <LineDot />
@@ -32,8 +35,8 @@ const Timeline = ({ update }) => {
         ))
       ) : (
         <Box>
-          <Heading>No Content Availabale</Heading>
           <NoData />
+          {/* <Heading>No Content Availabale</Heading> */}
         </Box>
       )}
     </Container>

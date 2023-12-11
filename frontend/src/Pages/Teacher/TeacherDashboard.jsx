@@ -52,7 +52,6 @@ function TeacherDashboard() {
     <div>
       <CardSlider data={data} />
       <AddCourse onAddCourse={handleAddCourse} />
-      <FeedbackModal/>
     </div>
   );
 }

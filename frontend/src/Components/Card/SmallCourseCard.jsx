@@ -63,6 +63,7 @@ function SmallCourseCard({ singleObject }) {
                 color: "white",
               }}
               onClick={handleClick}
+              cursor="pointer"
             >
               {singleObject.courseTitle}
             </chakra.h1>

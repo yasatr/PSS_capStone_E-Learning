@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@chakra-ui/react";
-import { Stack, Heading, InputRightElement, Flex } from "@chakra-ui/react";
+import { Stack, Heading, InputRightElement, Flex, Input, InputGroup } from "@chakra-ui/react";
 import { Paginate } from "react-paginate-chakra-ui";
-import { Input, InputGroup } from "@chakra-ui/react";
 import axios from "axios";
 import MyCourseCard from "../../Components/Card/MyCourseCard";
 
