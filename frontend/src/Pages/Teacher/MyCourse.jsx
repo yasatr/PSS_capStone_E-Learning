@@ -10,7 +10,6 @@ function MyCourse() {
   const user = cookies.get("user") || {};
   const [data, setData] = useState([]);
   const APIurl = `http://localhost:8080/myCourse?userId=${user?.userId}`;
- 
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -30,12 +29,15 @@ function MyCourse() {
     <div>
       <Heading textAlign={"center"}>My Courses</Heading>
       <Grid templateColumns="repeat(4, 1fr)" gap={6}>
-        {/* {data.length !== 0 ? ( */}
-        {data.map((item, index) => (
-          <div key={index}>
-            <MyCourseCard item={item} />
-          </div>
-        ))}
+        {data.length !== 0 ? (
+          data.map((item, index) => (
+            <div key={index}>
+              <MyCourseCard item={item} />
+            </div>
+          ))
+        ) : (
+          <NoData />
+        )}
 
         {/* {data.length !== 0 ? (
           data.map((datas) => (

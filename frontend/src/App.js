@@ -25,6 +25,7 @@ import Loader from "./Components/Loader/Loader";
 import Layout from "./Components/Layout/Layout";
 import Content from "./Pages/Teacher/Content";
 import ErrorPage from "./Components/Styles/ErrorPage";
+import NoData from "./Components/Styles/NoData";
 
 function App() {
   const colors = {

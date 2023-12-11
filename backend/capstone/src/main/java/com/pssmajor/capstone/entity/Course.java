@@ -36,7 +36,7 @@ public class Course {
 	
 	private Date startDate;
 	private Date endDate;
-	@Column(length = 2048)
+//	@Column(length = 2048)
 	private String imgUrl;
 	
 	@CreationTimestamp
