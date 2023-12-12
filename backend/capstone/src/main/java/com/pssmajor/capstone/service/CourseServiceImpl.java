@@ -36,6 +36,7 @@ public class CourseServiceImpl implements CourseService{
 			Course course=new Course();
 			course.setCourseTitle(courseModel.getCourseTitle());
 			course.setCourseDesc(courseModel.getCourseDesc());
+			course.setImgUrl(courseModel.getImgUrl());
 			course.setStartDate(courseModel.getStartDate());
 			course.setEndDate(courseModel.getEndDate());
 			course.setTeacher(user);
@@ -46,12 +47,20 @@ public class CourseServiceImpl implements CourseService{
 		return null;
 	}
 	
+//	@Override
+//	public Page<Course> getAllCourse(int Page, int Size) {
+//		// TODO Auto-generated method stub
+//		Pageable pageable = PageRequest.of(Page, Size);
+//		List<Course> courseList = courseRepository.findAll();
+//		Page<Course> coursePage = courseRepository.findAll(pageable);
+//		return new PageImpl<>(courseList, pageable, coursePage.getTotalElements());
+//	}
+	
 	@Override
-	public Page<Course> getAllCourse(int Page, int Size) {
-		// TODO Auto-generated method stub
-		Pageable pageable = PageRequest.of(Page, Size);
-		List<Course> courseList = courseRepository.findAll();
-		return new PageImpl<>(courseList, pageable, courseList.size());
+	public Page<Course> getAllCourse(int page, int size) {
+	    Pageable pageable = PageRequest.of(page, size);
+	    Page<Course> coursePage = courseRepository.findAll(pageable);
+	    return coursePage;
 	}
 
 	@Override

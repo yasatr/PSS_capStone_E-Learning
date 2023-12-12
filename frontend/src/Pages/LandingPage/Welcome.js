@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/layout";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Hero from "./Hero";
 import AboutUs from "./AboutUs";
 import Services from "./Services";

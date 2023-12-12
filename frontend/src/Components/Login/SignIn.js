@@ -13,7 +13,7 @@ import {
   useColorModeValue,
   InputGroup,
   InputRightElement,
-  FormErrorMessage,
+  useToast,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
@@ -28,6 +28,7 @@ const SignIn = () => {
   const [error, setError] = useState(null);
   const [isEmailValid, setIsEmailValid] = useState(true);
   const cookies = new Cookies();
+  const toast = useToast();
 
   const handleEmailChange = (e) => {
     const enteredEmail = e.target.value;
@@ -63,9 +64,29 @@ const SignIn = () => {
       console.log(response.data);
       cookies.set("user", userData, { path: "/" });
       console.log("Login Successful", userData);
-      {userData.role === "student" ? navigate("/student") : navigate("/teacher")}
+      toast({
+        title: "Login Successfull",
+        description: "Welcome back!",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+        position: "top-right",
+      });
+      {
+        userData.role === "student"
+          ? navigate("/student")
+          : navigate("/teacher");
+      }
       setError(null);
     } catch (error) {
+      toast({
+        title: "Login Failed",
+        description: "Try Again!",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+        position: "top-right",
+      });
       if (error.message === "Invalid username or password") {
         setError("Invalid username or password. Please try again");
       } else {
@@ -151,7 +172,14 @@ const SignIn = () => {
             <Stack pt={6}>
               <Text align={"center"}>
                 Dont't have account?{" "}
-                <Link style={{color:"blue"}}  onMouseOver={(e) => e.target.style.textDecoration = 'underline'} onMouseOut={(e) => e.target.style.textDecoration = 'none'} to="/signup">
+                <Link
+                  style={{ color: "blue" }}
+                  onMouseOver={(e) =>
+                    (e.target.style.textDecoration = "underline")
+                  }
+                  onMouseOut={(e) => (e.target.style.textDecoration = "none")}
+                  to="/signup"
+                >
                   SignUp
                 </Link>
               </Text>

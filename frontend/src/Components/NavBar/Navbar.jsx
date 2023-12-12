@@ -19,6 +19,7 @@ import {
   MenuItem,
   MenuGroup,
   MenuDivider,
+  useToast,
 } from "@chakra-ui/react";
 import { Logo } from "@choc-ui/logo";
 import {
@@ -35,7 +36,8 @@ import Lottie from "react-lottie";
 const Navbar = (props) => {
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
-
+  const toast = useToast();
+  
   const [dashboard, setDashboard] = useState({
     isClicked: true,
     variant: "solid",
@@ -109,6 +111,14 @@ const Navbar = (props) => {
 
   const handleLogout = () => {
     cookies.remove("user");
+    toast({
+      title: 'Logout Successfull',
+      description: 'Please visit again',
+      status: 'success',
+      duration: 2000,
+      isClosable: true,
+      position: 'top-right',
+    });
     navigate("/signin");
   };
 

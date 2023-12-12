@@ -7,8 +7,9 @@ import com.pssmajor.capstone.model.FeedbackModel;
 
 public interface FeedbackService {
 	
-	List<Feedback> getAllFeedbacks();
-	Feedback saveFeedback(FeedbackModel feedback);
+//	List<Feedback> getAllFeedbacks();
+	String saveFeedback(FeedbackModel feedback);
 	void deleteFeedbackById(Long feedbackId);
-
+	List<Feedback> getFeedbackByCourse(Long courseId);
+	List<Feedback> getFeedbackByRating(Long userId);
 }
