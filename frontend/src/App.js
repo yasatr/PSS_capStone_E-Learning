@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 import MyCourses from "./Pages/Student/MyCourses";
 import AllCourses from "./Pages/Student/AllCourses";
-import CompletedCourses from "./Pages/Student/CompletedCourses";
 import Profile from "./Pages/Teacher/Profile";
 import SignUp from "./Components/Login/SignUp";
 import SignIn from "./Components/Login/SignIn";
@@ -21,7 +20,6 @@ import TeacherDashboard from "./Pages/Teacher/TeacherDashboard";
 import AboutUs from "./Pages/LandingPage/AboutUs";
 import ContactUs from "./Pages/LandingPage/ContactUs";
 import ProtectedRoute from "./ProtectedRoute";
-import Loader from "./Components/Loader/Loader";
 import Layout from "./Components/Layout/Layout";
 import Content from "./Pages/Teacher/Content";
 import ErrorPage from "./Components/Styles/ErrorPage";
@@ -61,7 +59,6 @@ function App() {
           <Route
             path="/*"
             element={
-              <Loader>
                 <>
                   <Layout hideNavbar={false} hideFooter={false}>
                     <Routes>
@@ -92,7 +89,7 @@ function App() {
                           />
                         }
                       />
-                      <Route
+                      {/* <Route
                         path="student/completedCourses"
                         element={
                           <ProtectedRoute
@@ -100,7 +97,7 @@ function App() {
                             element={<CompletedCourses />}
                           />
                         }
-                      />
+                      /> */}
                       <Route
                     path="student/content"
                     element={
@@ -176,7 +173,6 @@ function App() {
                     </Routes>
                   </Layout>
                 </>
-              </Loader>
             }
           />
         </Routes>

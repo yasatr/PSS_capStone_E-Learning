@@ -9,9 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -29,7 +26,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
 
 	            "/hello", "/signup", "/login" , "/addCourse" , "/addCourse**","/content","/content/*", "/allCourse",
 	            "http://localhost:3000/", "/addEnrollment**", "/addEnrollment", "myCourse","/enrolledProgress", 
-	            "/enrolledCompleted", "/enrolledCourses", "/feedback", "/feedbackTop", "/allContent**",
+	            "/enrolledCompleted", "/enrolledCourses", "/feedback", "/feedbackTop", "/allContent**","/forgot","/profile","/progress",
 	            "/swagger-ui/**",
 	            "/api-docs",
 	            "/api-docs/**",

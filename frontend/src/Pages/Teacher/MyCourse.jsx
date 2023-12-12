@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Heading, InputRightElement, Flex, Input, InputGroup, Grid } from "@chakra-ui/react";
+import { Heading, InputRightElement, Flex, Input, InputGroup, Grid} from "@chakra-ui/react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import MyCourseCard from "../../Components/Card/MyCourseCard";
 import NoData from "../../Components/Styles/NoData";
 import { Paginate } from "react-paginate-chakra-ui";
+import Loader from "../../Components/Loader/Loader";
 
 function MyCourse() {
   const cookies = new Cookies();
@@ -15,6 +16,7 @@ function MyCourse() {
   const [page, setPage] = useState(0);
   const [itemsPerPage, SetItemsPerPage] = useState(4); 
   const handlePageClick = (p) => setPage(p);
+  const [dataLoaded,setDataLoaded] = useState(false);
   const APIurl = `http://localhost:8080/myCourse?userId=${user?.userId}`;
   const indexOfLastItem = (1 + page) * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -28,6 +30,7 @@ function MyCourse() {
         const response = await axios.get(APIurl);
         const output = await response.data;
         setData(output);
+        setDataLoaded(true);
       } catch (error) {
         console.log(error);
       }
@@ -50,6 +53,7 @@ function MyCourse() {
   };
 
   return (
+    <Loader dataLoaded={dataLoaded}>
     <div>
       <Heading textAlign={"center"}>My Courses</Heading>
       <Flex justifyContent={"flex-end"}>
@@ -103,6 +107,7 @@ function MyCourse() {
       {/* <Paginate currentPage={page} onPageChange={handlePageClick} /> */}
       </Flex>
     </div>
+    </Loader>
   );
 }
 
