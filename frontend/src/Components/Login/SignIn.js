@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import {
   Flex,
   Box,
@@ -13,6 +13,7 @@ import {
   useColorModeValue,
   InputGroup,
   InputRightElement,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
@@ -25,8 +26,15 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [isEmailValid, setIsEmailValid] = useState(true);
   const cookies = new Cookies();
 
+  const handleEmailChange = (e) => {
+    const enteredEmail = e.target.value;
+    setEmail(enteredEmail);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setIsEmailValid(emailRegex.test(enteredEmail));
+  };
   const handleSignIn = async () => {
     try {
       const responseData = await axios.post("http://localhost:8080/login", {
@@ -61,11 +69,16 @@ const SignIn = () => {
       if (error.message === "Invalid username or password") {
         setError("Invalid username or password. Please try again");
       } else {
-        setError("An unexpected error occurred. Try again");
+        setError(error.message);
       }
       console.error("Login Failed", error.message);
     }
   };
+  const handleKeyDown = (e)=>{
+    if(e.key === "Enter"){
+      handleSignIn();
+    }
+  }
   return (
     <Flex
       minH={"100vh"}
@@ -88,11 +101,17 @@ const SignIn = () => {
               <FormLabel>Email address</FormLabel>
               <Input
                 type="email"
+                id="email"
                 placeholder="Enter your email id"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {setEmail(e.target.value);
+                handleEmailChange(e);}}
+                onKeyDown={handleKeyDown}
               />
             </FormControl>
+            {isEmailValid || email === '' ? null : (
+              <Text color="red" fontSize="sm">Invalid Email</Text>
+            )}
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
@@ -101,6 +120,7 @@ const SignIn = () => {
                   placeholder="Enter password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  onKeyDown={handleKeyDown}
                 />
                 <InputRightElement h={"full"}>
                   <Button
