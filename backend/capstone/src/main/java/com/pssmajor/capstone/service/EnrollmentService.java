@@ -11,7 +11,7 @@ import com.pssmajor.capstone.model.EnrollmentModel;
 
 public interface EnrollmentService {
 	
-	Enrollment addEnrollment(Long userId, Long courseId);
+	String addEnrollment(Long userId, Long courseId);
 	
 	List<Course> enrolledProgress(Long userId);
 	

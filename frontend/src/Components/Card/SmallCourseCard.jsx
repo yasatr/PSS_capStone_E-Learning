@@ -1,18 +1,27 @@
 import React, { useContext } from "react";
-import { Box, Flex, HStack, chakra, useAccordion } from "@chakra-ui/react";
-import { StarIcon } from "@chakra-ui/icons";
+import { Box, Flex, HStack, chakra,   ButtonGroup, Button, CardFooter, Card } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 function SmallCourseCard({ singleObject }) {
   const navigate = useNavigate();
+  const cookies = new Cookies();
+  const user = cookies.get("user") || {};
 
   const handleClick = () => {
-    navigate("/content", {
+    {user.role === "teacher" ? (navigate("/content", {
       state: {
         courseId: singleObject.courseId,
         courseTitle: singleObject.courseTitle,
       },
-    });
+      })) 
+      : 
+      (
+        navigate("/student/content", {state: {
+        courseId: singleObject.courseId
+        }})
+      )
+    }
   };
 
   return (
@@ -63,6 +72,7 @@ function SmallCourseCard({ singleObject }) {
                 color: "white",
               }}
               onClick={handleClick}
+              cursor="pointer"
             >
               {singleObject.courseTitle}
             </chakra.h1>
@@ -113,6 +123,11 @@ function SmallCourseCard({ singleObject }) {
                 &#x20b9;450
               </chakra.h1>
             </Flex>
+            <ButtonGroup spacing="2" m={1}>
+              <Button variant="solid" colorScheme="blue" onClick={handleClick}>
+                View Content
+              </Button>
+            </ButtonGroup>
           </Box>
         </Flex>
       </Flex>

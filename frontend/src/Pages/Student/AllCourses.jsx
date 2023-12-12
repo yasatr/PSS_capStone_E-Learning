@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@chakra-ui/react";
-import { Stack, Heading, InputRightElement, Flex } from "@chakra-ui/react";
+import { Stack, Heading, InputRightElement, Flex, Input, InputGroup } from "@chakra-ui/react";
 import { Paginate } from "react-paginate-chakra-ui";
-import { Input, InputGroup } from "@chakra-ui/react";
 import axios from "axios";
 import MyCourseCard from "../../Components/Card/MyCourseCard";
+import Loader from "../../Components/Loader/Loader";
 
 const AllCourses = () => {
   const [page, setPage] = useState(0);
@@ -13,6 +13,7 @@ const AllCourses = () => {
   const [filteredData, setFilteredData] = useState([]);
   const pageSize = 4;
   const APIurl = `http://localhost:8080/allCourse?page=${page}&size=${pageSize}`;
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -20,6 +21,7 @@ const AllCourses = () => {
         const response = await axios.get(APIurl);
         const output = await response.data.content;
         setData(output);
+        setDataLoaded(true);
       } catch (error) {
         console.log(error);
       }
@@ -30,7 +32,7 @@ const AllCourses = () => {
   const handlePageClick = (e) => {
     setPage(e);
   };
- 
+
   const handleSearch = (e) => {
     const searchInput = e.target.value;
     setInput(searchInput);
@@ -45,30 +47,31 @@ const AllCourses = () => {
   };
 
   return (
-    <div>
-      <Heading textAlign={"center"}>All Courses</Heading>
-      <Flex justifyContent={"flex-end"}>
-        <InputGroup size="md" width="350px">
-          <Input
-            pr="4.5rem"
-            placeholder="Search..."
-            value={input}
-            onChange={(e) => handleSearch(e)}
-          />
-          <InputRightElement width="4.5rem"></InputRightElement>
-        </InputGroup>
-      </Flex>
+    <Loader dataLoaded={dataLoaded}>
+      <div>
+        <Heading textAlign={"center"}>All Courses</Heading>
+        <Flex justifyContent={"flex-end"}>
+          <InputGroup size="md" width="350px">
+            <Input
+              pr="4.5rem"
+              placeholder="Search..."
+              value={input}
+              onChange={(e) => handleSearch(e)}
+            />
+            <InputRightElement width="4.5rem"></InputRightElement>
+          </InputGroup>
+        </Flex>
 
       <Grid templateColumns="repeat(4, 1fr)" gap={6}>
         {input === ""
           ? data.map((item, index) => (
               <div key={index}>
-                <MyCourseCard item={item} />
+                <MyCourseCard item={item} showButton={true} />
               </div>
             ))
           : filteredData.map((item, index) => (
               <div key={index}>
-                <MyCourseCard item={item} />
+                <MyCourseCard item={item} showButton={true} />
               </div>
             ))}
       </Grid>
@@ -92,6 +95,7 @@ const AllCourses = () => {
         </Heading>
       </Stack>
     </div>
+    </Loader>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Box, HStack, StackDivider, Text } from "@chakra-ui/react";
+import { Box, HStack, StackDivider } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Timeline from "../../Components/Timeline/Timeline";
 import AddContent from "../../Components/Form/AddContent";

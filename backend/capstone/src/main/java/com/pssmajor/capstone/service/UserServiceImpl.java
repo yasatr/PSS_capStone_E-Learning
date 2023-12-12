@@ -1,6 +1,7 @@
 package com.pssmajor.capstone.service;
 
 import java.io.Console;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.pssmajor.capstone.entity.User;
 import com.pssmajor.capstone.model.LoginModel;
+import com.pssmajor.capstone.model.ProfileModel;
 import com.pssmajor.capstone.model.UpdateModel;
 import com.pssmajor.capstone.model.UserModel;
 import com.pssmajor.capstone.repository.UserRepository;
@@ -55,6 +57,36 @@ public class UserServiceImpl implements UserService {
 		}
 		return null;			
 	}
-	
+
+	@Override
+	public String forgot(LoginModel loginModel) {
+		// TODO Auto-generated method stub
+		User user = userRepository.findByEmail(loginModel.getEmail());
+		if(user.getEmail().equals(loginModel.getEmail())) {
+			if(bCryptPasswordEncoder.matches(loginModel.getPassword(), user.getPassword())) {
+				return "Can't Use the same password";
+			}
+			else {
+				user.setPassword(bCryptPasswordEncoder.encode(loginModel.getPassword()));
+				userRepository.save(user);
+				return "Password Updated";
+			}
+		}
+		return "Password Failed to Update";
+	}
+
+	@Override
+	public String profile(ProfileModel profileModel, Long userId) {
+		// TODO Auto-generated method stub
+		
+		User user = userRepository.findById(userId).get();
+		user.setFirstName(profileModel.getFirstName());
+		user.setLastName(profileModel.getLastName());
+		user.setEmail(profileModel.getEmail());
+		user.setPhoneNo(profileModel.getPhoneNo());
+		user.setProfilePicUrl(profileModel.getProfilePicUrl());
+		userRepository.save(user);
+		return "Profile Updated";
+	}
 	
 }

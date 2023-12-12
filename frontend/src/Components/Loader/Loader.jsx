@@ -3,15 +3,18 @@ import {BlobLoader} from "react-loaders-kit";
 import styles from '../../Pages/Teacher/AddCourse.module.css'
 
 
-function Loader({children}) {
+function Loader({children,dataLoaded}) {
   const [loading, setLoading] = useState(true);
+ 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false);
+      if(dataLoaded){
+        setLoading(false);
+      }
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [loading]);
+  }, [loading,dataLoaded]);
 
   const loaderProps = {
     loading: true,
@@ -22,9 +25,6 @@ function Loader({children}) {
 
 
   return (
-    // <div className={styles.centerloader}>
-    //   <BlobLoader {...loaderProps} />
-    // </div>
     <>
       {loading && (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>

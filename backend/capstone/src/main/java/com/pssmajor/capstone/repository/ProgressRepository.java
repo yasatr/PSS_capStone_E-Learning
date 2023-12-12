@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.pssmajor.capstone.entity.Course;
+import com.pssmajor.capstone.entity.Enrollment;
 import com.pssmajor.capstone.entity.Progress;
 @Repository
 public interface ProgressRepository extends JpaRepository<Progress, Long>{
@@ -15,4 +16,7 @@ public interface ProgressRepository extends JpaRepository<Progress, Long>{
 
 	@Query(value = "select status from progress where enrollment_id = :enrollmentId", nativeQuery = true)
 	Boolean getStatusbyEnrollmentId(@Param("enrollmentId") Long enrollmentId);
+
+	Progress findByEnrollment(Enrollment enrollment);
+	
 }
