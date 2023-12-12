@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: ./frontend
+          path: .\PSS_capStone_E-Learning\frontend
 
   deploy:
     runs-on: ubuntu-latest
@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'Skill-Forge'
           slot-name: 'Production'
-          package: ./frontend
+          package: .\PSS_capStone_E-Learning\frontend
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BC544E49B63746DE9D294000361B8EAB }}
