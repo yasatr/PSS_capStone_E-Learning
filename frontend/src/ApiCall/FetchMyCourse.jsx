@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//const APIurl = `http://localhost:8080/myCourse?userId=${1}`;
+//const APIurl = `http://16400-LT-X0035.na.msds.rhi.com:8080/myCourse?userId=${1}`;
 //const APIurl = ``;
 
 const fetchCourse = async (APIurl) => {

@@ -16,9 +16,9 @@ function TeacherDashboard() {
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
 
-  // const url = `http://localhost:8080/myCourse?userId=${1}`;
+  // const url = `http://16400-LT-X0035.na.msds.rhi.com:8080/myCourse?userId=${1}`;
   useEffect(() => {
-    fetchCourse(`http://localhost:8080/myCourse?userId=${user?.userId}`).then(
+    fetchCourse(`http://16400-LT-X0035.na.msds.rhi.com:8080/myCourse?userId=${user?.userId}`).then(
       (result) => {
         setData(result);
         setDataLoaded(true);
@@ -57,7 +57,6 @@ function TeacherDashboard() {
         <br />
         <AddCourse onAddCourse={handleAddCourse} />
         <br />
-        <FeedbackModal />
       </div>
     </Loader>
   );

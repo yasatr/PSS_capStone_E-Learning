@@ -53,7 +53,7 @@ function FeedbackModal(props) {
     });
   };
 
-  const url = `http://localhost:8080/feedback`;
+  const url = `http://16400-LT-X0035.na.msds.rhi.com:8080/feedback`;
   useEffect(() => {
     if (!buttonClicked) return;
     const addFeedback = async () => {
@@ -77,7 +77,7 @@ function FeedbackModal(props) {
 
   return (
     <div className={styles.center}>
-      <Button onClick={onOpen}>Provide Feedback</Button>
+      <Button onClick={onOpen}>Feedback</Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

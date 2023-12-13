@@ -12,6 +12,7 @@ import {
   ButtonGroup,
   Button,
   Grid,
+  useToast
 } from "@chakra-ui/react";
 import axios from "axios";
 import Cookies from "universal-cookie";
@@ -21,6 +22,7 @@ function MyCourseCard(props) {
   const { item, showButton } = props;
   const location = useLocation();
   const navigate = useNavigate();
+  const toast = useToast();
   let src = item.imgUrl
     ? item.imgUrl
     : "https://th.bing.com/th/id/OIP.CYBL9A2z5S-3UquGa_geZAAAAA?rs=1&pid=ImgDetMain";
@@ -38,8 +40,27 @@ function MyCourseCard(props) {
 
   const handleEnrollClick = async () => {
     await axios.post(
-      `http://localhost:8080/addEnrollment?userId=${userId}&courseId=${courseId}`
-    );
+      `http://16400-LT-X0035.na.msds.rhi.com:8080/addEnrollment?userId=${userId}&courseId=${courseId}`
+    ).then(() => {
+      toast({
+        title: "Course Purchased",
+        description: "Get Started with this amazing course",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+        position: "top-right",
+      });
+    }).catch((err) => {
+      toast({
+        title: "Error Purchasing Course",
+        description: `Sorry😢!, ${err}`,
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+        position: "top-right",
+      });
+      console.log(err);
+    });
     console.log(courseId, userId);
   };
 

@@ -12,7 +12,7 @@ const AllCourses = () => {
   const [input, setInput] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const pageSize = 4;
-  const APIurl = `http://localhost:8080/allCourse?page=${page}&size=${pageSize}`;
+  const APIurl = `http://16400-LT-X0035.na.msds.rhi.com:8080/allCourse?page=${page}&size=${pageSize}`;
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
@@ -75,12 +75,12 @@ const AllCourses = () => {
               </div>
             ))}
       </Grid>
-      <Stack p={5}>
+      <Stack p={5} alignItems={"center"}>
         <Paginate
           page={page}
           // count={Math.ceil(data.length / pageSize)}
-          count={100}
-          pageSize={10}
+          count={10}
+          pageSize={pageSize}
           onPageChange={handlePageClick}
           margin={2}
           _dark={{ color: "inherit" }}
@@ -88,7 +88,7 @@ const AllCourses = () => {
           fontWeight="blue"
           variant="outline"
           border="2px solid"
-          w="full"
+          w="half"
         />
         <Heading size="md" textAlign={"right"}>
           Page: {page}

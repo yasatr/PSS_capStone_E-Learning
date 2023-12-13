@@ -68,7 +68,7 @@ const AddContent = ({ onButtonClick }) => {
   const handleSignUp = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/content",
+        "http://16400-LT-X0035.na.msds.rhi.com:8080/content",
         formData
       );
       onButtonClick();

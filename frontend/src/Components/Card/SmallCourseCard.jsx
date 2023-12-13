@@ -29,9 +29,9 @@ function SmallCourseCard({ singleObject }) {
       <Flex
         bg="#edf3f8"
         _dark={{
-          bg: "#bac1c7",
+          bg: "#363636",
         }}
-        p={50}
+        p={30}
         w="full"
         alignItems="center"
         justifyContent="center"
@@ -50,10 +50,10 @@ function SmallCourseCard({ singleObject }) {
           w="full"
         >
           <Box
-            w={1 / 3}
+            w={2 / 3}
             bgSize="cover"
             style={{
-              backgroundImage: `url(./img/${singleObject.imgUrl})`,
+              backgroundImage: `url(${singleObject.imgUrl})`,
             }}
           ></Box>
 

@@ -17,14 +17,14 @@ const StudentDashboard = () => {
 
   useEffect(() => {
     fetchCourse(
-      `http://localhost:8080/enrolledCompleted?userId=${user?.userId}`
+      `http://16400-LT-X0035.na.msds.rhi.com:8080/enrolledCompleted?userId=${user?.userId}`
     ).then((result) => {
       // console.log(result);
       setDataComplete(result);
       setDataLoaded(true);
     });
     fetchCourse(
-      `http://localhost:8080/enrolledProgress?userId=${user?.userId}`
+      `http://16400-LT-X0035.na.msds.rhi.com:8080/enrolledProgress?userId=${user?.userId}`
     ).then((result) => {
       // console.log(result);
       setDataProgress(result);

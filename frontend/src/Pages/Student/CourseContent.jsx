@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Box, Button, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Text, Badge, Image, Flex} from "@chakra-ui/react";
+import { Box, Button, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Text, Badge, Image, Flex, useToast} from "@chakra-ui/react";
 import ReactPlayer from 'react-player/youtube';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import axios from "axios";
@@ -8,6 +8,9 @@ import { Document, Page, pdfjs } from "react-pdf";
 import pdf from "../../TestPdf/reactjs_tutorial.pdf";
 import NoData from "../../Components/Styles/NoData";
 import FeedbackModal from "../../Components/Feedback/FeedbackModal";
+import putReq from "../../ApiCall/putReq";
+import Cookies from "universal-cookie";
+import { title } from "process";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
@@ -18,13 +21,17 @@ function CourseContent() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   const location = useLocation();
+  const cookies = new Cookies();
+  const user = cookies.get("user") || {};
+  const toast = useToast();
   const { courseId } = location.state;
   const [data, setData] = useState([]);
   const [content, setContent] = useState({});
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
-  const apiUrl = `http://localhost:8080/allContent?courseId=${courseId}`;
+  const apiUrl = `http://16400-LT-X0035.na.msds.rhi.com:8080/allContent?courseId=${courseId}`;
+  const url = `http://16400-LT-X0035.na.msds.rhi.com:8080/progress?userId=${user.userId}&courseId=${courseId}`;
   useEffect(() => {
     const fetchCourseContent = async () => {
       try {
@@ -66,6 +73,22 @@ function CourseContent() {
     changePage(1);
   }
 
+  const handleDone = () => {
+    putReq(url).then((result) => {
+      toast({
+        title: "Congratulations! 😎👍",
+        description: "Course Completed 🎉",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+        position: "top-right",
+      });
+    })
+    .catch((err) => {
+
+    });
+  }
+
   return (
     <Box position="relative">
       <Button ref={btnRef} onClick={onOpen} position="fixed" right="0px" zIndex={100} >
@@ -92,8 +115,9 @@ function CourseContent() {
             </DrawerBody>
 
             <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
-                Close
+              <FeedbackModal courseId={courseId}/><br/>
+              <Button variant="outline" m={3} p={1} onClick={handleDone}>
+                Mark As Done
               </Button>
             </DrawerFooter>
           </DrawerContent>
@@ -132,7 +156,6 @@ function CourseContent() {
         ) 
         )) : (<NoData/>)
       }
-      <FeedbackModal courseId={courseId} />
     </Box>
   );
 }

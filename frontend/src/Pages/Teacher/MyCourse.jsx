@@ -17,7 +17,7 @@ function MyCourse() {
   const [itemsPerPage, SetItemsPerPage] = useState(4); 
   const handlePageClick = (p) => setPage(p);
   const [dataLoaded,setDataLoaded] = useState(false);
-  const APIurl = `http://localhost:8080/myCourse?userId=${user?.userId}`;
+  const APIurl = `http://16400-LT-X0035.na.msds.rhi.com:8080/myCourse?userId=${user?.userId}`;
   const indexOfLastItem = (1 + page) * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 

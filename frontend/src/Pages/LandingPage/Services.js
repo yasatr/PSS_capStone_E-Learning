@@ -9,11 +9,21 @@ import {
   } from '@chakra-ui/react';
 import image from '../../Assets/Eleraning.jpg'
 import { Link } from 'react-scroll';
+import animationData from '../../Animations/Job.json'
+import Lottie from 'react-lottie';
 
 
 
 const Services = () => {
     const [isLargerThanLG] = useMediaQuery('(min-width: 62em)');
+    const defaultJob ={
+      loop:true,
+      autoplay : true,
+      animationData : animationData,
+      rendererSettings:{
+        preserveAspectRatio:"xMinYMin meet"
+      }
+    }
   return (
     <Flex
     width="full"
@@ -30,7 +40,8 @@ const Services = () => {
       alignItems="center"
       justifyContent="center"
     >
-      <Image src={image} alt="image" w="full" />
+      {/* <Image src={image} alt="image" w="full" /> */}
+      <Lottie options={defaultJob} height='500px' width="500px"></Lottie>
     </Flex>
     <Spacer />
     <Flex

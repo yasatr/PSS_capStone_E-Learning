@@ -69,7 +69,7 @@ const Forgot = () => {
   const handleSignUp = async () => {
     try {
       const response = await axios.put(
-        "http://localhost:8080/forgot",
+        "http://16400-LT-X0035.na.msds.rhi.com:8080/forgot",
         formData
       );
     } catch (error) {

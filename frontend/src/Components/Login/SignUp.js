@@ -94,7 +94,7 @@ const SignUp = () => {
   const handleSignUp = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/signup",
+        "http://16400-LT-X0035.na.msds.rhi.com:8080/signup",
         formData
       );
 

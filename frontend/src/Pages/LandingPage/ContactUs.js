@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Flex,
     FormControl,
@@ -13,7 +13,28 @@ import {
 const ContactUs = () => {
     const [isLargerThanLG] = useMediaQuery('(min-width: 62em)');
     const toast = useToast();
+    const [formData, setFormData] = useState({
+      fullName: '',
+      email: '',
+      subject: '',
+      message: '',
+    });
+    const handleChange = (e) => {
+      const { id, value } = e.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [id]: value,
+      }));
+    };
   const submitForm = () => {
+    if (!formData.fullName || !formData.email || !formData.message){
+      return toast({
+        title: 'Please fill all required fields! 😕',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
     return toast({
       title: 'Message sent!🚀',
       description: 'Thank you for contacting us!',
@@ -49,13 +70,18 @@ const ContactUs = () => {
           placeholder="Full Name"
           mb="5"
           h="14"
+          value={formData.fullName}
+          onChange={handleChange}
         />
 
-        <Input id="email" type="email" placeholder="Email" mb="5" h="14" />
+        <Input id="email" type="email" placeholder="Email" mb="5" h="14" value={formData.email}
+            onChange={handleChange} />
 
-        <Input id="subject" type="text" placeholder="Subject" mb="5" h="14" />
+        <Input id="subject" type="text" placeholder="Subject" mb="5" h="14" value={formData.subject}
+            onChange={handleChange}/>
 
-        <Textarea placeholder="Enter a message" mb="5" rows={7} p="5" />
+        <Textarea id="message" placeholder="Enter a message" mb="5" rows={7} p="5" value={formData.message}
+            onChange={handleChange}/>
 
         <Button
           colorScheme="blue"

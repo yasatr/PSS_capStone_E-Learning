@@ -13,7 +13,7 @@ const Timeline = ({ update }) => {
   const { courseId, courseTitle } = location.state;
 
   useEffect(() => {
-    fetchCourse(`http://localhost:8080/allContent?courseId=${courseId}`).then(
+    fetchCourse(`http://16400-LT-X0035.na.msds.rhi.com:8080/allContent?courseId=${courseId}`).then(
       (result) => {
         console.log(result.data);
         setContents(result.data);
@@ -34,7 +34,7 @@ const Timeline = ({ update }) => {
           </Flex>
         ))
       ) : (
-        <Box>
+        <Box >
           <NoData />
           {/* <Heading>No Content Availabale</Heading> */}
         </Box>

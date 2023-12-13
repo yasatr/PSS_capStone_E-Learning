@@ -33,7 +33,7 @@ function AddCourse(props) {
   //   setCourse({...course, [e.target.id]:e.target.value});
   // }
  
-  const url = `http://localhost:8080/addCourse?userId=${user?.userId}`;
+  const url = `http://16400-LT-X0035.na.msds.rhi.com:8080/addCourse?userId=${user?.userId}`;
   useEffect(() => {
     if (!buttonClicked) return;
     const addCourse = async () => {
