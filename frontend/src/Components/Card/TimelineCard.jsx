@@ -16,7 +16,7 @@ const TimelineCard = ({ contentDesc, contentType, modifiedAt, course }) => {
   return (
     <HStack
       p={{ base: 3, sm: 6 }}
-      bg={useColorModeValue("gray.100", "gray.800")}
+      bg={useColorModeValue("gray.100", "#2d3748")}
       spacing={5}
       rounded="lg"
       alignItems="center"
