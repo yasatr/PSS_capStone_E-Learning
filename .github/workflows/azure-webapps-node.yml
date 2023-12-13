@@ -20,7 +20,7 @@
 on:
   push:
     paths:
-      - 'PSS_capStone_E-Learning/frontend/**'
+      - '/frontend/**'
     branches: [ "Developer" ]
   workflow_dispatch:
 
