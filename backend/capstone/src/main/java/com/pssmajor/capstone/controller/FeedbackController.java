@@ -42,6 +42,7 @@ public class FeedbackController {
 	
 	@PostMapping("/feedback")
 	public ResponseEntity<ApiResponse> saveFeedback(@RequestBody FeedbackModel feedback) {
+		System.out.println(feedback);
 		String str = feedbackService.saveFeedback(feedback);
 		if(str.equals("Feedback Successfully Saved!")) {
 			return new ResponseEntity<ApiResponse>(new ApiResponse(true, str, null), HttpStatus.OK);			

@@ -3,9 +3,10 @@ import CardSlider from "../../Components/Slider/CardSlider";
 import AddCourse from "./AddCourse";
 import fetchCourse from "../../ApiCall/FetchMyCourse";
 import Cookies from "universal-cookie";
-import { useToast } from "@chakra-ui/react";
+import { Heading, useToast } from "@chakra-ui/react";
 import FeedbackModal from "../../Components/Feedback/FeedbackModal";
 import Loader from "../../Components/Loader/Loader";
+import FeedbackMarquee from "../../Components/Marquee/FeedbackMarquee";
 
 function TeacherDashboard() {
   const [data, setData] = useState([]);
@@ -57,6 +58,9 @@ function TeacherDashboard() {
         <br />
         <AddCourse onAddCourse={handleAddCourse} />
         <br />
+        {/* <FeedbackModal /> */}
+        <Heading textAlign={"center"}>Feedback</Heading>
+        <FeedbackMarquee/>
       </div>
     </Loader>
   );
