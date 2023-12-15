@@ -19,6 +19,8 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Set Working Directory
+        run: echo "WORKING_DIRECTORY=$(pwd)/PSS_capStone_E-Learning/frontend" >> $GITHUB_ENV
       - name: Install dependencies
         run: npm install --legacy-peer-deps
       - name: Build And Deploy
