@@ -26,7 +26,7 @@ import styles from "../../Pages/Teacher/AddCourse.module.css";
 
 
 function FeedbackModal(props) {
-  const { onAddFeedback } = props;
+  // const { onAddFeedback } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [feedbackText, setFeedbackText] = useState("");
   const [feedback, setFeedback] = useState({});
@@ -70,7 +70,7 @@ function FeedbackModal(props) {
       }
       setState(false);
       setButtonClicked(false);
-      onAddFeedback(error);
+      // onAddFeedback(error);
     };
     addFeedback();
   }, [buttonClicked]);

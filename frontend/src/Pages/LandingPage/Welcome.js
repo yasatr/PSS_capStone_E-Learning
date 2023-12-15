@@ -47,7 +47,7 @@ const Welcome = () => {
   },[]);
   return (
     
-    <Box bg={"#1A202C"}>
+    <Box>
       {showLoader?(
         <Box>
           <Lottie options={defaultLogo} height="800px" width="800px"></Lottie>
@@ -57,7 +57,7 @@ const Welcome = () => {
         <Box>
         <Box  w="100%" h="700px" display="flex" flexDirection="column" justifyContent="center" alignItems="center" p="2rem" m="0" style={{position:"relative"}} >
         <Lottie options={defaultLogo} height="100px" width="100px" />
-        <marquee behavior = "slide" width="50%" direction="left" height="100px" scrollamount="12"  style={{marginTop : "30px", fontSize: "3.5rem", fontWeight: "bold", color: "rgba(255, 255, 255, 0.92)", justifyConten:"center"}}>
+        <marquee behavior = "slide" width="50%" direction="left" height="117px" scrollamount="12"  style={{marginTop : "30px", fontSize: "3.5rem", fontWeight: "bold", color: "rgba(255, 255, 255, 0.92)", justifyConten:"center"}}>
         Welcome To SkillForge!!
         </marquee>
         <Lottie options={defaultOptions} height="700px" width="80%"  ></Lottie>

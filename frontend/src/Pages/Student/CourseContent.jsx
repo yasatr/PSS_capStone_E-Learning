@@ -106,12 +106,14 @@ function CourseContent() {
             <DrawerHeader>Course Content</DrawerHeader>
 
             <DrawerBody textAlign={"center"} onClick={(e) => {handleClick(e.target.id)}}>
-              {data.map((c, i) => (
+              {data ? (data.map((c, i) => (
                 <Text cursor="pointer" bg="#ecefff" borderRadius="10" p="3" m="5" id={i} key={c.contentId}>
                   {c.contentDesc}
                   <Badge ml='1' colorScheme='green' variant={'outline'}>{c.contentType}</Badge>
                 </Text>
-              ))}
+              ))) : (
+                <NoData/>
+              )}
             </DrawerBody>
 
             <DrawerFooter>
