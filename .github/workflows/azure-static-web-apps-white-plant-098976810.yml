@@ -19,6 +19,10 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
       - name: Set Working Directory
         run: echo "WORKING_DIRECTORY=$(pwd)/PSS_capStone_E-Learning/frontend" >> $GITHUB_ENV
       - name: Install dependencies
@@ -39,7 +43,7 @@ jobs:
           output_location: "build" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
     env:
-        NPM_CONFIG_LEGACY_PEER_DEPS: true
+        NPM_CONFIG_FORCE: true
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
