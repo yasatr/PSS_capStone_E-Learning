@@ -22,7 +22,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: '18.17.1'
           run: 'npm ci --legacy-peer-deps'
       - name: Set Working Directory
         run: echo "WORKING_DIRECTORY=$(pwd)/PSS_capStone_E-Learning/frontend" >> $GITHUB_ENV
@@ -33,7 +33,7 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WHITE_PLANT_098976810 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
-          app_build_command: 'npm install'
+          app_build_command: 'npm i --save-dev npm@9.6.7'
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: /frontend # App source code path
