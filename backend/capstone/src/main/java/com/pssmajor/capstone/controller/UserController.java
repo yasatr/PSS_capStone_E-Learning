@@ -18,7 +18,7 @@ import com.pssmajor.capstone.model.UserModel;
 import com.pssmajor.capstone.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://localhost:3000")
 public class UserController {
 	@Autowired
 	private UserService userService;

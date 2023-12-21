@@ -5,7 +5,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import axios from "axios";
 import { useLocation } from "react-router";
 import { Document, Page, pdfjs } from "react-pdf";
-import pdf from "../../TestPdf/reactjs_tutorial.pdf";
+//import pdf from "../../TestPdf/reactjs_tutorial.pdf";
 import NoData from "../../Components/Styles/NoData";
 import FeedbackModal from "../../Components/Feedback/FeedbackModal";
 import putReq from "../../ApiCall/putReq";
@@ -139,7 +139,7 @@ function CourseContent() {
         (
           <Box>
             <Box textAlign={"center"} ml={"30%"}>
-              <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+              <Document /*file={pdf}*/ onLoadSuccess={onDocumentLoadSuccess}>
                 <Page pageNumber={pageNumber} renderTextLayer={false} renderAnnotationLayer={false} />
               </Document>
             </Box>

@@ -28,9 +28,22 @@ function MyCourseCard(props) {
     : "https://th.bing.com/th/id/OIP.CYBL9A2z5S-3UquGa_geZAAAAA?rs=1&pid=ImgDetMain";
 
     const handleClick = () => {
-      navigate("/student/content", {state: {
-        courseId: item.courseId
-      }});
+      // navigate("/student/content", {state: {
+      //   courseId: item.courseId
+      // }});
+      {user.role === "teacher" ? (navigate("/content", {
+        state: {
+          courseId: item.courseId,
+          courseTitle: item.courseTitle,
+        },
+        })) 
+        : 
+        (
+          navigate("/student/content", {state: {
+          courseId: item.courseId
+          }})
+        )
+      }
     }
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
@@ -90,7 +103,7 @@ function MyCourseCard(props) {
             </ButtonGroup>
           </CardFooter>
         )}
-        {user.role === "student" && location.pathname === "/student/myCourses" && (
+        {(location.pathname === "/teacher/myCourse" || location.pathname === "/student/myCourses") && (
           <CardFooter>
             <ButtonGroup spacing="2">
               <Button variant="solid" colorScheme="blue" onClick={handleClick}>

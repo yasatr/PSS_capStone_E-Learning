@@ -24,14 +24,11 @@ import { useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import styles from "../../Pages/Teacher/AddCourse.module.css";
 
-
 function FeedbackModal(props) {
-  // const { onAddFeedback } = props;
+  const { courseId } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [feedbackText, setFeedbackText] = useState("");
   const [feedback, setFeedback] = useState({});
   const [rating, setRating] = useState(0);
-  const [state, setState] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
   const [error, setError] = useState(false);
   const [hover, setHover] = useState(null);
@@ -43,34 +40,31 @@ function FeedbackModal(props) {
     setRating(selectedRating);
   };
 
-  const handleSubmit = () => {
-    setFeedback({
-      ...feedback,
-      userId: user.userId,
-      courseId: "1",
-      feedbackDesc: feedbackText,
-      rating: rating,
-    });
-  };
+  // const handleSubmit = () => {
+  //   setFeedback({
+  //     ...feedback,
+  //     userId: user.userId,
+  //     courseId: "1",
+  //     feedbackDesc: feedbackText,
+  //     rating: rating,
+  //   });
+  // };
 
   const url = `http://16400-LT-X0035.na.msds.rhi.com:8080/feedback`;
   useEffect(() => {
     if (!buttonClicked) return;
     const addFeedback = async () => {
-      if (state) return;
-      setState(true);
       try {
+        console.log("feedback ki body", feedback);
         const response = await axios.post(url, feedback);
         const data = await response.data;
+        console.log("Feedback ka res: ", data);
         setError(false);
-        console.log("Feedback: ", data);
       } catch (error) {
         console.error("Feedback Error", error);
         setError(true);
       }
-      setState(false);
       setButtonClicked(false);
-      // onAddFeedback(error);
     };
     addFeedback();
   }, [buttonClicked]);
@@ -87,9 +81,11 @@ function FeedbackModal(props) {
             <Textarea
               isRequired
               placeholder="Type your feedback here..."
-              value={feedbackText}
-              onChange={(e) => setFeedbackText(e.target.value)}
+              onChangeCapture={(e) =>
+                setFeedback({ ...feedback, feedbackDesc: e.target.value })
+              }
               mb={4}
+              rows={10}
             />
 
             <Flex>
@@ -97,11 +93,28 @@ function FeedbackModal(props) {
                 const currentRating = index + 1;
                 return (
                   <label>
-                    <input type="radio" name="rating" value={currentRating} style={{display:"none"}}
-                    onClick={() => handleStarClick(currentRating)} />
+                    <input
+                      type="radio"
+                      name="rating"
+                      value={currentRating}
+                      style={{ display: "none" }}
+                      onClick={() => {
+                        setFeedback({
+                          ...feedback,
+                          rating: currentRating,
+                          courseId: courseId,
+                          userId: user.userId,
+                        });
+                        handleStarClick(currentRating);
+                      }}
+                    />
                     <FaStar
                       className="star"
-                      color={currentRating <= (hover || rating) ? "#ffc107":"#e4e5e9"}
+                      color={
+                        currentRating <= (hover || rating)
+                          ? "#ffc107"
+                          : "#e4e5e9"
+                      }
                       onMouseEnter={() => setHover(currentRating)}
                       onMouseLeave={() => setHover(null)}
                       cursor="pointer"
@@ -119,7 +132,6 @@ function FeedbackModal(props) {
               mr={3}
               onClick={() => {
                 setButtonClicked(true);
-                handleSubmit();
               }}
               onClickCapture={onClose}
             >
