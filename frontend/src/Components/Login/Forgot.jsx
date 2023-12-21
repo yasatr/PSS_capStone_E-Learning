@@ -1,51 +1,38 @@
 import React from "react";
 import {
-    Flex,
-    Box,
-    FormControl,
-    FormLabel,
-    RadioGroup,
-    Radio,
-    Input,
-    InputGroup,
-    HStack,
-    InputRightElement,
-    Stack,
-    Button,
-    Heading,
-    Text,
-    useColorModeValue,
-    FormErrorMessage,
-    useToast,
-  } from '@chakra-ui/react';
-import { useState } from 'react';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-  
-const SignUp = () => {
-    const navigate = useNavigate();
-    const [showPassword, setShowPassword] = useState(false);
-    const [showMatchPassword, setshowMatchPassword] = useState(false);
-    const toast = useToast();
-  
-
+  Flex,
+  Box,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  Radio,
+  Input,
+  InputGroup,
+  HStack,
+  InputRightElement,
+  Stack,
+  Button,
+  Heading,
+  Text,
+  useColorModeValue,
+  Link,
+  FormErrorMessage,
+} from "@chakra-ui/react";
+import { useState } from "react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+const Forgot = () => {
+  //   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showMatchPassword, setshowMatchPassword] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
     password: "",
-    matchingPass: "",
-    phoneNo: "",
-    role: "",
-    profilePicUrl: "",
   });
   const [errors, setErrors] = useState({
     email: "",
     password: "",
-    matchingPass: "",
-    phoneNo: "",
-    profilePicUrl: "",
   });
 
   const handleChange = (e, value) => {
@@ -71,18 +58,6 @@ const SignUp = () => {
           setErrors({ ...errors, [e]: "passwords do not match" });
         }
         break;
-      case "phoneNo":
-        const phoneNumberRegex = /^\d{10}$/;
-        if (!phoneNumberRegex.test(value)) {
-          setErrors({ ...errors, [e]: "should be a 10 digit phone number" });
-        }
-        break;
-      case "profilePicUrl":
-        const urlRegex = /^(ftp|http|https):\/\/[^'']+$/;
-        if (!urlRegex.test(value)) {
-          setErrors({ ...errors, [e]: "Invalid url format" });
-        }
-        break;
       default:
         break;
     }
@@ -93,23 +68,14 @@ const SignUp = () => {
   };
   const handleSignUp = async () => {
     try {
-      const response = await axios.post(
-        "http://16400-LT-X0035.na.msds.rhi.com:8080/signup",
+      const response = await axios.put(
+        "http://16400-LT-X0035.na.msds.rhi.com:8080/forgot",
         formData
       );
-
-      toast({
-        title: 'SignUp Successfull',
-        description: 'Sign in now!!',
-        status: 'success',
-        duration: 2000,
-        isClosable: true,
-        position: 'top-right',
-      });
     } catch (error) {
       console.error("Signup error :", error);
     }
-    navigate("/signin");
+    // navigate("/signin");
   };
 
   return (
@@ -117,16 +83,13 @@ const SignUp = () => {
       minH={"100vh"}
       align={"center"}
       justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
+      // bg={useColorModeValue("gray.50", "gray.800")}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
-            Sign up
+            Forgot Password
           </Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
-            with a new account!
-          </Text>
         </Stack>
         <Box
           rounded={"lg"}
@@ -135,30 +98,6 @@ const SignUp = () => {
           p={8}
         >
           <Stack spacing={4}>
-            <HStack>
-              <Box>
-                <FormControl id="firstName" isRequired>
-                  <FormLabel>First Name</FormLabel>
-                  <Input
-                    type="text"
-                    placeholder="Enter your first name"
-                    onChange={(e) => handleChange("firstName", e.target.value)}
-                    value={formData.firstName}
-                  />
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl id="lastName">
-                  <FormLabel>Last Name</FormLabel>
-                  <Input
-                    type="text"
-                    placeholder="Enter your last name"
-                    onChange={(e) => handleChange("lastName", e.target.value)}
-                    value={formData.lastName}
-                  />
-                </FormControl>
-              </Box>
-            </HStack>
             <FormControl id="email" isInvalid={errors.email !== ""} isRequired>
               <FormLabel>Email address</FormLabel>
               <Input
@@ -174,7 +113,7 @@ const SignUp = () => {
               isInvalid={errors.password !== ""}
               isRequired
             >
-              <FormLabel>Password</FormLabel>
+              <FormLabel>New Password</FormLabel>
               <InputGroup>
                 <Input
                   placeholder="Enter a strong password"
@@ -223,42 +162,6 @@ const SignUp = () => {
               </InputGroup>
               <FormErrorMessage>{errors.matchingPass}</FormErrorMessage>
             </FormControl>
-            <FormControl
-              id="phoneNo"
-              isInvalid={errors.phoneNo !== ""}
-              isRequired
-            >
-              <FormLabel>Phone Number</FormLabel>
-              <Input
-                placeholder="Enter your 10 digit mobile number"
-                type="text"
-                onChange={(e) => handleChange("phoneNo", e.target.value)}
-                value={formData.phoneNo}
-              />
-              <FormErrorMessage>{errors.phoneNo}</FormErrorMessage>
-            </FormControl>
-            <FormControl id="role" isRequired>
-              <FormLabel>Choose a role</FormLabel>
-              <RadioGroup onChange={(value) => handleChange("role", value)}>
-                <HStack spacing="24px">
-                  <Radio value="Student">Student</Radio>
-                  <Radio value="Teacher">Teacher</Radio>
-                </HStack>
-              </RadioGroup>
-            </FormControl>
-            <FormControl
-              id="profilePicUrl"
-              isInvalid={errors.profilePicUrl !== ""}
-            >
-              <FormLabel>Profile Picture</FormLabel>
-              <Input
-                placeholder="Enter the url of your picture"
-                type="text"
-                onChange={(e) => handleChange("profilePicUrl", e.target.value)}
-                value={formData.profilePicUrl}
-              />
-              <FormErrorMessage>{errors.profilePicUrl}</FormErrorMessage>
-            </FormControl>
             <Stack spacing={10} pt={2}>
               <Button
                 type="submit"
@@ -271,12 +174,22 @@ const SignUp = () => {
                 }}
                 onClick={handleSignUp}
               >
-                Sign up
+                Set Password
               </Button>
             </Stack>
             <Stack pt={6}>
-              <Text align={'center'}>
-                Already a user? <Link style={{color:"blue"}}  onMouseOver={(e) => e.target.style.textDecoration = 'underline'} onMouseOut={(e) => e.target.style.textDecoration = 'none'} to='/signin' >Login</Link>
+              <Text align={"center"}>
+                Remember Password?{" "}
+                <Link
+                  style={{ color: "blue" }}
+                  onMouseOver={(e) =>
+                    (e.target.style.textDecoration = "underline")
+                  }
+                  onMouseOut={(e) => (e.target.style.textDecoration = "none")}
+                  to="/signin"
+                >
+                  Login
+                </Link>
               </Text>
             </Stack>
           </Stack>
@@ -286,4 +199,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Forgot;

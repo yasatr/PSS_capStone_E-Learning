@@ -3,7 +3,7 @@ import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
 
-const ProtectedRoute = ({ path, element, ...rest }) => {
+const ProtectedRoute = ({ path, element }) => {
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
   const location = useLocation();

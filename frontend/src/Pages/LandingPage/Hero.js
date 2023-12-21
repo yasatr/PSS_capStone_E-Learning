@@ -10,11 +10,21 @@ import {
   } from '@chakra-ui/react';
 import { useNavigate } from 'react-router';
 import img from '../../Assets/image1.jpg';
+import animationData from '../../Animations/LearnWithUs.json'
+import Lottie from 'react-lottie';
 
 
 const Hero = () => {
     const [isLargerThanLG] = useMediaQuery('(min-width: 62em)');
     const navigate = useNavigate();
+    const defaultLearn={
+      loop:true,
+      autoplay : true,
+      animationData : animationData,
+      rendererSettings:{
+        preserveAspectRatio:"xMinYMin meet"
+      }
+    }
   return (
     <Flex
       alignItems="center"
@@ -54,6 +64,20 @@ const Hero = () => {
         >
           Sign Up
         </Button>
+        <Button
+          w="200px"
+          colorScheme="blue"
+          variant="solid"
+          h="50px"
+          marginLeft="20px"
+          size={isLargerThanLG ? 'lg' : 'md'}
+          mb={isLargerThanLG ? '0' : '10'}
+          onClick={(e) => {
+            navigate('/signin');
+            }}
+        >
+          Login
+        </Button>
       </Box>
       <Spacer />
       <Flex
@@ -61,7 +85,8 @@ const Hero = () => {
         alignItems="center"
         justifyContent="center"
       >
-        <Img src={img} alt="image" />
+        {/* <Img src={img} alt="image" /> */}
+        <Lottie options={defaultLearn} height='500px' width="500px"></Lottie>
       </Flex>
     </Flex>
   )

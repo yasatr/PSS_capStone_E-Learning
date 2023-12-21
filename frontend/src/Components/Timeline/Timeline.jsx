@@ -13,17 +13,20 @@ const Timeline = ({ update }) => {
   const { courseId, courseTitle } = location.state;
 
   useEffect(() => {
-    fetchCourse(`http://localhost:8080/allContent?courseId=${courseId}`).then(
+    fetchCourse(`http://16400-LT-X0035.na.msds.rhi.com:8080/allContent?courseId=${courseId}`).then(
       (result) => {
         console.log(result.data);
         setContents(result.data);
       }
-    );
+    ).catch((err) => {
+      console.log(err);
+      setContents(null);
+    });
   }, [update]);
 
   return (
     <Container maxWidth="4xl" p={{ base: 2, sm: 10 }} marginTop="-10">
-      {contents ? (
+      {contents != null ? (
         contents.map((content) => (
           <Flex key={content.contentId} mb="10px">
             <LineDot />
@@ -31,9 +34,9 @@ const Timeline = ({ update }) => {
           </Flex>
         ))
       ) : (
-        <Box>
-          <Heading>No Content Availabale</Heading>
+        <Box >
           <NoData />
+          {/* <Heading>No Content Availabale</Heading> */}
         </Box>
       )}
     </Container>

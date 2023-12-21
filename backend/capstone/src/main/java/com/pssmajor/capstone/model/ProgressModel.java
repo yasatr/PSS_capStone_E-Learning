@@ -17,8 +17,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProgressModel {
-	
+public class ProgressModel {	
 	private Long enrollmentId;
 	private int score;
 	private Boolean status;

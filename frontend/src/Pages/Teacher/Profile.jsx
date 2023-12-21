@@ -13,16 +13,49 @@ import {
   Image,
   IconButton,
   Highlight,
+  useToast
 } from "@chakra-ui/react";
 import { BsPencil } from "react-icons/bs";
 import Cookies from "universal-cookie";
+import putReq from "../../ApiCall/putReq";
 
 function Profile() {
   const cookies = new Cookies();
   const user = cookies.get("user") || {};
   console.log(user);
+  const toast = useToast();
   const { firstName, lastName, email, phoneNo, profilePicUrl, role } = user;
+  const [profile, setProfile] = useState({
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    phoneNo: phoneNo,
+    profilePicUrl: profilePicUrl,
+    role: role
+  });
   const [editMode, setEditMode] = useState(false);
+  const url = `http://16400-LT-X0035.na.msds.rhi.com:8080/profile?userId=${user.userId}`;
+  const handleUpdate = () => {
+    putReq(url, profile).then((result) => {
+      toast({
+        title: "Success ✔",
+        description: "Profile Updated!",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+        position: "top-right",
+      });
+    }).catch((err) => {
+      toast({
+        title: "Failed to update file",
+        description: `${err}`,
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+        position: "top-right",
+      });
+    })
+  }
 
   return (
     <div>
@@ -134,7 +167,7 @@ function Profile() {
                           size="sm"
                           w="full"
                           rounded="md"
-                          value={profilePicUrl}
+                          onChangeCapture={(e) => setProfile({ ...profile, profilePicUrl: e.target.value })}
                         />
                       ) : (
                         <Input
@@ -177,7 +210,7 @@ function Profile() {
                           size="sm"
                           w="full"
                           rounded="md"
-                          value={firstName}
+                          onChangeCapture={(e) => setProfile({ ...profile, firstName: e.target.value })}
                         />
                       ) : (
                         <Input
@@ -221,7 +254,7 @@ function Profile() {
                           size="sm"
                           w="full"
                           rounded="md"
-                          value={lastName}
+                          onChangeCapture={(e) => setProfile({ ...profile, lastName: e.target.value })}
                         />
                       ) : (
                         <Input
@@ -265,7 +298,7 @@ function Profile() {
                           size="sm"
                           w="full"
                           rounded="md"
-                          value={email}
+                          onChangeCapture={(e) => setProfile({ ...profile, email: e.target.value })}
                         />
                       ) : (
                         <Input
@@ -309,7 +342,7 @@ function Profile() {
                           size="sm"
                           w="full"
                           rounded="md"
-                          value={phoneNo}
+                          onChangeCapture={(e) => setProfile({ ...profile, phoneNo: e.target.value })}
                         />
                       ) : (
                         <Input
@@ -344,12 +377,12 @@ function Profile() {
                   textAlign="right"
                 >
                   <Button
-                    type="submit"
                     colorScheme="brand"
                     _focus={{
                       shadow: "",
                     }}
                     fontWeight="md"
+                    onClick={handleUpdate}
                   >
                     Update & Save
                   </Button>

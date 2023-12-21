@@ -9,7 +9,7 @@
 
 //   useEffect(() => {
 //     const fetchData = async () => {
-//       const result = await axios("http://localhost:8080/allCourse");
+//       const result = await axios("http://16400-LT-X0035.na.msds.rhi.com:8080/allCourse");
 //       setData(result.data);
 //     };
 

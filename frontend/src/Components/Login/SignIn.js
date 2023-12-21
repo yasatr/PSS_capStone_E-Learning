@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import {
   Flex,
   Box,
@@ -26,12 +26,19 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [isEmailValid, setIsEmailValid] = useState(true);
   const cookies = new Cookies();
-  const toast= useToast();
+  const toast = useToast();
 
+  const handleEmailChange = (e) => {
+    const enteredEmail = e.target.value;
+    setEmail(enteredEmail);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setIsEmailValid(emailRegex.test(enteredEmail));
+  };
   const handleSignIn = async () => {
     try {
-      const responseData = await axios.post("http://localhost:8080/login", {
+      const responseData = await axios.post("http://16400-LT-X0035.na.msds.rhi.com:8080/login", {
         email,
         password,
       });
@@ -58,32 +65,41 @@ const SignIn = () => {
       cookies.set("user", userData, { path: "/" });
       console.log("Login Successful", userData);
       toast({
-        title: 'Login Successfull',
-        description: 'Welcome back!',
-        status: 'success',
+        title: "Login Successfull",
+        description: "Welcome back!",
+        status: "success",
         duration: 2000,
         isClosable: true,
-        position: 'top-right',
+        position: "top-right",
       });
-      {userData.role === "student" ? navigate("/student") : navigate("/teacher")}
+      {
+        userData.role === "student"
+          ? navigate("/student")
+          : navigate("/teacher");
+      }
       setError(null);
     } catch (error) {
       toast({
-        title: 'Login Failed',
-        description: 'Try Again!',
-        status: 'error',
+        title: "Login Failed",
+        description: "Try Again!",
+        status: "error",
         duration: 2000,
         isClosable: true,
-        position: 'top-right',
+        position: "top-right",
       });
       if (error.message === "Invalid username or password") {
         setError("Invalid username or password. Please try again");
       } else {
-        setError("An unexpected error occurred. Try again");
+        setError(error.message);
       }
       console.error("Login Failed", error.message);
     }
   };
+  const handleKeyDown = (e)=>{
+    if(e.key === "Enter"){
+      handleSignIn();
+    }
+  }
   return (
     <Flex
       minH={"100vh"}
@@ -106,11 +122,17 @@ const SignIn = () => {
               <FormLabel>Email address</FormLabel>
               <Input
                 type="email"
+                id="email"
                 placeholder="Enter your email id"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {setEmail(e.target.value);
+                handleEmailChange(e);}}
+                onKeyDown={handleKeyDown}
               />
             </FormControl>
+            {isEmailValid || email === '' ? null : (
+              <Text color="red" fontSize="sm">Invalid Email</Text>
+            )}
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
@@ -119,6 +141,7 @@ const SignIn = () => {
                   placeholder="Enter password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  onKeyDown={handleKeyDown}
                 />
                 <InputRightElement h={"full"}>
                   <Button
@@ -149,7 +172,14 @@ const SignIn = () => {
             <Stack pt={6}>
               <Text align={"center"}>
                 Dont't have account?{" "}
-                <Link style={{color:"blue"}}  onMouseOver={(e) => e.target.style.textDecoration = 'underline'} onMouseOut={(e) => e.target.style.textDecoration = 'none'} to="/signup">
+                <Link
+                  style={{ color: "blue" }}
+                  onMouseOver={(e) =>
+                    (e.target.style.textDecoration = "underline")
+                  }
+                  onMouseOut={(e) => (e.target.style.textDecoration = "none")}
+                  to="/signup"
+                >
                   SignUp
                 </Link>
               </Text>

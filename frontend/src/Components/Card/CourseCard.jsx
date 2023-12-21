@@ -18,7 +18,7 @@ function CourseCard({ singleObject }) {
   // const userCookie = Cookies.get("user") || {};
   // const user = JSON.parse(userCookie);
 
-  // const url = `http://localhost:8080/addEnrollment?userId=${user.userId}&courseId=${singleObject.courseId}`;
+  // const url = `http://16400-LT-X0035.na.msds.rhi.com:8080/addEnrollment?userId=${user.userId}&courseId=${singleObject.courseId}`;
   // const addCourse = async () => {
   //   try {
   //     const res = await axios.post(url);

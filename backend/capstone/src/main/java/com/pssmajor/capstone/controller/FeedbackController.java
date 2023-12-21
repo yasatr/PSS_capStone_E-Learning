@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.pssmajor.capstone.model.FeedbackModel;
 import com.pssmajor.capstone.service.FeedbackService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class FeedbackController {
 	@Autowired
 	private FeedbackService feedbackService;
@@ -40,6 +42,7 @@ public class FeedbackController {
 	
 	@PostMapping("/feedback")
 	public ResponseEntity<ApiResponse> saveFeedback(@RequestBody FeedbackModel feedback) {
+		System.out.println(feedback);
 		String str = feedbackService.saveFeedback(feedback);
 		if(str.equals("Feedback Successfully Saved!")) {
 			return new ResponseEntity<ApiResponse>(new ApiResponse(true, str, null), HttpStatus.OK);			
